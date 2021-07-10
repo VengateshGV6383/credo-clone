@@ -1,12 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins:wght@500&display=swap");
 .menu-bar {
-  height: 100vh;
+  height: 100%;
+  display: none;
   background-color: whitesmoke;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   border-right: 2px solid gainsboro;
   left: 0;
+  position: fixed;
+  z-index: 1;
+  -webkit-transition-property: display;
+  transition-property: display;
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
+  -webkit-transition-duration: 2s;
+          transition-duration: 2s;
+  -webkit-transition-delay: 0.5ms;
+          transition-delay: 0.5ms;
 }
 
 .menu-bar ul {

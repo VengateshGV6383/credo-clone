@@ -14,6 +14,7 @@ $font-size-navbar: 20px;
   width: 100%;
   color: $basic-text-color;
   font-size: $font-size-navbar;
+
   font-family: "Poppins", sans-serif;
   .nav-bar-left {
     display: flex;
@@ -25,6 +26,11 @@ $font-size-navbar: 20px;
       i {
         margin: 5px;
         font-size: 1rem;
+      }
+      img {
+        @media (max-width: 500px) {
+          display: none;
+        }
       }
     }
   }

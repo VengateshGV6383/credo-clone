@@ -17,22 +17,16 @@ const MainContent = (props) => {
         }
             ]
     return (  
-        <div style={{alignSelf:"start",margin:"10px",width:"max-content",flexBasis:"70%"}}>
-        <h3>You are visiting {props.name}'s Dashboard </h3>
-        <div className="ui segment">
-        <SearchBox/>
-        </div>
+        <div style={{margin:"auto",width:"max-content",flexBasis:"70%"}}>
+        <h2 style={{margin:"10px",fontSize:"1rem"}}>You are visiting {props.name}'s Dashboard </h2>
+            <div className="ui segment">
+            <SearchBox/>
+            </div>
         <div className="ui segment">
         <h3>Records</h3>
-        <span style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-            <h3>ID</h3>
-            <h3 style={{transform:"translate(-4 0%,0)"}}>Name</h3>
-            <h3>Mailid</h3>
-            <h3>Age</h3>
-
-        </span>
+        
         {
-            records.map(item=>{return<Tables {...item} id={item.id}/>})
+            records.map(item=>{return<Tables {...item} key={item.id}/>})
         }
             
         </div>

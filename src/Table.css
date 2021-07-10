@@ -17,4 +17,10 @@
   list-style-type: none;
   font-size: 12px;
 }
+
+@media (max-width: 500px) {
+  .record-list ul li {
+    font-size: 8px;
+  }
+}
 /*# sourceMappingURL=Table.css.map */

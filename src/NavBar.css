@@ -39,6 +39,12 @@
   font-size: 1rem;
 }
 
+@media (max-width: 500px) {
+  .nav-bar .nav-bar-left span img {
+    display: none;
+  }
+}
+
 .nav-bar .nav-bar-right {
   cursor: pointer;
 }
