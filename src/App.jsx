@@ -6,7 +6,7 @@ import MainContent from './MainContent'
 import Footer from './Footer';
 
 const App=()=>{
-    const menuItems=["Counsellor","Member Experience","Health Coach","Core Mnager","Paharmacologist","Nutrionist","Testing Doctor","Daily TODO log","Others"];
+    const menuItems=["Home","Counsellor","Member Experience","Health Coach","Core Mnager","Paharmacologist","Nutrionist","Testing Doctor","Daily TODO log","Others"];
     return (
         <React.Fragment>
             <div>
@@ -16,11 +16,20 @@ const App=()=>{
                 <BrowserRouter>
                     <MenuBar/>
                         <Switch>
+                           
                             {menuItems.map((item)=>{
-                                return(<Route  render={(props)=>(
-                                    <MainContent {...props} name={item}/>)}
-                                path={`/${item.toLowerCase().replace(' ','-')}`}
-                                />)
+                                return(item!=="Home"?
+                                <Route  
+                                    render={(props)=>
+                                        (<MainContent {...props} name={item}/>)}
+                                        path={`/${item.toLowerCase().replace(' ','-')}`} 
+                                        exact={true}
+                                        /> 
+                                        :
+                                        <Route  render={(props)=>(
+                                            <MainContent {...props} name={item}/>)}
+                                        path="/" exact={true}
+                                        />)
                             })}
                         </Switch>
                     </BrowserRouter>

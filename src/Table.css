@@ -1,0 +1,20 @@
+.record-list ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid orange;
+  margin: 4px;
+  padding: 10px;
+}
+
+.record-list ul li {
+  list-style-type: none;
+  font-size: 12px;
+}
+/*# sourceMappingURL=Table.css.map */
