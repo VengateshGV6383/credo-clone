@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins:wght@500&display=swap");
+.nav-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-weight: 500;
+  background-color: #ff6700;
+  width: 99%;
+  color: #ffff;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.nav-bar .nav-bar-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.nav-bar .nav-bar-left span {
+  margin: 3px;
+  padding: 2px;
+}
+
+.nav-bar .nav-bar-left span i {
+  margin: 5px;
+}
+
+.nav-bar .nav-bar-right {
+  cursor: pointer;
+}
+/*# sourceMappingURL=NavBar.css.map */

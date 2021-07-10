@@ -1,0 +1,33 @@
+$basic-color: orange;
+$basic-text-color: #ffff;
+$basic-font-size: 1rem;
+$font-size-navbar: 20px;
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins:wght@500&display=swap");
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-weight: 500;
+  background-color: rgb(255, 103, 0);
+  width: 99%;
+  color: $basic-text-color;
+  font-size: $font-size-navbar;
+  font-family: "Poppins", sans-serif;
+  .nav-bar-left {
+    display: flex;
+    cursor: pointer;
+    width: fit-content;
+    span {
+      margin: 3px;
+      padding: 2px;
+      i {
+        margin: 5px;
+      }
+    }
+  }
+  .nav-bar-right {
+    cursor: pointer;
+  }
+}
