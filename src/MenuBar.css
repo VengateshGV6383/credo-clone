@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins:wght@500&display=swap");
+.menu-bar {
+  height: 100vh;
+  background-color: whitesmoke;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-right: 2px solid gainsboro;
+  left: 0;
+}
+
+.menu-bar ul {
+  font-family: "Josefin Sans", sans-serif;
+  border: 2px solid whitesmoke;
+  left: 0;
+  padding: 5px;
+  padding-right: 2px;
+}
+
+.menu-bar ul li {
+  list-style-type: none;
+  color: #ff6700;
+  padding: 10px;
+  margin: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 30px;
+  font-size: 1.15rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.menu-bar ul li:hover {
+  background-color: #ff6700;
+  color: white;
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+  border: 1px solid #ff6700;
+}
+
+.menu-bar ul .active-link li {
+  background-color: #ff6700;
+  color: white;
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+  border: 1px solid #ff6700;
+}
+/*# sourceMappingURL=MenuBar.css.map */

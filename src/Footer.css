@@ -1,0 +1,30 @@
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  background-color: gainsboro;
+  border-top: 2px solid #dcdcdc;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+}
+
+.footer li {
+  padding: 5px;
+  margin: 2px;
+  list-style-type: none;
+  font-size: 14px;
+  color: black;
+}
+
+.footer li:hover {
+  cursor: pointer;
+  color: blue;
+}
+/*# sourceMappingURL=Footer.css.map */

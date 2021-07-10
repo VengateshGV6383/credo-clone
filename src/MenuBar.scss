@@ -1,0 +1,47 @@
+$basic-color: rgb(255, 103, 0);
+$basic-font-size: 1rem;
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins:wght@500&display=swap");
+.menu-bar {
+  height: 100vh;
+  background-color: whitesmoke;
+  width: fit-content;
+  border-right: 2px solid gainsboro;
+  left: 0;
+
+  ul {
+    font-family: "Josefin Sans", sans-serif;
+    border: 2px solid whitesmoke;
+    left: 0;
+    padding: 5px;
+    padding-right: 2px;
+
+    li {
+      list-style-type: none;
+      color: $basic-color;
+      padding: 10px;
+      margin: 2px;
+      display: flex;
+
+      justify-content: space-between;
+      gap: 30px;
+      font-size: $basic-font-size + 0.15;
+      cursor: pointer;
+      border: 1px solid transparent;
+
+      &:hover {
+        background-color: $basic-color;
+        color: white;
+        border-top-right-radius: 18px;
+        border-bottom-right-radius: 18px;
+        border: 1px solid $basic-color;
+      }
+    }
+    .active-link li {
+      background-color: $basic-color;
+      color: white;
+      border-top-right-radius: 18px;
+      border-bottom-right-radius: 18px;
+      border: 1px solid $basic-color;
+    }
+  }
+}

@@ -13,7 +13,7 @@
   border-radius: 2px;
   font-weight: 500;
   background-color: #ff6700;
-  width: 99%;
+  width: 100%;
   color: #ffff;
   font-size: 20px;
   font-family: "Poppins", sans-serif;
@@ -36,6 +36,7 @@
 
 .nav-bar .nav-bar-left span i {
   margin: 5px;
+  font-size: 1rem;
 }
 
 .nav-bar .nav-bar-right {
