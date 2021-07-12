@@ -3,10 +3,9 @@ $basic-font-size: 1rem;
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins:wght@500&display=swap");
 .menu-bar {
   height: calc(100% - 9%);
-
   display: none;
   background-color: whitesmoke;
-  width: calc(100% - 75%);
+  width: calc(100% - 70%);
   border-right: 2px solid gainsboro;
   left: 0;
   position: fixed;
@@ -17,7 +16,7 @@ $basic-font-size: 1rem;
   transition-duration: 2s;
   transition-delay: 0.5ms;
   ul {
-    font-family: "Josefin Sans", sans-serif;
+    font-family: "Poppins", sans-serif;
     border: 2px solid whitesmoke;
     flex-basis: 100%;
     left: 0;

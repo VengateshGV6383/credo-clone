@@ -3,7 +3,7 @@ import MenuLinks from './MenuLinks';
 import './MenuBar.css'
 import { NavLink } from 'react-router-dom';
 const MenuBar = (props) => {
-    const menuItems=["Counsellor","Member Experience","Health Coach","Core Mnager","Paharmacologist","Nutrionist","Testing Doctor","Daily TODO log","Others"]
+    const menuItems=["Counsellor","Member Experience","Health Coach","Care Manager","Paharmacologist","Nutrionist","Testing Doctor","Daily TODOlog","Others"]
     return (  
         <div className="menu-bar" ref={props.refer}>
             <ul>

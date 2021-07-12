@@ -19,7 +19,7 @@ const App=()=>{
     }
         }
        
-    const menuItems=["Home","Counsellor","Member Experience","Health Coach","Core Mnager","Paharmacologist","Nutrionist","Testing Doctor","Daily TODO log","Others"];
+    const menuItems=["Home","Counsellor","Member Experience","Health Coach","Care Manager","Paharmacologist","Nutrionist","Testing Doctor","Daily TODOlog","Others"];
     return (
         <React.Fragment>
             <div>
