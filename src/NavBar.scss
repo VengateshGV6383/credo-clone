@@ -14,7 +14,7 @@ $font-size-navbar: 20px;
   max-width: 100%;
   color: $basic-text-color;
   font-size: $font-size-navbar;
-
+  max-height: 50px;
   font-family: "Poppins", sans-serif;
   .nav-bar-left {
     display: flex;

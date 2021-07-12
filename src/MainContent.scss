@@ -4,9 +4,7 @@
   padding-right: 1%;
   padding-left: 1%;
   overflow-y: auto;
-  flex-basis: 85%;
-  max-width: 100%;
-
+  flex-basis: 75%;
   overflow-y: auto;
   .search-area {
     flex-basis: 90%;
@@ -14,13 +12,17 @@
     font-weight: 500;
   }
   .records {
-    height: 60%;
-    max-height: 100%;
-    overflow: auto;
+    height: 50%;
+    overflow-y: auto;
   }
   .heading {
     font-family: "Poppins", sans-serif;
     margin: 1%;
-    font-size: 1rem;
+    font-size: 12px;
+    background-color: #ff6700;
+    color: white;
+    border: 1px solid transparent;
+    padding: 1%;
+    font-weight: 400;
   }
 }

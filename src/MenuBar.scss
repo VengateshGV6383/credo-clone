@@ -2,15 +2,16 @@ $basic-color: rgb(255, 103, 0);
 $basic-font-size: 1rem;
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins:wght@500&display=swap");
 .menu-bar {
-  height: 100vh;
+  height: calc(100% - 9%);
+
   display: none;
   background-color: whitesmoke;
-  width: fit-content;
+  width: calc(100% - 75%);
   border-right: 2px solid gainsboro;
   left: 0;
   position: fixed;
   z-index: 1;
-  flex-basis: 40%;
+  overflow-y: auto;
   transition-property: display;
   transition-timing-function: ease-out;
   transition-duration: 2s;
@@ -18,8 +19,9 @@ $basic-font-size: 1rem;
   ul {
     font-family: "Josefin Sans", sans-serif;
     border: 2px solid whitesmoke;
+    flex-basis: 100%;
     left: 0;
-    padding: 5px;
+    padding: 5%;
     padding-right: 2px;
 
     li {
@@ -28,9 +30,8 @@ $basic-font-size: 1rem;
       padding: 10px;
       margin: 2px;
       display: flex;
-
       justify-content: space-between;
-      gap: 30px;
+      gap: 10px;
       font-size: $basic-font-size + 0.15;
       cursor: pointer;
       border: 1px solid transparent;

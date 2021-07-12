@@ -29,17 +29,21 @@ const MainContent = (props) => {
     return (  
     
             <div className="main-content">
-                <h2 className="heading">You are visiting {props.name}'s Dashboard </h2>
+                   
                     <div className="ui segment search-area">
+                        
                     <SearchBox/>
                     </div>
+                    <span className="heading">{props.name}'s Record</span>
                 <div className="ui segment records">
-                <h3>Records</h3>
+                
+                
                 {
                     records.map(item=>{return<Tables {...item} key={item.id}/>})
                 }
                     
                 </div>
+                
                 
             </div>
     

@@ -1,17 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins:wght@500&display=swap");
 .menu-bar {
-  height: 100vh;
+  height: calc(100% - 9%);
   display: none;
   background-color: whitesmoke;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: calc(100% - 75%);
   border-right: 2px solid gainsboro;
   left: 0;
   position: fixed;
   z-index: 1;
-  -ms-flex-preferred-size: 40%;
-      flex-basis: 40%;
+  overflow-y: auto;
   -webkit-transition-property: display;
   transition-property: display;
   -webkit-transition-timing-function: ease-out;
@@ -25,8 +22,10 @@
 .menu-bar ul {
   font-family: "Josefin Sans", sans-serif;
   border: 2px solid whitesmoke;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
   left: 0;
-  padding: 5px;
+  padding: 5%;
   padding-right: 2px;
 }
 
@@ -41,7 +40,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  gap: 30px;
+  gap: 10px;
   font-size: 1.15rem;
   cursor: pointer;
   border: 1px solid transparent;

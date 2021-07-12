@@ -3,9 +3,8 @@
   padding-right: 1%;
   padding-left: 1%;
   overflow-y: auto;
-  -ms-flex-preferred-size: 85%;
-      flex-basis: 85%;
-  max-width: 100%;
+  -ms-flex-preferred-size: 75%;
+      flex-basis: 75%;
   overflow-y: auto;
 }
 
@@ -17,14 +16,18 @@
 }
 
 .main-content .records {
-  height: 60%;
-  max-height: 100%;
-  overflow: auto;
+  height: 50%;
+  overflow-y: auto;
 }
 
 .main-content .heading {
   font-family: "Poppins", sans-serif;
   margin: 1%;
-  font-size: 1rem;
+  font-size: 12px;
+  background-color: #ff6700;
+  color: white;
+  border: 1px solid transparent;
+  padding: 1%;
+  font-weight: 400;
 }
 /*# sourceMappingURL=MainContent.css.map */
