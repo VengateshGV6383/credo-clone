@@ -15,7 +15,7 @@
 }
 
 .main-content .records {
-  height: calc(100% - 50%);
+  height: calc(100% - 240px);
   overflow-y: auto;
 }
 

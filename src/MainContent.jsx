@@ -22,9 +22,7 @@ const MainContent = (props) => {
         {
             id:"6",name:"Kishore",MailID:"Kishore.gv@yahoo.com",age:"20"
         },
-        {
-            id:"7",name:"Kesavan",MailID:"Kesavan.credo@yahoo.com",age:"22"
-        }
+       
             ]
     return (  
     
