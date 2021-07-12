@@ -29,12 +29,12 @@ const MainContent = (props) => {
     return (  
     
             <div className="main-content">
-                   
+                <span className="heading">{props.name}'s Record</span>
+                    
                     <div className="ui segment search-area">
                         
                     <SearchBox/>
                     </div>
-                    <span className="heading">{props.name}'s Record</span>
                 <div className="ui segment records">
                 
                 

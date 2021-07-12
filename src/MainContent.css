@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins:wght@500&display=swap");
 .main-content {
-  padding-right: 1%;
-  padding-left: 1%;
+  padding: 1%;
   overflow-y: auto;
   -ms-flex-preferred-size: 75%;
       flex-basis: 75%;
