@@ -24,9 +24,12 @@ const App=()=>{
             <div>
                 <NavBar toggleMenuBar={handleMenuBar}/>
             </div>
-            <div style={{display:'flex',gap:"10px"}}>
+            <div style={{display:'flex',gap:"2%",minHeight:"80vh",maxHeight:"80vh",overflow:"auto",justifyContent:"center"}}>
                 <BrowserRouter>
+                <div style={{display:"flex"}}>
                     <MenuBar refer={menuIcon}/>
+
+                </div>
                         <Switch>
                            
                             {menuItems.map((item)=>{

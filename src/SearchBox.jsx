@@ -2,7 +2,7 @@ import React from 'react';
 const SearchBox = (props) => {
     return (  
         
-            <form className="ui form" onSubmit={()=>{ window.alert("To be implented with apis")}}>
+            <form className="ui form"  onSubmit={()=>{ window.alert("To be implented with apis")}}>
             <div className="field">
                 <label>Type Records to Search</label>
                 <input type="text" name="q" placeholder="Search records"/>

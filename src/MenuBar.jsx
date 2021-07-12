@@ -11,7 +11,7 @@ const MenuBar = (props) => {
                 menuItems.map((item)=>{
                     return(
                     <NavLink to={`/${item.toLocaleLowerCase().replace(' ','-')}`} activeClassName="active-link" key={menuItems.indexOf(item)}>
-                            <MenuLinks  link={item}>
+                            <MenuLinks  link={item} tabIndex="0">
                                  <i class="chevron right icon"></i>
                             </MenuLinks>
                     </NavLink>
