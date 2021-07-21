@@ -19,7 +19,7 @@
     "prebuild": "set PUBLIC_URL=https://VengateshGV6383.github.io/credo-clone",
     "build": "react-scripts build",
     "predeploy": "npm run build", 
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
