@@ -27,10 +27,7 @@ const App=()=>{
             </div>
             <div className="main-block">
                 <BrowserRouter>
-                <div style={{display:"flex"}}>
-                    <MenuBar refer={menuIcon}/>
-
-                </div>
+                
                         <Switch>
                            
                             {menuItems.map((item)=>{
@@ -47,7 +44,11 @@ const App=()=>{
                                         path="/credo-clone" exact={true}
                                         />)
                             })}
+
                         </Switch>
+                        <div style={{display:"flex"}}>
+                    <MenuBar refer={menuIcon}/>
+                    </div>
                     </BrowserRouter>
             </div>
             <Footer/>
