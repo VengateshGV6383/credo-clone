@@ -44,7 +44,7 @@ const App=()=>{
                                         :
                                         <Route  render={(props)=>(
                                             <MainContent {...props} name={item}/>)}
-                                        path="/" exact={true}
+                                        path="/credo-clone" exact={true}
                                         />)
                             })}
                         </Switch>
