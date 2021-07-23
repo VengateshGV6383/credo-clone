@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins:wght@500&display=swap");
 .menu-bar {
-  height: calc(100% - 9%);
+  height: auto;
   display: none;
   background-color: whitesmoke;
   min-width: 30%;
@@ -30,6 +30,11 @@
   left: 0;
   padding: 5%;
   padding-right: 2px;
+}
+
+.menu-bar ul a {
+  -webkit-text-decoration: "none";
+          text-decoration: "none";
 }
 
 .menu-bar ul li {

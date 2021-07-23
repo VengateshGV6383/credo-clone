@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import './MainContent.css'
 import Tables from './Tables';
 const MainContent = (props) => {
+
     const records = [
         {
             id: "1", name: "Vengatesh", MailID: "Vengat.gv@yahoo.com", age: "20"
@@ -28,14 +29,22 @@ const MainContent = (props) => {
     ]
     return (
         <React.Fragment>
-            <BrowserRouter>
+            
+            <div className="main-content">
+                <span className="heading">{props.name}'s Record</span>
+
+                <div className="ui segment search-area">
+
+                    <SearchBox />
+                </div>
+                <BrowserRouter>
                 <Switch>
                     {
                         records.map(item => {
                             return (
                                 <Route
                                     render={(props) => (<UserContent {...props} record={item} />)}
-                                    path={`${props.location}/${item.name}`}
+                                    path={`${props.location.pathname}/${item.name.toLocaleLowerCase().replace(' ', '-')}`}
                                     exact={true}
                                 />
                             )
@@ -44,21 +53,13 @@ const MainContent = (props) => {
                     }
 
                 </Switch>
-            </BrowserRouter>
-            <div className="main-content">
-                <span className="heading">{props.name}'s Record</span>
-
-                <div className="ui segment search-area">
-
-                    <SearchBox />
-                </div>
                 <div className="ui segment records">
 
 
                     {
                         records.map(item => {
                             return (
-                                <NavLink path={`${props.location.pathname}/${item.name}`}>
+                                <NavLink  to={`${props.location.pathname}/${item.name.toLocaleLowerCase().replace(' ', '-')}`} key={records.indexOf(item)}>
                                     <Tables {...item} key={item.id} />
                                 </NavLink>
 
@@ -70,6 +71,8 @@ const MainContent = (props) => {
 
                 </div>
 
+            </BrowserRouter>
+                
 
             </div>
 

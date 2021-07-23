@@ -22,34 +22,36 @@ $basic-font-size: 1rem;
     flex-basis: 100%;
     left: 0;
     padding: 5%;
-    padding-right: 2px;
-
-    li {
-      list-style-type: none;
-      color: $basic-color;
-      padding: 10px;
-      margin: 2px;
-      display: flex;
-      justify-content: space-between;
-      gap: 5px;
-      font-size: $basic-font-size + 0.15;
-      cursor: pointer;
-      border: 1px solid transparent;
-
-      &:hover {
+    a {
+      text-decoration: none;
+      li {
+        list-style-type: none;
+        color: $basic-color;
+        padding: 10px;
+        text-decoration: none;
+        margin: 2px;
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+        font-size: $basic-font-size + 0.15;
+        cursor: pointer;
+        border: 1px solid transparent;
+        text-decoration: none;
+        &:hover {
+          background-color: $basic-color;
+          color: white;
+          border-top-right-radius: 18px;
+          border-bottom-right-radius: 18px;
+          border: 1px solid $basic-color;
+        }
+      }
+      .active-link li {
         background-color: $basic-color;
         color: white;
         border-top-right-radius: 18px;
         border-bottom-right-radius: 18px;
         border: 1px solid $basic-color;
       }
-    }
-    .active-link li {
-      background-color: $basic-color;
-      color: white;
-      border-top-right-radius: 18px;
-      border-bottom-right-radius: 18px;
-      border: 1px solid $basic-color;
     }
   }
 }
