@@ -29,18 +29,17 @@
       flex-basis: 100%;
   left: 0;
   padding: 5%;
-  padding-right: 2px;
 }
 
 .menu-bar ul a {
-  -webkit-text-decoration: "none";
-          text-decoration: "none";
+  text-decoration: none;
 }
 
-.menu-bar ul li {
+.menu-bar ul a li {
   list-style-type: none;
   color: #ff6700;
   padding: 10px;
+  text-decoration: none;
   margin: 2px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -52,9 +51,10 @@
   font-size: 1.15rem;
   cursor: pointer;
   border: 1px solid transparent;
+  text-decoration: none;
 }
 
-.menu-bar ul li:hover {
+.menu-bar ul a li:hover {
   background-color: #ff6700;
   color: white;
   border-top-right-radius: 18px;
@@ -62,7 +62,7 @@
   border: 1px solid #ff6700;
 }
 
-.menu-bar ul .active-link li {
+.menu-bar ul a .active-link li {
   background-color: #ff6700;
   color: white;
   border-top-right-radius: 18px;

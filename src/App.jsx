@@ -1,6 +1,7 @@
 import React from 'react';
 import MenuBar from './MenuBar';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route,  } from 'react-router-dom';
+import UserContent from './UserContent';
 import NavBar from './NavBar';
 import MainContent from './MainContent'
 import Footer from './Footer';
@@ -18,8 +19,30 @@ const App = () => {
             console.log(menuIcon.current)
         }
     }
+    const records = [
+        {
+            id: "1", name: "Vengatesh", MailID: "Vengat.gv@yahoo.com", age: "20",Bg:"A1+ve"
+        },
+        {
+            id: "2", name: "Archana Devi", MailID: "Archana.devi@yahoo.com", age: "21",Bg:"A+ve"
+        },
+        {
+            id: "3", name: "Badrinath", MailID: "Badri.credo@yahoo.com", age: "22",Bg:"O+ve"
+        },
+        {
+            id: "4", name: "Balaji", MailID: "Balaji.credo@yahoo.com", age: "22",Bg:"O-ve"
+        },
+        {
+            id: "5", name: "Samuel", MailID: "Samuel.bardi@yahoo.com", age: "20",Bg:"O+ve"
+        },
+        {
+            id: "6", name: "Kishore", MailID: "Kishore.gv@yahoo.com", age: "20",Bg:"B+ve"
+        },
 
-    const menuItems = ["Home", "Counsellor", "Member Experience", "Health Coach", "Care Manager", "Paharmacologist", "Nutrionist", "Testing Doctor", "Daily TODOlog", "Others"];
+    ]
+    const menuItems = ["Home", 
+    "Counsellor", "Member Experience", 
+    "Health Coach", "Care Manager", "Paharmacologist", "Nutrionist", "Testing Doctor", "Daily TODOlog", "Others"];
     return (
         <React.Fragment>
             <div>
@@ -33,22 +56,34 @@ const App = () => {
                 </div>
                     <Switch>
 
-                        {menuItems.map((item) => {
+                        {menuItems.map((item,index) => {
                             return (item !== "Home" ?
-                                <Route
+                                <Route key={index}
                                     render={(props) =>
-                                        (<MainContent {...props} name={item} />)}
+                                        (<MainContent {...props} name={item} records={records}/>)}
                                     path={`/${item.toLowerCase().replace(' ', '-')}`}
                                     exact={true}
                                 />
                                 :
-                                <Route render={(props) => (
+                                <Route  key={index} render={(props) => (
                                     <MainContent {...props} name={item} />)}
-                                    path="/credo-clone" exact={true}
+                                    path="/" exact={true}
                                 />)
 
                         })}
-
+                        {
+                            records.map((record,index)=>{
+                                return(
+                                    <Route key={index}
+                                    render={(props)=>(<UserContent {...props } record={record} />)}
+                                    path={`/dashboard/${record.name.toLocaleLowerCase().replace(' ','-')}`}
+                                    exact={true}
+                                />
+                                )
+                            })
+                                
+                            }
+                    
 
                     </Switch>
                    

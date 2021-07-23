@@ -1,0 +1,19 @@
+.cotainer-body {
+  height: calc(100% - 70px);
+  overflow: auto;
+}
+
+.cotainer-body .avatar {
+  height: auto;
+  width: 10%;
+  border-radius: 50%;
+}
+
+.cotainer-body .user-detail-card {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  width: 25rem;
+  border-radius: 10px;
+}
+/*# sourceMappingURL=Dashboard.css.map */

@@ -4,7 +4,7 @@ const User = () => {
         <div>
             <span style={{display:'flex',justifyContent:'space-evenly',alignItems:'center'}}>
             
-            <h4><i class="user circle icon"></i>Admin</h4>
+            <h4><i className="user circle icon"></i>Admin</h4>
             </span>
         </div>
      );

@@ -12,7 +12,7 @@ const MenuBar = (props) => {
                     return(
                     <NavLink style={{textDecorationLine:"none"}} to={`/${item.toLocaleLowerCase().replace(' ','-')}`} activeClassName="active-link" key={menuItems.indexOf(item)}>
                             <MenuLinks  link={item} tabIndex="0">
-                                 <i class="chevron right icon"></i>
+                                 <i className="chevron right icon"></i>
                             </MenuLinks>
                     </NavLink>
                    
