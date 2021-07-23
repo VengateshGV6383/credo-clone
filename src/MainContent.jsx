@@ -8,22 +8,22 @@ const MainContent = (props) => {
 
     const records = [
         {
-            id: "1", name: "Vengatesh", MailID: "Vengat.gv@yahoo.com", age: "20"
+            id: "1", name: "Vengatesh", MailID: "Vengat.gv@yahoo.com", age: "20",Bg:"A1+ve"
         },
         {
-            id: "2", name: "Archana Devi", MailID: "Archana.devi@yahoo.com", age: "21"
+            id: "2", name: "Archana Devi", MailID: "Archana.devi@yahoo.com", age: "21",Bg:"A+ve"
         },
         {
-            id: "3", name: "Badrinath", MailID: "Badri.credo@yahoo.com", age: "22"
+            id: "3", name: "Badrinath", MailID: "Badri.credo@yahoo.com", age: "22",Bg:"O+ve"
         },
         {
-            id: "4", name: "Balaji", MailID: "Balaji.credo@yahoo.com", age: "22"
+            id: "4", name: "Balaji", MailID: "Balaji.credo@yahoo.com", age: "22",Bg:"O-ve"
         },
         {
-            id: "5", name: "Samuel", MailID: "Samuel.bardi@yahoo.com", age: "20"
+            id: "5", name: "Samuel", MailID: "Samuel.bardi@yahoo.com", age: "20",Bg:"O+ve"
         },
         {
-            id: "6", name: "Kishore", MailID: "Kishore.gv@yahoo.com", age: "20"
+            id: "6", name: "Kishore", MailID: "Kishore.gv@yahoo.com", age: "20",Bg:"B+ve"
         },
 
     ]
@@ -38,35 +38,34 @@ const MainContent = (props) => {
                     <SearchBox />
                 </div>
                 <BrowserRouter>
-                <Switch>
-                    {
-                        records.map(item => {
-                            return (
-                                <Route
-                                    render={(props) => (<UserContent {...props} record={item} />)}
-                                    path={`${props.location.pathname}/${item.name.toLocaleLowerCase().replace(' ', '-')}`}
-                                    exact={true}
-                                />
-                            )
 
-                        })
-                    }
-
-                </Switch>
                 <div className="ui segment records">
 
 
                     {
                         records.map(item => {
                             return (
-                                <NavLink  to={`${props.location.pathname}/${item.name.toLocaleLowerCase().replace(' ', '-')}`} key={records.indexOf(item)}>
+                                <NavLink style={{textDecorationLine:"none"}} to={`${props.location.pathname}/${item.name.toLocaleLowerCase().replace(' ', '-')}`} key={records.indexOf(item)}>
                                     <Tables {...item} key={item.id} />
                                 </NavLink>
 
                             )
                         })
                     }
-
+                    <Switch>
+                       {
+                           records.map(record=>{
+                            return(
+                                <Route
+                                render={(props)=>(<UserContent {...props } record={record}/>)}
+                                path={`${props.location.pathname}/${record.name.toLocaleLowerCase().replace(' ', '-')}`}
+                                exact={true}
+                            />
+                            )
+                           })
+                            
+                        }
+                    </Switch>
 
 
                 </div>
