@@ -2,10 +2,9 @@
 .cotainer-body {
   height: calc(100% - 70px);
   overflow: auto;
-
   .avatar {
     height: auto;
-    width: 20%;
+    width: calc(100% - 90%);
     border-radius: 50%;
   }
   .flex {
@@ -16,10 +15,14 @@
       h4 {
         font-family: "Josefin Sans", sans-serif;
       }
-      h6 {
-        font-size: 12px;
-        font-weight: 500;
-        font-family: "Poppins", sans-serif;
+      .row {
+        div {
+          font-size: 12px;
+          font-family: "Poppins", sans-serif;
+        }
+        .value {
+          font-weight: bold;
+        }
       }
     }
     @media (max-width: 800px) {

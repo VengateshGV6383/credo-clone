@@ -6,7 +6,7 @@
 
 .cotainer-body .avatar {
   height: auto;
-  width: 20%;
+  width: calc(100% - 90%);
   border-radius: 50%;
 }
 
@@ -25,10 +25,13 @@
   font-family: "Josefin Sans", sans-serif;
 }
 
-.cotainer-body .flex .user-detail-card h6 {
+.cotainer-body .flex .user-detail-card .row div {
   font-size: 12px;
-  font-weight: 500;
   font-family: "Poppins", sans-serif;
+}
+
+.cotainer-body .flex .user-detail-card .row .value {
+  font-weight: bold;
 }
 
 @media (max-width: 800px) {
