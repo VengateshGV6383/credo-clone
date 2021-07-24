@@ -29,4 +29,22 @@
       flex-direction: column;
     }
   }
+  .macro-details {
+    gap: 2%;
+    flex-wrap: wrap;
+    .param-card {
+      i {
+        font-size: 220%;
+      }
+      .param-head {
+        font-size: 1rem;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+      }
+      .param-value {
+        font-family: "Josefin Sans", sans-serif;
+        font-weight: 500;
+      }
+    }
+  }
 }

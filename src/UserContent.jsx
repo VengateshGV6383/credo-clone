@@ -18,27 +18,27 @@ const UserContent = ({ record }) => {
 
                                             <h4 className="card-title">{name}</h4>
                                             <div className="card-text">
-                                            <div className="row row-cols-2">
-                                                    <div className="col col-sm-5">CREDO-ID</div>
-                                                    <div className="col col-sm-5 font-weight-bold value">{`CREDOTHU${id}`}</div>
-                                            </div>
+                                                    <div className="row row-cols-2">
+                                                            <div className="col col-sm-5">CREDO-ID</div>
+                                                            <div className="col col-sm-5 font-weight-bold value">{`CREDOTHU${id}`}</div>
+                                                    </div>
                                                 
-                                                <div className="row row-cols-2">
-                                                    <div className="col col-sm-5">Age</div>
-                                                    <div className="col col-sm-5 font-weight-bold value">{age}</div>
-                                                </div>
-                                                <div className="row row-cols-2">
-                                                    <div className="col col-sm-5">B.Group</div>
-                                                    <div className="col col-sm-5 font-weight-bold value">{Bg}</div>
-                                                </div>
-                                                <div className="row row-cols-2">
-                                                    <div className="col col-sm-5">Gender</div>
-                                                    <div className="col col-sm-5 font-weight-bold value">{gen}</div>
-                                                </div>
-                                                <div className="row row-cols-2">
-                                                    <div className="col col-sm-5">Location</div>
-                                                    <div className="col col-sm-5 font-weight-bold value">Trichy</div>
-                                                </div>
+                                                    <div className="row row-cols-2">
+                                                        <div className="col col-sm-5">Age</div>
+                                                        <div className="col col-sm-5 font-weight-bold value">{age}</div>
+                                                    </div>
+                                                    <div className="row row-cols-2">
+                                                        <div className="col col-sm-5">B.Group</div>
+                                                        <div className="col col-sm-5 font-weight-bold value">{Bg}</div>
+                                                    </div>
+                                                    <div className="row row-cols-2">
+                                                        <div className="col col-sm-5">Gender</div>
+                                                        <div className="col col-sm-5 font-weight-bold value">{gen}</div>
+                                                    </div>
+                                                    <div className="row row-cols-2">
+                                                        <div className="col col-sm-5">Location</div>
+                                                        <div className="col col-sm-5 font-weight-bold value">Trichy</div>
+                                                    </div>
                                             </div>
                                      </div>
                                 </div>
@@ -49,17 +49,17 @@ const UserContent = ({ record }) => {
                                         <div className="card-body">
                                             <h4 className="card-title">Medical Record</h4>
                                             <div className="row row-cols-2">
-                                                <div className="col col-sm-4">Weight</div>
-                                                <div className="col col-sm-8 font-weight-bold value">70kg</div>
+                                                <div className="col col-sm-3">Weight</div>
+                                                <div className="col col-sm-9 font-weight-bold value">70kg</div>
                                             </div>
                                             <div className="row row-cols-2">
-                                                <div className="col col-sm-4">BMI</div>
-                                                <div className="col col-sm-8 font-weight-bold value">Normal</div>
+                                                <div className="col col-sm-3">BMI</div>
+                                                <div className="col col-sm-9 font-weight-bold value">Normal</div>
                                             </div>
                                            
                                             <div className="row row-cols-2">
-                                                <div className="col col-sm-4">MC</div>
-                                                <div className="col col-sm-8 font-weight-bold value">Fat,Readly Sneezing,Skin Allergy</div>
+                                                <div className="col col-sm-3">MC</div>
+                                                <div className="col col-sm-9 font-weight-bold value">Chronical Type2 Diabetes</div>
                                             </div>
                                             
                                         </div>
@@ -103,6 +103,151 @@ const UserContent = ({ record }) => {
                                     </div>
                                 </div>
                             </div>
+            </div>
+            <div className="row justify-content-evenly align-items-start ">
+
+                 <div className="row row-cols-4 flex justify-content-evenly macro-details">
+
+                        <div className="col-12 col-lg-4 card m-2 user-detail-card ">
+                            <div className="card-body mt-1 param-card">
+                               <div className="row row-cols-2 param-head">
+                                   <span className="col col-6">
+                                        <i className="tint icon" style={{color:"#498BF5"}}></i>
+                                     </span>
+                                    <span className="col col-6">
+                                        <span className="param-head align-self-start" style={{color:"#49ABF5"}}>
+                                            Glucose
+                                            <br/>
+                                            <small>00/00/0000</small>
+                                        </span>
+                                    </span>
+                               </div>
+                               <div className="card-text param-value">
+                                   <div className="row row-cols-6 ">
+                                   <span className="col col-6">
+                                                Readings
+                                    </span>
+                                            <span className="col col-6"  style={{color:"#498BF5"}}>
+                                                   100
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                        <span className="col col-sm-6">
+                                                Target 
+                                        </span>
+                                        <span className="col col-sm-6 " style={{color:"#498BF5"}}>
+                                                N/A
+                                        </span>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+
+                        <div className="col-12 col-lg-4 card m-2 user-detail-card">
+                            <div className="card-body mt-1 param-card">
+                               <div className="row row-cols-2 param-head">
+                                   <span className="col col-6">
+                                         <i class="heartbeat icon " style={{color:"#F54949"}}></i>
+                                     </span>
+                                    <span className="col col-6 ">
+                                        <span className="param-head" style={{color:"#F54949"}}>
+                                            Pluse<br/>
+                                            <small>00/00/00</small>
+                                        </span>
+                                    </span>
+                               </div>
+                               <div className="card-text param-value">
+                                   <div className="row row-cols-1">
+                                            <span className="col col-6">
+                                                Ratings
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#F54949"}}>
+                                                92
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                        <span className="col col-sm-6">
+                                                Target
+                                        </span>
+                                        <span className="col col-sm-6"  style={{color:"#F54949"}}>
+                                                N/A
+                                        </span>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+
+                        <div className="col-12 col-lg-4 card m-2 user-detail-card">
+                            <div className="card-body mt-1 param-card">
+                               <div className="row row-cols-2 param-head">
+                                   <span className="col col-6">
+                                         <i className="weight icon" style={{color:"#18A6AA"}}></i>
+                                     </span>
+                                    <span className="col col-6 ">
+                                        <span className="param-head" style={{color:"#18A6AA"}}>
+                                            Weight<br/>
+                                            <small>00/00/0000</small>
+                                        </span>
+                                    </span>
+                               </div>
+                               <div className="card-text param-value">
+                                   <div className="row row-cols-1">
+                                            <span className="col col-6">
+                                                Kilograms
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#18A6AA"}}>
+                                                70
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                        <span className="col col-sm-6">
+                                                Target
+                                        </span>
+                                        <span className="col col-sm-6"  style={{color:"#18A6AA"}}>
+                                                N/A
+                                        </span>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-4 card m-2 user-detail-card">
+                            <div className="card-body mt-1 param-card">
+                               <div className="row row-cols-2 param-head">
+                                   <span className="col col-6">
+                                         <i className="moon icon" style={{color:"#18A4A8"}}></i>
+                                     </span>
+                                    <span className="col col-6 ">
+                                        <span className="param-head" style={{color:"#18A4A8"}}>
+                                            Sleep<br/>
+                                            <small>00/00/0000</small>
+                                        </span>
+                                    </span>
+                               </div>
+                               <div className="card-text param-value">
+                                   <div className="row row-cols-1">
+                                            <span className="col col-6">
+                                                Hours
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#18A4A8"}}>
+                                                5
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                        <span className="col col-sm-6">
+                                                Target
+                                        </span>
+                                        <span className="col col-sm-6"  style={{color:"#18A4A8"}}>
+                                                N/A
+                                        </span>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                  </div>
+
+
+
+                
             </div>
                 
         </div>   

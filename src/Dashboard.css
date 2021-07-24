@@ -42,4 +42,25 @@
             flex-direction: column;
   }
 }
+
+.cotainer-body .macro-details {
+  gap: 2%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.cotainer-body .macro-details .param-card i {
+  font-size: 220%;
+}
+
+.cotainer-body .macro-details .param-card .param-head {
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.cotainer-body .macro-details .param-card .param-value {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500;
+}
 /*# sourceMappingURL=Dashboard.css.map */
