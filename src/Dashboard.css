@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Poppins:wght@300&display=swap");
 .cotainer-body {
   height: calc(100% - 70px);
   overflow: auto;
@@ -5,15 +6,37 @@
 
 .cotainer-body .avatar {
   height: auto;
-  width: 10%;
+  width: 20%;
   border-radius: 50%;
 }
 
-.cotainer-body .user-detail-card {
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
-  width: 25rem;
+.cotainer-body .flex {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.cotainer-body .flex .user-detail-card {
+  -ms-flex-preferred-size: calc(100% - 70%);
+      flex-basis: calc(100% - 70%);
   border-radius: 10px;
+}
+
+.cotainer-body .flex .user-detail-card h4 {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.cotainer-body .flex .user-detail-card h6 {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+@media (max-width: 800px) {
+  .cotainer-body .flex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 /*# sourceMappingURL=Dashboard.css.map */

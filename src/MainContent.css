@@ -18,38 +18,15 @@
   font-weight: 400;
 }
 
-.main-content .sub-main-1 {
-  margin: 1%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.main-content .sub-main-1 .search-area {
+.main-content .search-area {
   -ms-flex-preferred-size: 90%;
       flex-basis: 90%;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
 }
 
-.main-content .sub-main-1 .records {
-  height: calc(100% - 240px);
+.main-content .records {
+  height: calc(100% - 250px);
   overflow-y: auto;
-}
-
-.main-content .sub-main-2 {
-  display: none;
-  margin: 2%;
 }
 /*# sourceMappingURL=MainContent.css.map */

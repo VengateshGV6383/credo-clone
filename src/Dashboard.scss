@@ -1,14 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Poppins:wght@300&display=swap");
 .cotainer-body {
   height: calc(100% - 70px);
   overflow: auto;
+
   .avatar {
     height: auto;
-    width: 10%;
+    width: 20%;
     border-radius: 50%;
   }
-  .user-detail-card {
-    height: max-content;
-    width: 25rem;
-    border-radius: 10px;
+  .flex {
+    flex-wrap: wrap;
+    .user-detail-card {
+      flex-basis: calc(100% - 70%);
+      border-radius: 10px;
+      h4 {
+        font-family: "Josefin Sans", sans-serif;
+      }
+      h6 {
+        font-size: 12px;
+        font-weight: 500;
+        font-family: "Poppins", sans-serif;
+      }
+    }
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
   }
 }
