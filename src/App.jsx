@@ -47,7 +47,7 @@ const App = () => {
                                 :
                                 <Route  key={index} render={(props) => (
                                     <MainContent {...props} name={item} />)}
-                                    path="/Home" exact={true}
+                                    path="/credo-clone/" exact={true}
                                 />)
 
                         })}
