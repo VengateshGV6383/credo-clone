@@ -16,7 +16,9 @@ const UserContent = () => {
             glucose:"90",
              pulse:"97",
              sleep:"4",
-             weight:"60"
+             weight:"60",
+             MC:"Allergy,Diabetes"
+
         },
         {
             id: "2", 
@@ -27,7 +29,9 @@ const UserContent = () => {
             glucose:"150",
              pulse:"96",
              sleep:"3.5",
-             weight:"65"
+             weight:"65",
+             MC:"Chronic Syndrom Type2"
+
         },
         {
             id: "3", 
@@ -39,7 +43,9 @@ const UserContent = () => {
            glucose:"120",
             pulse:"97",
             sleep:"4.5",
-            weight:"70"
+            weight:"70",
+            MC:"Blue Syndrom"
+
         },
         {
             id: "4", 
@@ -51,7 +57,9 @@ const UserContent = () => {
             glucose:"110",
              pulse:"96",
              sleep:"6",
-             weight:"80"
+             weight:"80",
+             MC:"Nosil Allergy"
+
         },
         {
             id: "5", 
@@ -63,7 +71,9 @@ const UserContent = () => {
             glucose:"110",
              pulse:"98",
              sleep:"6.45",
-             weight:"85"
+             weight:"85",
+             MC:"Chronic Type2 Diabetes"
+
         },
         {
             id: "6", 
@@ -75,12 +85,13 @@ const UserContent = () => {
             glucose:"120",
              pulse:"99",
              sleep:"4.5",
-             weight:"90"
+             weight:"90",
+             MC:"Chronic Diabetes"
         },
 
     ]
     const record=records.filter(item=>item.id===id)
-    const {name,age,gen,Bg,glucose,sleep,pulse,weight}=record[0];
+    const {name,age,gen,Bg,glucose,sleep,pulse,weight,MC}=record[0];
     return (
         <React.Fragment>
         <div className="container-fluid m-1 cotainer-body" >
@@ -126,7 +137,7 @@ const UserContent = () => {
                                             <h4 className="card-title">Medical Record</h4>
                                             <div className="row row-cols-2">
                                                 <div className="col col-sm-3">Weight</div>
-                                                <div className="col col-sm-9 font-weight-bold value">70kg</div>
+                                                <div className="col col-sm-9 font-weight-bold value">{weight}</div>
                                             </div>
                                             <div className="row row-cols-2">
                                                 <div className="col col-sm-3">BMI</div>
@@ -135,7 +146,7 @@ const UserContent = () => {
                                            
                                             <div className="row row-cols-2">
                                                 <div className="col col-sm-3">MC</div>
-                                                <div className="col col-sm-9 font-weight-bold value">Chronical Type2 Diabetes</div>
+                                                <div className="col col-sm-9 font-weight-bold value">{MC}</div>
                                             </div>
                                             
                                         </div>
@@ -170,7 +181,7 @@ const UserContent = () => {
                                             </div>
                                             <div className="row row-cols-2">
                                                 <div className="col col-sm-4">DOE</div>
-                                                <div className="col col-sm-8 font-weight-bold value">00/01/0000</div>
+                                                <div className="col col-sm-8 font-weight-bold value">00/00/0000</div>
                                             </div>
                                             <div className="row row-cols-2">
                                                 <div className="col col-sm-4">Phase</div>
