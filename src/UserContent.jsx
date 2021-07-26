@@ -319,7 +319,7 @@ const date=new Date()
                         options={
                             {
                                 title:{
-                                    text:"Readinges Chart",
+                                    text:"Readings Chart",
                                     margin:10,
                                     offsetX:10,
                                     offsetY:10,
