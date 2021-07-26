@@ -17,7 +17,12 @@ const UserContent = () => {
              pulse:"97",
              sleep:"4",
              weight:"60",
-             MC:"Allergy,Diabetes"
+             MC:"Allergy,Diabetes",
+             sugar:"140/150",
+             steps:"10000",
+             bp:"150",
+             active:"9",
+             water:"10"
 
         },
         {
@@ -30,7 +35,13 @@ const UserContent = () => {
              pulse:"96",
              sleep:"3.5",
              weight:"65",
-             MC:"Chronic Syndrom Type2"
+             MC:"Chronic Syndrom T2",
+             sugar:"150/160",
+             steps:"20000",
+             bp:"140",
+             active:"8.30",
+             water:"9"
+
 
         },
         {
@@ -44,8 +55,14 @@ const UserContent = () => {
             pulse:"97",
             sleep:"4.5",
             weight:"70",
-            MC:"Blue Syndrom"
+            MC:"Blue Syndrom",
+             sugar:"170/160",
+             steps:"24000",
+             bp:"130",
+             active:"10",
+             water:"8.25"
 
+            
         },
         {
             id: "4", 
@@ -58,7 +75,13 @@ const UserContent = () => {
              pulse:"96",
              sleep:"6",
              weight:"80",
-             MC:"Nosil Allergy"
+             MC:"Nosil Allergy",
+             sugar:"150/170",
+             steps:"20200",
+             bp:"135",
+             active:"9.45",
+             water:"6"
+
 
         },
         {
@@ -72,7 +95,12 @@ const UserContent = () => {
              pulse:"98",
              sleep:"6.45",
              weight:"85",
-             MC:"Chronic Type2 Diabetes"
+             MC:"Chronic Diabetes T2",
+             sugar:"130/150",
+             steps:"25000",
+             bp:"141",
+             active:"10",
+             water:"8"
 
         },
         {
@@ -86,12 +114,18 @@ const UserContent = () => {
              pulse:"99",
              sleep:"4.5",
              weight:"90",
-             MC:"Chronic Diabetes"
+             MC:"Chronic Diabetes",
+             sugar:"150/170",
+             steps:"25000",
+             bp:"140",
+             active:"7.5",
+             water:"5.5"
+
         },
 
     ]
     const record=records.filter(item=>item.id===id)
-    const {name,age,gen,Bg,glucose,sleep,pulse,weight,MC}=record[0];
+    const {name,age,gen,Bg,glucose,sleep,pulse,weight,MC,sugar,steps,bp,active,water}=record[0];
     return (
         <React.Fragment>
         <div className="container-fluid m-1 cotainer-body" >
@@ -130,23 +164,23 @@ const UserContent = () => {
                                      </div>
                                 </div>
                         </div>   
-                        <div className="row row-cols-4 m-1 flex justify-content-between align-items-center">
+                        <div className="row row-cols-4 m-1 flex justify-content-evenly align-items-center">
                             
                                 <div className="col-12 col-lg-4 card m-2 user-detail-card">
                                         <div className="card-body">
                                             <h4 className="card-title">Medical Record</h4>
                                             <div className="row row-cols-2">
-                                                <div className="col col-sm-3">Weight</div>
-                                                <div className="col col-sm-9 font-weight-bold value">{weight}</div>
+                                                <div className="col col-sm-4">Weight</div>
+                                                <div className="col col-sm-8 font-weight-bold value">{weight}</div>
                                             </div>
                                             <div className="row row-cols-2">
-                                                <div className="col col-sm-3">BMI</div>
-                                                <div className="col col-sm-9 font-weight-bold value">Normal</div>
+                                                <div className="col col-sm-4">BMI</div>
+                                                <div className="col col-sm-8 font-weight-bold value">Normal</div>
                                             </div>
                                            
                                             <div className="row row-cols-2">
-                                                <div className="col col-sm-3">MC</div>
-                                                <div className="col col-sm-9 font-weight-bold value">{MC}</div>
+                                                <div className="col col-sm-4">MC</div>
+                                                <div className="col col-sm-8 font-weight-bold value">{MC}</div>
                                             </div>
                                             
                                         </div>
@@ -203,17 +237,26 @@ const UserContent = () => {
                                      </span>
                                     <span className="col col-6">
                                         <span className="param-head align-self-start" style={{color:"#49ABF5"}}>
-                                            Glucose
-                                            <br/>
-                                            <small>00/00/0000</small>
+                                            
+                                            <small>
+                                                Glucose
+                                            </small>
                                         </span>
                                     </span>
                                </div>
                                <div className="card-text param-value">
-                                   <div className="row row-cols-6 ">
-                                   <span className="col col-6">
+                               <div className="row row-cols-2 ">
+                                        <span className="col col-6">
+                                                Active Date
+                                        </span>
+                                            <span className="col col-6"  style={{color:"#498BF5"}}>
+                                                   00/00/0000
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2 ">
+                                        <span className="col col-6">
                                                 Readings
-                                    </span>
+                                        </span>
                                             <span className="col col-6"  style={{color:"#498BF5"}}>
                                                    {glucose}
                                             </span>
@@ -234,17 +277,25 @@ const UserContent = () => {
                             <div className="card-body mt-1 param-card">
                                <div className="row row-cols-2 param-head">
                                    <span className="col col-6">
-                                         <i class="heartbeat icon " style={{color:"#F54949"}}></i>
+                                         <i className="heartbeat icon " style={{color:"#F54949"}}></i>
                                      </span>
                                     <span className="col col-6 ">
                                         <span className="param-head" style={{color:"#F54949"}}>
-                                            Pluse<br/>
-                                            <small>00/00/00</small>
+                                            
+                                            <small>Pluse </small>
                                         </span>
                                     </span>
                                </div>
                                <div className="card-text param-value">
-                                   <div className="row row-cols-1">
+                               <div className="row row-cols-1">
+                                            <span className="col col-6">
+                                                Active Date
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#F54949"}}>
+                                            00/00/0000
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
                                             <span className="col col-6">
                                                 Readings
                                             </span>
@@ -272,13 +323,21 @@ const UserContent = () => {
                                      </span>
                                     <span className="col col-6 ">
                                         <span className="param-head" style={{color:"#18A6AA"}}>
-                                            Weight<br/>
-                                            <small>00/00/0000</small>
+                                            
+                                            <small>Weight</small>
                                         </span>
                                     </span>
                                </div>
                                <div className="card-text param-value">
-                                   <div className="row row-cols-1">
+                               <div className="row row-cols-2">
+                                            <span className="col col-6">
+                                                Active Date
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#18A6AA"}}>
+                                                00/00/0000
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
                                             <span className="col col-6">
                                                 Kilograms
                                             </span>
@@ -305,13 +364,23 @@ const UserContent = () => {
                                      </span>
                                     <span className="col col-6 ">
                                         <span className="param-head" style={{color:"#18A4A8"}}>
-                                            Sleep<br/>
-                                            <small>00/00/0000</small>
+                                            
+                                            <small>Sleep </small>
+                                            
+                                            
                                         </span>
                                     </span>
                                </div>
                                <div className="card-text param-value">
-                                   <div className="row row-cols-1">
+                               <div className="row row-cols-2">
+                                            <span className="col col-6">
+                                                Active Date
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#18A4A8"}}>
+                                                00/00/0000
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
                                             <span className="col col-6">
                                                 Hours
                                             </span>
@@ -324,6 +393,211 @@ const UserContent = () => {
                                                 Target
                                         </span>
                                         <span className="col col-sm-6"  style={{color:"#18A4A8"}}>
+                                                N/A
+                                        </span>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-4 card m-2 user-detail-card">
+                            <div className="card-body mt-1 param-card">
+                               <div className="row row-cols-2 param-head">
+                                   <span className="col col-6">
+                                         <i className="tint icon" style={{color:"#498BF5"}}></i>
+                                     </span>
+                                    <span className="col col-6 ">
+                                        <span className="param-head" style={{color:"#498BF5"}}>
+                                            
+                                            <small>Sugar</small>
+                                        </span>
+                                    </span>
+                               </div>
+                               <div className="card-text param-value">
+                               <div className="row row-cols-2">
+                                            <span className="col col-6">
+                                                Active Date
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#498BF5"}}>
+                                                00/00/0000
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                            <span className="col col-6">
+                                                Asy/dsy
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#498BF5"}}>
+                                                {sugar}
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                        <span className="col col-sm-6">
+                                                Target
+                                        </span>
+                                        <span className="col col-sm-6"  style={{color:"#498BF5"}}>
+                                                N/A
+                                        </span>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-4 card m-2 user-detail-card">
+                            <div className="card-body mt-1 param-card">
+                               <div className="row row-cols-2 param-head">
+                                   <span className="col col-6">
+                                         <i className="hourglass half icon" style={{color:"#FD7112"}}></i>
+                                     </span>
+                                    <span className="col col-6 ">
+                                        <span className="param-head" style={{color:"#FD7112"}}>
+                                            
+                                            <small>Steps</small>
+                                        </span>
+                                    </span>
+                               </div>
+                               <div className="card-text param-value">
+                               <div className="row row-cols-2">
+                                            <span className="col col-6">
+                                                Active Date
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#FD7112"}}>
+                                                00/00/0000
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                            <span className="col col-6">
+                                                Kilometers
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#FD7112"}}>
+                                                {steps}
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                        <span className="col col-sm-6">
+                                                Target
+                                        </span>
+                                        <span className="col col-sm-6"  style={{color:"#FD7112"}}>
+                                                N/A
+                                        </span>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-4 card m-2 user-detail-card">
+                            <div className="card-body mt-1 param-card">
+                               <div className="row row-cols-2 param-head">
+                                   <span className="col col-6">
+                                         <i className="thermometer half icon" style={{color:"#F54949"}}></i>
+                                     </span>
+                                    <span className="col col-6 ">
+                                        <span className="param-head" style={{color:"#F54949"}}>
+                                           
+                                            <small> Blood Pressure</small>
+                                        </span>
+                                    </span>
+                               </div>
+                               <div className="card-text param-value">
+                               <div className="row row-cols-2">
+                                            <span className="col col-6">
+                                                Active Date
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#F54949"}}>
+                                                00/00/0000
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                            <span className="col col-6">
+                                                Reading
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#F54949"}}>
+                                                {bp}
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                        <span className="col col-sm-6">
+                                                Target
+                                        </span>
+                                        <span className="col col-sm-6"  style={{color:"#F54949"}}>
+                                                N/A
+                                        </span>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-4 card m-2 user-detail-card">
+                            <div className="card-body mt-1 param-card">
+                               <div className="row row-cols-2 param-head">
+                                   <span className="col col-6">
+                                         <i className="clock icon" style={{color:"#18A4A8"}}></i>
+                                     </span>
+                                    <span className="col col-6 ">
+                                        <span className="param-head" style={{color:"#18A4A8"}}>
+                                           
+                                            <small> Active Time</small>
+                                        </span>
+                                    </span>
+                               </div>
+                               <div className="card-text param-value">
+                               <div className="row row-cols-2">
+                                            <span className="col col-6">
+                                                Active Date
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#18A4A8"}}>
+                                                00/00/0000
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                            <span className="col col-6">
+                                                Hours
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#18A4A8"}}>
+                                                {active}
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                        <span className="col col-sm-6">
+                                                Target
+                                        </span>
+                                        <span className="col col-sm-6"  style={{color:"#18A4A8"}}>
+                                                N/A
+                                        </span>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-4 card m-2 user-detail-card">
+                            <div className="card-body mt-1 param-card">
+                               <div className="row row-cols-2 param-head">
+                                   <span className="col col-6">
+                                         <i className="tint icon" style={{color:"#49ABF5"}}></i>
+                                     </span>
+                                    <span className="col col-6 ">
+                                        <span className="param-head" style={{color:"#49ABF5"}}>
+                                           
+                                            <small> Water</small>
+                                        </span>
+                                    </span>
+                               </div>
+                               <div className="card-text param-value">
+                               <div className="row row-cols-2">
+                                            <span className="col col-6">
+                                                Active Date
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#49ABF5"}}>
+                                                00/00/0000
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                            <span className="col col-6">
+                                                Litre/day
+                                            </span>
+                                            <span className="col col-6"  style={{color:"#49ABF5"}}>
+                                                {water}
+                                            </span>
+                                   </div>
+                                   <div className="row row-cols-2">
+                                        <span className="col col-sm-6">
+                                                Target
+                                        </span>
+                                        <span className="col col-sm-6"  style={{color:"#49ABF5"}}>
                                                 N/A
                                         </span>
                                    </div>

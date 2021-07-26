@@ -9,15 +9,17 @@
   }
   .flex {
     flex-wrap: wrap;
+    gap: 2.5%;
     .user-detail-card {
       flex-basis: calc(100% - 70%);
       border-radius: 10px;
       h4 {
         font-family: "Josefin Sans", sans-serif;
+        font-size: 2rem;
       }
       .row {
         div {
-          font-size: 12px;
+          font-size: 1.5rem;
           font-family: "Poppins", sans-serif;
         }
         .value {
@@ -30,19 +32,33 @@
     }
   }
   .macro-details {
-    gap: 2%;
     flex-wrap: wrap;
+    .user-detail-card {
+      transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+      &:hover {
+        box-shadow: 2px 2px 2px 2px gainsboro, 2px 2px 2px 2px gainsboro,
+          2px 2px 2px 2px gainsboro, 2px 2px 2px 2px gainsboro;
+      }
+    }
     .param-card {
+      cursor: pointer;
       i {
-        font-size: 220%;
+        font-size: 250%;
       }
       .param-head {
-        font-size: 1rem;
-        font-family: "Poppins", sans-serif;
-        font-weight: 500;
+        display: flex;
+        margin: 1%;
+        align-items: center;
+        small {
+          font-size: 1.25rem;
+          font-family: "Poppins", sans-serif;
+          font-weight: 600;
+        }
       }
       .param-value {
-        font-family: "Josefin Sans", sans-serif;
+        font-size: 1.25rem;
+        font-family: "Poppins", sans-serif;
         font-weight: 500;
       }
     }
