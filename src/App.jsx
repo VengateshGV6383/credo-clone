@@ -47,7 +47,7 @@ const App = () => {
                                 :
                                 <Route  key={index} render={(props) => (
                                     <MainContent {...props} name={item} />)}
-                                    path="/" exact={true}
+                                    path="/Home" exact={true}
                                 />)
 
                         })}

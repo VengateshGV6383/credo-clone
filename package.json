@@ -2,7 +2,7 @@
   "name": "credo-clone",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://VengateshGV6383.github.io/credo-clone",
+  "homepage": "https://VengateshGV6383.github.io/credo-clone/Home",
   "dependencies": {
     "@material-ui/core": "^4.12.2",
     "@testing-library/jest-dom": "^5.14.1",
@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "prebuild": "set PUBLIC_URL=https://VengateshGV6383.github.io/credo-clone",
+    "prebuild": "set PUBLIC_URL=https://VengateshGV6383.github.io/credo-clone/Home",
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
