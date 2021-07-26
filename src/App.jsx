@@ -53,12 +53,19 @@ const App = () => {
                         })}
                         {
                             menuItems.map((item,index)=>{
-                                return(
+                                return( item!=="Home"?
                                     <Route key={index}
                                     render={(props)=>(<UserContent {...props }  />)}
                                     path={`/${item.toLocaleLowerCase().replace(' ','-')}/dashboard/:id`}
                                     exact={true}
                                 />
+                                :
+                                <Route key={index}
+                                    render={(props)=>(<UserContent {...props }  />)}
+                                    path={`/credo-clone/dashboard/:id`}
+                                    exact={true}
+                                    />
+                            
                                 )
                             })
                                 
