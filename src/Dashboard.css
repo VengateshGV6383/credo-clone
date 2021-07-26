@@ -31,7 +31,7 @@
 }
 
 .cotainer-body .flex .user-detail-card .row .value {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 @media (max-width: 800px) {

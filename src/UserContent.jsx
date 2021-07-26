@@ -2,9 +2,85 @@ import React from 'react';
 import Avatar from "./images/avatar.png"
 import "./Dashboard.css"
 import "bootstrap/dist/css/bootstrap.min.css";
-const UserContent = ({ record }) => {
-    
-    const {name,id,age,Bg,gen}=record
+import { useParams } from 'react-router-dom';
+const UserContent = () => {
+    const {id}=useParams();
+    const records = [
+        {
+            id: "1", 
+            name: "Vengatesh",
+            MailID: "Vengat.gv@yahoo.com",
+             age: "20",
+             Bg:"A1+ve",
+             gen:"Male",
+            glucose:"90",
+             pulse:"97",
+             sleep:"4",
+             weight:"60"
+        },
+        {
+            id: "2", 
+            name: "Archana Devi", 
+            MailID: "Archana.devi@yahoo.com",
+             age: "22",Bg:"A+ve",
+             gen:"Female",
+            glucose:"150",
+             pulse:"96",
+             sleep:"3.5",
+             weight:"65"
+        },
+        {
+            id: "3", 
+            name: "Badrinath",
+            MailID: "Badri.credo@yahoo.com", 
+            age: "22",
+            Bg:"O+ve",
+            gen:"Male",
+           glucose:"120",
+            pulse:"97",
+            sleep:"4.5",
+            weight:"70"
+        },
+        {
+            id: "4", 
+            name: "Balaji", 
+            MailID: "Balaji.credo@yahoo.com",
+             age: "22",
+             Bg:"O-ve",
+             gen:"Male",
+            glucose:"110",
+             pulse:"96",
+             sleep:"6",
+             weight:"80"
+        },
+        {
+            id: "5", 
+            name: "Samuel",
+             MailID: "Samuel.bardi@yahoo.com", 
+             age: "20",
+             Bg:"O+ve",
+             gen:"Male",
+            glucose:"110",
+             pulse:"98",
+             sleep:"6.45",
+             weight:"85"
+        },
+        {
+            id: "6", 
+            name: "Kishore",
+             MailID: "Kishore.gv@yahoo.com", 
+             age: "20",
+             Bg:"B+ve",
+             gen:"Male",
+            glucose:"120",
+             pulse:"99",
+             sleep:"4.5",
+             weight:"90"
+        },
+
+    ]
+    const record=records.filter(item=>item.id===id)
+    const {name,age,gen,Bg,glucose,sleep,pulse,weight}=record[0];
     return (
         <React.Fragment>
         <div className="container-fluid m-1 cotainer-body" >
@@ -128,7 +204,7 @@ const UserContent = ({ record }) => {
                                                 Readings
                                     </span>
                                             <span className="col col-6"  style={{color:"#498BF5"}}>
-                                                   100
+                                                   {glucose}
                                             </span>
                                    </div>
                                    <div className="row row-cols-2">
@@ -159,10 +235,10 @@ const UserContent = ({ record }) => {
                                <div className="card-text param-value">
                                    <div className="row row-cols-1">
                                             <span className="col col-6">
-                                                Ratings
+                                                Readings
                                             </span>
                                             <span className="col col-6"  style={{color:"#F54949"}}>
-                                                92
+                                            {pulse}
                                             </span>
                                    </div>
                                    <div className="row row-cols-2">
@@ -196,7 +272,7 @@ const UserContent = ({ record }) => {
                                                 Kilograms
                                             </span>
                                             <span className="col col-6"  style={{color:"#18A6AA"}}>
-                                                70
+                                                {weight}
                                             </span>
                                    </div>
                                    <div className="row row-cols-2">
@@ -229,7 +305,7 @@ const UserContent = ({ record }) => {
                                                 Hours
                                             </span>
                                             <span className="col col-6"  style={{color:"#18A4A8"}}>
-                                                5
+                                                {sleep}
                                             </span>
                                    </div>
                                    <div className="row row-cols-2">

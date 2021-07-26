@@ -19,27 +19,7 @@ const App = () => {
             console.log(menuIcon.current)
         }
     }
-    const records = [
-        {
-            id: "1", name: "Vengatesh", MailID: "Vengat.gv@yahoo.com", age: "20",Bg:"A1+ve",gen:"Male"
-        },
-        {
-            id: "2", name: "Archana Devi", MailID: "Archana.devi@yahoo.com", age: "22",Bg:"A+ve",gen:"Female"
-        },
-        {
-            id: "3", name: "Badrinath", MailID: "Badri.credo@yahoo.com", age: "22",Bg:"O+ve",gen:"Male"
-        },
-        {
-            id: "4", name: "Balaji", MailID: "Balaji.credo@yahoo.com", age: "22",Bg:"O-ve",gen:"Male"
-        },
-        {
-            id: "5", name: "Samuel", MailID: "Samuel.bardi@yahoo.com", age: "20",Bg:"O+ve",gen:"Male"
-        },
-        {
-            id: "6", name: "Kishore", MailID: "Kishore.gv@yahoo.com", age: "20",Bg:"B+ve",gen:"Male"
-        },
-
-    ]
+    
     const menuItems = ["Home", 
     "Counsellor", "Member Experience", 
     "Health Coach", "Care Manager", "Paharmacologist", "Nutrionist", "Testing Doctor", "Daily TODOlog", "Others"];
@@ -60,7 +40,7 @@ const App = () => {
                             return (item !== "Home" ?
                                 <Route key={index}
                                     render={(props) =>
-                                        (<MainContent {...props} name={item} records={records}/>)}
+                                        (<MainContent {...props} name={item} />)}
                                     path={`/${item.toLowerCase().replace(' ', '-')}`}
                                     exact={true}
                                 />
@@ -72,11 +52,11 @@ const App = () => {
 
                         })}
                         {
-                            records.map((record,index)=>{
+                            menuItems.map((item,index)=>{
                                 return(
                                     <Route key={index}
-                                    render={(props)=>(<UserContent {...props } record={record} />)}
-                                    path={`/dashboard/${record.name.toLocaleLowerCase().replace(' ','-')}`}
+                                    render={(props)=>(<UserContent {...props }  />)}
+                                    path={`/${item.toLocaleLowerCase().replace(' ','-')}/dashboard/:id`}
                                     exact={true}
                                 />
                                 )

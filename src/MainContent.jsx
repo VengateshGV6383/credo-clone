@@ -7,7 +7,27 @@ import './MainContent.css';
 import Tables from './Tables';
 const MainContent = (props) => {
     
-    const {records}=props;
+    const records = [
+        {
+            id: "1", name: "Vengatesh", MailID: "Vengat.gv@yahoo.com", age: "20",Bg:"A1+ve",gen:"Male"
+        },
+        {
+            id: "2", name: "Archana Devi", MailID: "Archana.devi@yahoo.com", age: "22",Bg:"A+ve",gen:"Female"
+        },
+        {
+            id: "3", name: "Badrinath", MailID: "Badri.credo@yahoo.com", age: "22",Bg:"O+ve",gen:"Male"
+        },
+        {
+            id: "4", name: "Balaji", MailID: "Balaji.credo@yahoo.com", age: "22",Bg:"O-ve",gen:"Male"
+        },
+        {
+            id: "5", name: "Samuel", MailID: "Samuel.bardi@yahoo.com", age: "20",Bg:"O+ve",gen:"Male"
+        },
+        {
+            id: "6", name: "Kishore", MailID: "Kishore.gv@yahoo.com", age: "20",Bg:"B+ve",gen:"Male"
+        },
+
+    ]
 
     return (
         <React.Fragment>
@@ -28,7 +48,7 @@ const MainContent = (props) => {
                             {
                                 records?.map((item,index) => {
                                     return (
-                                        <NavLink style={{textDecorationLine:"none"}} to={`/dashboard/${item.name.toLowerCase().replace(' ','-')}`} key={index}>
+                                        <NavLink style={{textDecorationLine:"none"}} to={`${props.location.pathname}/dashboard/${item.id}`} key={index}>
                                             <Tables {...item} key={item.id} />
                                         </NavLink>
 
