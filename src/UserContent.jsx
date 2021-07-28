@@ -324,7 +324,7 @@ const UserContent = () => {
                             }
                         }
                         series={[{
-                            name:"Generted Data",
+                            name:"Generated Data",
                             data:value
                         },{
                             name:"Static data",
