@@ -50,16 +50,28 @@ const MainContent = (props) => {
                                 records?.map((item,index) => {
                                    
                                     return (
-                                        <NavLink style={{textDecorationLine:"none"}} to={`${props.location.pathname}dashboard/${item.id}`} key={index}>
+                                        <NavLink 
+                                        style={{textDecorationLine:"none"}} 
+                                        to={{
+                                               pathname:`${props.location.pathname}/dashboard`,
+                                               state:{id:item.id}
+                                            }}  
+                                                key={index}>
                                             <Tables {...item} key={item.id} />
                                         </NavLink>
 
                                     )
                                 }):
                                 records?.map((item,index) => {
-                                   
+                                    
                                     return (
-                                        <NavLink style={{textDecorationLine:"none"}} to={`${props.location.pathname}/dashboard/${item.id}`} key={index}>
+                                        <NavLink 
+                                        style={{textDecorationLine:"none"}} 
+                                        to={{
+                                            pathname:`${props.location.pathname}/dashboard`,
+                                            state:{id:item.id}
+                                         }}  
+                                          key={index}>
                                             <Tables {...item} key={item.id} />
                                         </NavLink>
 

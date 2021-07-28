@@ -1,20 +1,140 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './Dashboard.css';
+import { useLocation } from 'react-router-dom';
 
-const DashboardCard = (props) => {
+const VitalCards = (props) => {
 const date=new Date()
-const {glucose,sleep,pulse,sugar,steps,weight,bp,active,water,getGrpahData}=props
+const records = [
+    {
+        id: "1", 
+        name: "Vengatesh",
+        MailID: "Vengat.gv@yahoo.com",
+         age: "20",
+         Bg:"A1+ve",
+         gen:"Male",
+        glucose:"90",
+         pulse:"97",
+         sleep:"4",
+         weight:"60",
+         MC:"Allergy,Diabetes",
+         sugar:"140/150",
+         steps:"10000",
+         bp:"150",
+         active:"9",
+         water:"10"
+
+    },
+    {
+        id: "2", 
+        name: "Archana Devi", 
+        MailID: "Archana.devi@yahoo.com",
+         age: "22",Bg:"A+ve",
+         gen:"Female",
+        glucose:"150",
+         pulse:"96",
+         sleep:"3.5",
+         weight:"65",
+         MC:"Allergy T2",
+         sugar:"150/160",
+         steps:"20000",
+         bp:"140",
+         active:"8.30",
+         water:"9"
+
+
+    },
+    {
+        id: "3", 
+        name: "Badrinath",
+        MailID: "Badri.credo@yahoo.com", 
+        age: "22",
+        Bg:"O+ve",
+        gen:"Male",
+       glucose:"120",
+        pulse:"97",
+        sleep:"4.5",
+        weight:"70",
+        MC:"Blue Syndrom",
+         sugar:"170/160",
+         steps:"24000",
+         bp:"130",
+         active:"10",
+         water:"8.25"
+
+        
+    },
+    {
+        id: "4", 
+        name: "Balaji", 
+        MailID: "Balaji.credo@yahoo.com",
+         age: "22",
+         Bg:"O-ve",
+         gen:"Male",
+        glucose:"110",
+         pulse:"96",
+         sleep:"6",
+         weight:"80",
+         MC:"Nosil Allergy",
+         sugar:"150/170",
+         steps:"20200",
+         bp:"135",
+         active:"9.45",
+         water:"6"
+
+
+    },
+    {
+        id: "5", 
+        name: "Samuel",
+         MailID: "Samuel.bardi@yahoo.com", 
+         age: "20",
+         Bg:"O+ve",
+         gen:"Male",
+        glucose:"110",
+         pulse:"98",
+         sleep:"6.45",
+         weight:"85",
+         MC:"Chronic Diabetes T2",
+         sugar:"130/150",
+         steps:"25000",
+         bp:"141",
+         active:"10",
+         water:"8"
+
+    },
+    {
+        id: "6", 
+        name: "Kishore",
+         MailID: "Kishore.gv@yahoo.com", 
+         age: "20",
+         Bg:"B+ve",
+         gen:"Male",
+        glucose:"120",
+         pulse:"99",
+         sleep:"4.5",
+         weight:"90",
+         MC:"Chronic Diabetes",
+         sugar:"150/170",
+         steps:"25000",
+         bp:"140",
+         active:"7.5",
+         water:"5.5"
+
+    },
+
+]
+const arr=records.filter(item=>item.id===props.id)
+const {glucose,sleep,pulse,sugar,steps,weight,bp,active,water}=arr[0]
 const handleOnclick=(value,heading)=>{
     const arr=[];
     let i=1;
     for(i=1;i<=7;i++){
         arr.push(i+value)
     }
-    props.history.push(`${props.location.pathname}/Chart`)
-    getGrpahData(arr,heading);
-
+    props.history.push(`${props.location.pathname}/Chart`,{id:props.id,value:arr,heading:heading})
    
+   console.log(value,heading);
 }
 
     return (  
@@ -501,4 +621,4 @@ const handleOnclick=(value,heading)=>{
     );
 }
  
-export default DashboardCard;
+export default VitalCards;

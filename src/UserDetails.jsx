@@ -1,28 +1,9 @@
 import React from 'react';
 import Avatar from "./images/avatar.png"
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashboard.css"
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Switch, useParams, Route } from 'react-router-dom';
-
-import DashboardCard from './DashboardCard';
-import { useState } from 'react';
-import Chart from './Chart';
-
-const UserContent = (props) => {
-
-/*render={(props)=>
-                                <Chart 
-                                {...props} 
-                                value={value} 
-                                heading={heading}
-                                />
-                            } */
-   const [value,setValues]=useState([]);
-   const url=props.location.pathname;
-   console.log(url)
-   const [heading,setHeadings]=useState(" ");
-    const {id}=useParams();
+const UserDetails = (props) => {
     const records = [
         {
             id: "1", 
@@ -53,7 +34,7 @@ const UserContent = (props) => {
              pulse:"96",
              sleep:"3.5",
              weight:"65",
-             MC:"Chronic Syndrom T2",
+             MC:"Allergy T2",
              sugar:"150/160",
              steps:"20000",
              bp:"140",
@@ -142,19 +123,10 @@ const UserContent = (props) => {
         },
 
     ]
-    console.log(props.location.pathname)
-    const record=records.filter(item=>item.id===id)
-    const {name,age,gen,Bg,weight,MC}=record[0];
-    const getData=(value,heading)=>{
-        
-        setValues(value);
-        setHeadings(heading)
-    }
-   
-    return (
-        <React.Fragment>
-        <div className="container-fluid m-1 cotainer-body" >
-            <div className="row justify-content-evenly align-items-start">
+    const arr=records.filter(item=>item.id===props.id)
+    const {name,Bg,gen,weight,MC,id,age}=arr[0]
+    return ( 
+        <div className="row justify-content-evenly align-items-start">
                             
                         <div className="row row-cols-4 user-detail-card flex align-items-center justify-content-between" style={{flexDirection:"column"}}>
                                 <img src={Avatar} alt="avatar" className="avatar"></img>
@@ -250,63 +222,7 @@ const UserContent = (props) => {
                                 </div>
                             </div>
             </div>
-            <div className="row justify-content-evenly align-items-start">
-        
-                 <div className="row row-cols-4 flex justify-content-evenly macro-details ">
-                        <BrowserRouter>
-                        <Switch>
-                            <Route
-                            path={`${url}`}
-                            exact
-                             render={(props)=> (
-                             <DashboardCard
-                                glucose={record[0].glucose}
-                                weight={record[0].weight}
-                                sleep={record[0].sleep}
-                                pulse={record[0].pulse}
-                                steps={record[0].steps}
-                                water={record[0].water}
-                                sugar={record[0].sugar}
-                                bp={record[0].bp}
-                                active={record[0].active}
-                                getGrpahData={getData}
-                                {...props}
-                                />)
-                             }
-                            />
-        
-
-                            
-                            <Route 
-                            path={`${url}/Chart`}
-                            render={(props)=>(<Chart value={value} heading={heading} {...props}/>)}
-                            
-                            />
-
-                        </Switch>
-                        </BrowserRouter>
-                        
-                        
-                  </div>
-                    
-
-                <div className="row row-cols-2 justify-content-center align-items-center chart mt-1">
-                    
-                    <div className="col col-12">
-                        
-                            {null}
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-        </div>   
-
-        </React.Fragment>
-
-       
-    );
+     );
 }
-
-export default UserContent;
+ 
+export default UserDetails;
