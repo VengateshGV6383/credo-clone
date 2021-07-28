@@ -1,16 +1,26 @@
 import React from 'react';
 import Avatar from "./images/avatar.png"
 import "./Dashboard.css"
-import Chart from "react-apexcharts";
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useParams } from 'react-router-dom';
+import { BrowserRouter, Switch, useParams, Route } from 'react-router-dom';
 
 import DashboardCard from './DashboardCard';
 import { useState } from 'react';
+import Chart from './Chart';
 
+const UserContent = (props) => {
 
-const UserContent = () => {
+/*render={(props)=>
+                                <Chart 
+                                {...props} 
+                                value={value} 
+                                heading={heading}
+                                />
+                            } */
    const [value,setValues]=useState([]);
+   const url=props.location.pathname;
+   console.log(url)
    const [heading,setHeadings]=useState(" ");
     const {id}=useParams();
     const records = [
@@ -132,10 +142,11 @@ const UserContent = () => {
         },
 
     ]
+    console.log(props.location.pathname)
     const record=records.filter(item=>item.id===id)
     const {name,age,gen,Bg,weight,MC}=record[0];
     const getData=(value,heading)=>{
-        console.log(value)
+        
         setValues(value);
         setHeadings(heading)
     }
@@ -239,100 +250,52 @@ const UserContent = () => {
                                 </div>
                             </div>
             </div>
-            <div className="row justify-content-evenly align-items-start ">
+            <div className="row justify-content-evenly align-items-start">
         
-                 <div className="row row-cols-4 flex justify-content-evenly macro-details">
-                        {
-                            <DashboardCard
-                            glucose={record[0].glucose}
-                            weight={record[0].weight}
-                            sleep={record[0].sleep}
-                            pulse={record[0].pulse}
-                            steps={record[0].steps}
-                            water={record[0].water}
-                            sugar={record[0].sugar}
-                            bp={record[0].bp}
-                            active={record[0].active}
-                            getGrpahData={getData}
+                 <div className="row row-cols-4 flex justify-content-evenly macro-details ">
+                        <BrowserRouter>
+                        <Switch>
+                            <Route
+                            path={`${url}`}
+                            exact
+                             render={(props)=> (
+                             <DashboardCard
+                                glucose={record[0].glucose}
+                                weight={record[0].weight}
+                                sleep={record[0].sleep}
+                                pulse={record[0].pulse}
+                                steps={record[0].steps}
+                                water={record[0].water}
+                                sugar={record[0].sugar}
+                                bp={record[0].bp}
+                                active={record[0].active}
+                                getGrpahData={getData}
+                                {...props}
+                                />)
+                             }
+                            />
+        
+
+                            
+                            <Route 
+                            path={`${url}/Chart`}
+                            render={(props)=>(<Chart value={value} heading={heading} {...props}/>)}
                             
                             />
-                        }              
 
+                        </Switch>
+                        </BrowserRouter>
+                        
                         
                   </div>
                     
 
                 <div className="row row-cols-2 justify-content-center align-items-center chart mt-1">
-                    <div className="col col-lg-6">
-                    <Chart 
-                        type="line"
+                    
+                    <div className="col col-12">
                         
-                        options={
-                            
-                            {
-                               legend:{
-                                position:"top"
-                               },
-                                chart:{
-                                    toolbar:{
-                                        show:true,
-                                        tools:{
-                                            download:true ,
-                                            reset:false,
-                                            zoom:false,
-                                            zoomin:false,
-                                            zoomout:false,
-                                            pan:false
-                                        }
-                                    },
-                                    animations:{
-                                        enabled:true,
-                                        easing:"easein",
-                                        speed:800
-                                    }
-                                },
-                                stroke:{
-                                
-                                    width:[2,2]
-                                },
-                                title:{
-                                    text:`${heading} `,
-                                    
-                                    
-                                    style:{
-                                    
-                                        fontFamily:"Josefin Sans",
-                                        
-                                        animateGradually: {
-                                            enabled: true,
-                                            delay: 150
-                                        },
-                                        dynamicAnimation: {
-                                            enabled: true,
-                                            speed: 350
-                                        }
-                                    }
-                                },
-                               
-                                markers: {
-                                size: 5,
-                                },
-                               
-                                xaxis:{
-                                    categories:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-                                }
-                            }
-                        }
-                        series={[{
-                            name:"Generated Data",
-                            data:value
-                        },{
-                            name:"Static data",
-                            data:[101,137,205,249,299,310,400]
-                        }]}
-                        height={300}
+                            {null}
                         
-                    />
                     </div>
                     
                 </div>

@@ -2,17 +2,16 @@ import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './Dashboard.css';
 
-const DashboardCard = ({glucose,sleep,pulse,sugar,steps,weight,bp,active,water,getGrpahData}) => {
+const DashboardCard = (props) => {
 const date=new Date()
-
+const {glucose,sleep,pulse,sugar,steps,weight,bp,active,water,getGrpahData}=props
 const handleOnclick=(value,heading)=>{
     const arr=[];
     let i=1;
     for(i=1;i<=7;i++){
         arr.push(i+value)
     }
-    
-    
+    props.history.push(`${props.location.pathname}/Chart`)
     getGrpahData(arr,heading);
 
    
