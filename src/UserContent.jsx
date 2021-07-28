@@ -4,12 +4,14 @@ import "./Dashboard.css"
 import Chart from "react-apexcharts";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useParams } from 'react-router-dom';
-//import { useState } from 'react';
+
+import DashboardCard from './DashboardCard';
+import { useState } from 'react';
+
 
 const UserContent = () => {
-   
-    //const [data,setData]=useState([]);
-    //const [head,setHead]=useState(" ");
+   const [value,setValues]=useState([]);
+   const [heading,setHeadings]=useState(" ");
     const {id}=useParams();
     const records = [
         {
@@ -131,29 +133,13 @@ const UserContent = () => {
 
     ]
     const record=records.filter(item=>item.id===id)
-    const {name,age,gen,Bg,glucose,sleep,pulse,weight,MC,sugar,steps,bp,active,water}=record[0];
-    // const handleOnclick=(headings,value)=>{
-    //     let i=0;
-    //     let arr=[];
-    //     for(let i=1;i<=7;i++){
-    //         arr.push(i*value)
-    //     }
-    //     setData(arr);
-    //     setHead(headings);
-    //    onClick={handleOnclick(record.readingsHead,record.readings)}
-    // }
-    const fields=[
-    {name:"Glucose",icon:"tint",readingsHead:"Readings",readings:glucose,target:"N/A",color:"#49ABF5"},
-    {name:"Pluse",icon:"heartbeat",readingsHead:"Ratings",readings:pulse,target:"N/A",color:"#F54949"},
-    {name:"Weight",icon:"weight",readingsHead:"Kilograms",readings:weight,target:"N/A",color:"#18A6AA"},
-    {name:"Sleep",icon:"moon",readingsHead:"Hours",readings:sleep,target:"N/A",color:"#18A4A8"},
-    {name:"Sugar",icon:"tint",readingsHead:"Asy/Dsy",readings:sugar,target:"N/A",color:"#498BF5"},
-    {name:"Steps",icon:"hourglass half",readingsHead:"Kilometers",readings:steps,target:"N/A",color:"#FD7112"},
-    {name:"Blood Pressure",icon:"thermometer half",readingsHead:"Readings",readings:bp,target:"N/A",color:"#F54949"},
-    {name:"Active Time",icon:"clock",readingsHead:"Hours",readings:active,target:"N/A",color:"#18A4A8"},
-    {name:"Water",icon:"tint",readingsHead:"Liter/day",readings:water,target:"N/A",color:"#49ABF5"},
-]
-const date=new Date()
+    const {name,age,gen,Bg,weight,MC}=record[0];
+    const getData=(value,heading)=>{
+        console.log(value)
+        setValues(value);
+        setHeadings(heading)
+    }
+   
     return (
         <React.Fragment>
         <div className="container-fluid m-1 cotainer-body" >
@@ -257,55 +243,19 @@ const date=new Date()
         
                  <div className="row row-cols-4 flex justify-content-evenly macro-details">
                         {
-                            fields?.map((record,index)=>{
-                                return(
-                                    <div 
-                                    className="col-12 col-lg-4 card m-2 user-detail-card "
-                                    key={index} 
-                                   >
-                                    <div className="card-body mt-1 param-card">
-                                       <div className="row row-cols-2 param-head">
-                                           <span className="col col-6">
-                                                <i className={`${record.icon} icon`} style={{color:`${record.color}`}}></i>
-                                             </span>
-                                            <span className="col col-6">
-                                                <span className="param-head align-self-start" style={{color:`${record.color}`}}>
-                                                    <small>
-                                                        {record.name}
-                                                    </small>
-                                                </span>
-                                            </span>
-                                       </div>
-                                       <div className="card-text param-value">
-                                       <div className="row row-cols-2 ">
-                                                <span className="col col-6">
-                                                        Active Date
-                                                </span>
-                                                <span className="col col-6"  style={{color:`${record.color}`}}>
-                                                           {`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}
-                                                </span>
-                                           </div>
-                                           <div className="row row-cols-2 ">
-                                                <span className="col col-6">
-                                                        {record.readingsHead}
-                                                </span>
-                                                <span className="col col-6"  style={{color:`${record.color}`}}>
-                                                           {record.readings}
-                                                </span>
-                                           </div>
-                                           <div className="row row-cols-2">
-                                                <span className="col col-sm-6">
-                                                        Target
-                                                </span>
-                                                <span className="col col-sm-6 " style={{color:"#498BF5"}}>
-                                                        {record.target}
-                                                </span>
-                                           </div>
-                                       </div>
-                                    </div>
-                                </div>
-                                )
-                            })
+                            <DashboardCard
+                            glucose={record[0].glucose}
+                            weight={record[0].weight}
+                            sleep={record[0].sleep}
+                            pulse={record[0].pulse}
+                            steps={record[0].steps}
+                            water={record[0].water}
+                            sugar={record[0].sugar}
+                            bp={record[0].bp}
+                            active={record[0].active}
+                            getGrpahData={getData}
+                            
+                            />
                         }              
 
                         
@@ -316,36 +266,67 @@ const date=new Date()
                     <div className="col col-lg-6">
                     <Chart 
                         type="line"
+                        
                         options={
+                            
                             {
-                                title:{
-                                    text:"Readings Chart",
-                                    margin:10,
-                                    offsetX:10,
-                                    offsetY:10,
-                                    style:{
-                                        fontWeight:"bold",
-                                        fontFamily:"Josefin Sans",
-                                        fontSize:"1.25rem"
+                               
+                                chart:{
+                                    toolbar:{
+                                        show:true,
+                                        tools:{
+                                            download:true ,
+                                            reset:false,
+                                            zoom:false,
+                                            zoomin:false,
+                                            zoomout:false,
+                                            pan:false
+                                        }
+                                    },
+                                    animations:{
+                                        enabled:true,
+                                        easing:"easein",
+                                        speed:800
                                     }
                                 },
-                                tooltip:{
-                                    enabled:false
+                                stroke:{
+                                    curve:"smooth",
+                                    width:[2,2]
                                 },
+                                title:{
+                                    text:`${heading} `,
+                                    
+                                    
+                                    style:{
+                                    
+                                        fontFamily:"Josefin Sans",
+                                        
+                                        animateGradually: {
+                                            enabled: true,
+                                            delay: 150
+                                        },
+                                        dynamicAnimation: {
+                                            enabled: true,
+                                            speed: 350
+                                        }
+                                    }
+                                },
+                               
                                 markers: {
                                 size: 5,
                                 },
-                                chart:{
-                                    id:"Chart-1"
-                                },
+                               
                                 xaxis:{
                                     categories:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
                                 }
                             }
                         }
                         series={[{
-                            name:"Pulse",
-                            data:[10,8,12,5,20,14,5]
+                            name:"Glucose data",
+                            data:value
+                        },{
+                            name:"Static data",
+                            data:[101,137,205,249,299,310,400]
                         }]}
                         height={300}
                         
