@@ -9,7 +9,7 @@ const handleOnclick=(value,heading)=>{
     const arr=[];
     let i=1;
     for(i=1;i<=7;i++){
-        arr.push((i+10)*value)
+        arr.push(i+value)
     }
     
     

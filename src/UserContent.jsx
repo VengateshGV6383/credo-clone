@@ -270,7 +270,9 @@ const UserContent = () => {
                         options={
                             
                             {
-                               
+                               legend:{
+                                position:"top"
+                               },
                                 chart:{
                                     toolbar:{
                                         show:true,
@@ -290,7 +292,7 @@ const UserContent = () => {
                                     }
                                 },
                                 stroke:{
-                                    curve:"smooth",
+                                
                                     width:[2,2]
                                 },
                                 title:{
