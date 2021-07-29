@@ -6,7 +6,13 @@ import './MainContent.css';
 
 import Tables from './Tables';
 const MainContent = (props) => {
-    
+    let url;
+    if(props.location.pathname.search("credo-clone")){
+        url="/credo-clone"
+    }
+    else{
+        url=props.location.pathname
+    }
     const records = [
         {
             id: "1", name: "Vengatesh", MailID: "Vengat.gv@yahoo.com", age: "20",Bg:"A1+ve",gen:"Male"
@@ -53,7 +59,7 @@ const MainContent = (props) => {
                                         <NavLink 
                                         style={{textDecorationLine:"none"}} 
                                         to={{
-                                            pathname:`${props.location.pathname}/dashboard`,
+                                            pathname:`${url}/dashboard`,
                                             state:{id:item.id}
                                          }}  
                                           key={index}>
