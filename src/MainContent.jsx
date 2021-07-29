@@ -46,22 +46,7 @@ const MainContent = (props) => {
 
 
                             {
-                                (props.location.pathname==="/credo-clone/")?
-                                records?.map((item,index) => {
-                                   
-                                    return (
-                                        <NavLink 
-                                        style={{textDecorationLine:"none"}} 
-                                        to={{
-                                               pathname:`${props.location.pathname}/dashboard`,
-                                               state:{id:item.id}
-                                            }}  
-                                                key={index}>
-                                            <Tables {...item} key={item.id} />
-                                        </NavLink>
-
-                                    )
-                                }):
+                                
                                 records?.map((item,index) => {
                                     
                                     return (

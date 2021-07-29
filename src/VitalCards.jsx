@@ -1,7 +1,7 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './Dashboard.css';
-import { useLocation } from 'react-router-dom';
+
 
 const VitalCards = (props) => {
 const date=new Date()
@@ -132,9 +132,10 @@ const handleOnclick=(value,heading)=>{
     for(i=1;i<=7;i++){
         arr.push(i+value)
     }
+
     props.history.push(`${props.location.pathname}/Chart`,{id:props.id,value:arr,heading:heading})
    
-   console.log(value,heading);
+   
 }
 
     return (  

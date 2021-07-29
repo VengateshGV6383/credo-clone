@@ -25,7 +25,7 @@ const Chart = (props) => {
                                 <div className="col col-9" style={{fontFamily:"Poppins"}}>
                                     <h6>{location.state.heading?location.state.heading:"Chart"}</h6>
                                 </div>
-                                <div className="col col-3">
+                                <div className="col col-3 align-self-end">
                                         <button className="btn btn-secondary btn-sm " onClick={goBack}>Back</button>
                                 </div>
                             
@@ -56,7 +56,7 @@ const Chart = (props) => {
                                                                 animations:{
                                                                     enabled:true,
                                                                     easing:"easein",
-                                                                    speed:800
+                                                                    speed:1000
                                                                 }
                                                             },
                                                             stroke:{
@@ -86,7 +86,13 @@ const Chart = (props) => {
                                                     }]}
                                                             height={300}
                                                         />
+                                         </div>
                             </div>
+                            <div className="row row-cols-2">
+                                        <div className="col col-12">
+                                                    
+                                                
+                                        </div>
                             </div>
                </div>
              </div>
