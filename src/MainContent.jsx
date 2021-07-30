@@ -23,21 +23,7 @@ const MainContent = (props) => {
             </NavLink>
         </span>)
     }
-    // const link=records.map(({id},index) => {
-                                    
-    //     return (
-    //         <NavLink 
-    //         style={{textDecorationLine:"none"}} 
-    //         to={{
-    //             pathname:`${url}/dashboard`,
-    //             state:{id:id}
-    //          }}  
-    //           key={index}>
-
-    //         </NavLink>
-
-    //     )
-    // })
+    
                             
     const records = [
         {
@@ -81,7 +67,7 @@ const MainContent = (props) => {
                         
                         <AgGridReact rowData={records} rowClass={rowStyle} frameworkComponents={getComponentRenderer}>
                         
-                        <AgGridColumn field="id" cellRenderer="NavLinkRenderer" ></AgGridColumn>
+                        <AgGridColumn field="id"  cellRenderer="NavLinkRenderer" ></AgGridColumn>
                             
                         
                         <AgGridColumn field="name"></AgGridColumn>
