@@ -19,7 +19,7 @@ const MainContent = (props) => {
         return(
         <span>
             <NavLink style={{textDecorationLine:"none"}}to={{pathname:`${url}/dashboard`,state:{id:param.value}}}>
-            {param.value}
+            {`CredoID${param.value}`}
             </NavLink>
         </span>)
     }
@@ -41,22 +41,22 @@ const MainContent = (props) => {
                             
     const records = [
         {
-            id:'1', name: "Vengatesh", MailID: "Vengat.gv@yahoo.com", age: "20",Bg:"A1+ve",gen:"Male"
+            id:'1', name: "Vengatesh", MailID: "Vengat.gv@yahoo.com", age: "20",Bg:"A1+ve",gen:"Male",position:"Trainee"
         },
         {
-            id: "2", name: "Archana Devi", MailID: "Archana.devi@yahoo.com", age: "22",Bg:"A+ve",gen:"Female"
+            id: "2", name: "Archana Devi", MailID: "Archana.devi@yahoo.com", age: "22",Bg:"A+ve",gen:"Female",position:"Trainee"
         },
         {
-            id: "3", name: "Badrinath", MailID: "Badri.credo@yahoo.com", age: "22",Bg:"O+ve",gen:"Male"
+            id: "3", name: "Badrinath", MailID: "Badri.credo@yahoo.com", age: "22",Bg:"O+ve",gen:"Male",position:"Trainee"
         },
         {
-            id: "4", name: "Balaji", MailID: "Balaji.credo@yahoo.com", age: "22",Bg:"O-ve",gen:"Male"
+            id: "4", name: "Balaji", MailID: "Balaji.credo@yahoo.com", age: "22",Bg:"O-ve",gen:"Male",position:"Trainee"
         },
         {
-            id: "5", name: "Samuel", MailID: "Samuel.bardi@yahoo.com", age: "20",Bg:"O+ve",gen:"Male"
+            id: "5", name: "Samuel", MailID: "Samuel.bardi@yahoo.com", age: "20",Bg:"O+ve",gen:"Male",position:"Trainee"
         },
         {
-            id: "6", name: "Kishore", MailID: "Kishore.gv@yahoo.com", age: "20",Bg:"B+ve",gen:"Male"
+            id: "6", name: "Kishore", MailID: "Kishore.gv@yahoo.com", age: "20",Bg:"B+ve",gen:"Male",position:"Trainee"
         },
 
     ]
@@ -87,7 +87,7 @@ const MainContent = (props) => {
                         <AgGridColumn field="name"></AgGridColumn>
                         <AgGridColumn field="MailID"></AgGridColumn>
                         <AgGridColumn field="age"></AgGridColumn>
-                        <AgGridColumn field="Bg"></AgGridColumn>
+                        <AgGridColumn field="position"></AgGridColumn>
 
                         </AgGridReact>
                             
