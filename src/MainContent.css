@@ -29,4 +29,23 @@
   height: calc(100% - 250px);
   overflow-y: auto;
 }
+
+.main-content .ag-theme-alpine .ag-header {
+  border: 1px solid #ffff;
+  background-color: #ff6700;
+}
+
+.main-content .ag-theme-alpine .ag-header-cell-label {
+  color: white;
+  font-family: "Poppins";
+  font-weight: normal;
+}
+
+.main-content .ag-theme-alpine .rows {
+  color: #ff6700;
+}
+
+.main-content .ag-theme-alpine .ag-body-viewport {
+  width: calc(100%-200px);
+}
 /*# sourceMappingURL=MainContent.css.map */

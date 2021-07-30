@@ -1,21 +1,47 @@
 import React from 'react';
 import SearchBox from './SearchBox';
-
+import { AgGridColumn,AgGridReact } from 'ag-grid-react';
 import { NavLink } from 'react-router-dom';
 import './MainContent.css';
-
-import Tables from './Tables';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 const MainContent = (props) => {
     let url;
+    const rowStyle="rows"
     if(props.location.pathname.search("credo-clone")){
         url="/credo-clone"
     }
     else{
         url=props.location.pathname
     }
+    const NavLinkRenderer=(param)=>{
+        
+        return(
+        <span>
+            <NavLink style={{textDecorationLine:"none"}}to={{pathname:`${url}/dashboard`,state:{id:param.value}}}>
+            {param.value}
+            </NavLink>
+        </span>)
+    }
+    // const link=records.map(({id},index) => {
+                                    
+    //     return (
+    //         <NavLink 
+    //         style={{textDecorationLine:"none"}} 
+    //         to={{
+    //             pathname:`${url}/dashboard`,
+    //             state:{id:id}
+    //          }}  
+    //           key={index}>
+
+    //         </NavLink>
+
+    //     )
+    // })
+                            
     const records = [
         {
-            id: "1", name: "Vengatesh", MailID: "Vengat.gv@yahoo.com", age: "20",Bg:"A1+ve",gen:"Male"
+            id:'1', name: "Vengatesh", MailID: "Vengat.gv@yahoo.com", age: "20",Bg:"A1+ve",gen:"Male"
         },
         {
             id: "2", name: "Archana Devi", MailID: "Archana.devi@yahoo.com", age: "22",Bg:"A+ve",gen:"Female"
@@ -34,7 +60,10 @@ const MainContent = (props) => {
         },
 
     ]
-
+    const getComponentRenderer={
+        "NavLinkRenderer":NavLinkRenderer
+    }
+    
     return (
         <React.Fragment>
             
@@ -48,27 +77,20 @@ const MainContent = (props) => {
                         </div>
 
 
-                        <div className="ui segment records">
+                        <div className="ui segment records ag-theme-alpine">
+                        
+                        <AgGridReact rowData={records} rowClass={rowStyle} frameworkComponents={getComponentRenderer}>
+                        
+                        <AgGridColumn field="id" cellRenderer="NavLinkRenderer" ></AgGridColumn>
+                            
+                        
+                        <AgGridColumn field="name"></AgGridColumn>
+                        <AgGridColumn field="MailID"></AgGridColumn>
+                        <AgGridColumn field="age"></AgGridColumn>
+                        <AgGridColumn field="Bg"></AgGridColumn>
 
-
-                            {
-                                
-                                records?.map((item,index) => {
-                                    
-                                    return (
-                                        <NavLink 
-                                        style={{textDecorationLine:"none"}} 
-                                        to={{
-                                            pathname:`${url}/dashboard`,
-                                            state:{id:item.id}
-                                         }}  
-                                          key={index}>
-                                            <Tables {...item} key={item.id} />
-                                        </NavLink>
-
-                                    )
-                                })
-                            }
+                        </AgGridReact>
+                            
                             </div>
 
                 </div>
