@@ -9,12 +9,29 @@ import moment from "moment";
 import { useState } from "react";
 const Chart = (props) => {
   const location = useLocation();
+  const [dataSeries, setDataSeries] = useState([]);
   const [from, setFrom] = useState([]);
   const [TO, setTO] = useState([]);
   const getDifference = () => {
     let a = moment(TO);
     let b = moment(from);
-    console.log(a.diff(b, "days"));
+    let getRange = Math.abs(a.diff(b, "days")) / 10;
+    if (Math.round(getRange) > 10 || Math.round(getRange) < 1)
+      setDataSeries([101, 137, 205, 249, 299, 310, 400]);
+    else {
+      setDataSeries(staticData[`${getRange}`]);
+    }
+  };
+  const staticData = {
+    1: [101, 201, 301, 401, 501, 601],
+    2: [112, 212, 312, 412, 512, 612],
+    4: [133, 233, 333, 433, 533, 633],
+    5: [143, 242, 343, 445, 546, 647],
+    6: [122, 224, 324, 424, 524, 624],
+    7: [150, 250, 350, 451, 552, 653],
+    8: [161, 262, 364, 467, 562, 66],
+    9: [171, 272, 373, 478, 572, 67],
+    10: [128, 283, 381, 489, 581, 680],
   };
   const [showRange, SetshowRange] = useState(false);
   const goBack = () => {
@@ -113,6 +130,8 @@ const Chart = (props) => {
                     <h6 className="m-2">To</h6>
                     <Datetime
                       closeOnSelect={true}
+                      initialValue={new Date()}
+                      initialViewDate={new Date()}
                       inputProps={{ placeholder: "DD-MM-YYYY" }}
                       dateFormat={"DD-MMM-YYYY"}
                       timeFormat={false}
@@ -208,7 +227,7 @@ const Chart = (props) => {
                         {
                           type: "line",
                           name: "Static data",
-                          data: [101, 137, 205, 249, 299, 310, 400],
+                          data: dataSeries,
                         },
                       ]}
                       height={300}
@@ -257,7 +276,11 @@ const Chart = (props) => {
                           position: "top",
                         },
                       }}
-                      series={[20, 30, 15, 50, 60, 90, 50]}
+                      series={
+                        location.state
+                          ? location.state.value
+                          : [20, 30, 15, 50, 60, 90, 50]
+                      }
                       height={300}
                     />
                   </div>
