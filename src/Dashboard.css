@@ -91,4 +91,9 @@
   font-family: "Poppins", sans-serif;
   font-weight: 500;
 }
+
+.cotainer-body .macro-details .apexcharts-menu-item.exportSVG,
+.cotainer-body .macro-details .apexcharts-menu-item.exportCSV {
+  display: none;
+}
 /*# sourceMappingURL=Dashboard.css.map */

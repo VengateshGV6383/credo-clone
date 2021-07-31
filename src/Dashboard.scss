@@ -62,5 +62,9 @@
         font-weight: 500;
       }
     }
+    .apexcharts-menu-item.exportSVG,
+    .apexcharts-menu-item.exportCSV {
+      display: none;
+    }
   }
 }

@@ -4,7 +4,7 @@ import { AgGridColumn,AgGridReact } from 'ag-grid-react';
 import { NavLink } from 'react-router-dom';
 import './MainContent.css';
 import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 const MainContent = (props) => {
     let url;
     const rowStyle="rows"
@@ -44,10 +44,12 @@ const MainContent = (props) => {
         {
             id: "6", name: "Kishore", MailID: "Kishore.gv@yahoo.com", age: "20",Bg:"B+ve",gen:"Male",position:"Trainee"
         },
+       
 
     ]
-    const getComponentRenderer={
-        "NavLinkRenderer":NavLinkRenderer
+    const getFrameWorkComponent={
+        "NavLinkRenderer":NavLinkRenderer,
+        
     }
     
     return (
@@ -65,9 +67,15 @@ const MainContent = (props) => {
 
                         <div className="ui segment records ag-theme-alpine">
                         
-                        <AgGridReact rowData={records} rowClass={rowStyle} frameworkComponents={getComponentRenderer}>
+                        <AgGridReact  pagination={true} paginationPageSize={10} defaultColDef={{
+                            sortable:true,
+                            filter:true,
+                            
+                            pivotMode:false,
+                            rowDrag:false
+                        }}  rowData={records} rowClass={rowStyle} frameworkComponents={getFrameWorkComponent}>
                         
-                        <AgGridColumn field="id"  cellRenderer="NavLinkRenderer" ></AgGridColumn>
+                        <AgGridColumn field="id"  cellRenderer="NavLinkRenderer"></AgGridColumn>
                             
                         
                         <AgGridColumn field="name"></AgGridColumn>
