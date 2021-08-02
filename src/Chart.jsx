@@ -9,30 +9,47 @@ import moment from "moment";
 import { useState } from "react";
 const Chart = (props) => {
   const location = useLocation();
+  const valueArr = location.state ? location.state.value : [];
+
+  const validateTO = function (current) {
+    return (
+      current.isBefore(new Date()) && current.isAfter(new Date(2020, 8, 30))
+    );
+  };
+  const validateFrom = function (current) {
+    return (
+      current.isBefore(new Date()) && current.isAfter(new Date(2020, 8, 30))
+    );
+  };
   const [dataSeries, setDataSeries] = useState([]);
   const [from, setFrom] = useState([]);
   const [TO, setTO] = useState([]);
   const getDifference = () => {
-    let a = moment(TO);
-    let b = moment(from);
-    let getRange = Math.abs(a.diff(b, "days")) / 10;
-    if (Math.round(getRange) > 10 || Math.round(getRange) < 1)
-      setDataSeries([101, 137, 205, 249, 299, 310, 400]);
+    let a, b;
+    if (from.length === 0) window.alert("Select a starting date...");
     else {
-      setDataSeries(staticData[`${getRange}`]);
+      a = moment(TO);
+    }
+    if (TO.length === 0) window.alert("Select a Ending date...");
+    else {
+      b = moment(from);
+    }
+    if (a && b) {
+      let getRange = a.diff(b, "days", false);
+      if (getRange < 0) {
+        window.alert("Please do selections  range correctly");
+      } else {
+        let arr = [];
+
+        valueArr.forEach((item) => {
+          arr.push(parseInt(item) + getRange);
+        });
+
+        setDataSeries(arr);
+      }
     }
   };
-  const staticData = {
-    1: [101, 201, 301, 401, 501, 601],
-    2: [112, 212, 312, 412, 512, 612],
-    4: [133, 233, 333, 433, 533, 633],
-    5: [143, 242, 343, 445, 546, 647],
-    6: [122, 224, 324, 424, 524, 624],
-    7: [150, 250, 350, 451, 552, 653],
-    8: [161, 262, 364, 467, 562, 66],
-    9: [171, 272, 373, 478, 572, 67],
-    10: [128, 283, 381, 489, 581, 680],
-  };
+
   const [showRange, SetshowRange] = useState(false);
   const goBack = () => {
     props.history.goBack();
@@ -105,9 +122,14 @@ const Chart = (props) => {
 
                     <Datetime
                       closeOnSelect={true}
-                      inputProps={{ placeholder: "DD-MM-YYYY" }}
+                      inputProps={{
+                        placeholder: "DD-MM-YYYY",
+                        readOnly: true,
+                        style: { backgroundColor: "white" },
+                      }}
                       dateFormat={"DD-MMM-YYYY"}
                       timeFormat={false}
+                      isValidDate={validateFrom}
                       onChange={(date) =>
                         setFrom([
                           moment(date._d).format("YYYY"),
@@ -130,11 +152,14 @@ const Chart = (props) => {
                     <h6 className="m-2">To</h6>
                     <Datetime
                       closeOnSelect={true}
-                      initialValue={new Date()}
-                      initialViewDate={new Date()}
-                      inputProps={{ placeholder: "DD-MM-YYYY" }}
+                      inputProps={{
+                        placeholder: "DD-MM-YYYY",
+                        readOnly: true,
+                        style: { backgroundColor: "white" },
+                      }}
                       dateFormat={"DD-MMM-YYYY"}
                       timeFormat={false}
+                      isValidDate={validateTO}
                       onChange={(date) =>
                         setTO([
                           moment(date._d).format("YYYY"),
@@ -164,8 +189,21 @@ const Chart = (props) => {
                       options={{
                         legend: {
                           position: "top",
+                          showForNullSeries: false,
+                          showForZeroSeries: false,
+
                           onItemHover: {
                             highlightDataSeries: false,
+                          },
+                        },
+                        grid: {
+                          show: true,
+                        },
+                        noData: {
+                          text: "No Data to show",
+                          align: "center",
+                          style: {
+                            fontFamily: "Poppins",
                           },
                         },
                         colors: ["#D4AC0D", "#5DADE2"],
@@ -199,11 +237,16 @@ const Chart = (props) => {
                           tooltip: {
                             enabled: false,
                           },
+                          tickPlacement: "on",
+                          tickAmount: 6,
                           labels: {
                             show: true,
                             rotateAlways: true,
+                            hideOverlappingLabels: true,
+
                             rotate: -45,
                           },
+
                           categories: [
                             "Sunday",
                             "Monday",
@@ -214,6 +257,10 @@ const Chart = (props) => {
                             "Saturday",
                           ],
                         },
+
+                        yaxis: {
+                          decimalsInFloat: 0,
+                        },
                         tooltip: {
                           enabled: true,
                         },
@@ -221,13 +268,13 @@ const Chart = (props) => {
                       series={[
                         {
                           type: "line",
-                          name: "Generated Data",
-                          data: location.state.value,
+                          name: "Data Series-1",
+                          data: valueArr,
                         },
                         {
                           type: "line",
-                          name: "Static data",
-                          data: dataSeries,
+                          name: "Data Series-2",
+                          data: showRange ? dataSeries : [],
                         },
                       ]}
                       height={300}
@@ -274,13 +321,12 @@ const Chart = (props) => {
                         },
                         legend: {
                           position: "top",
+                          onItemHover: {
+                            highlightDataSeries: false,
+                          },
                         },
                       }}
-                      series={
-                        location.state
-                          ? location.state.value
-                          : [20, 30, 15, 50, 60, 90, 50]
-                      }
+                      series={[30, 40, 50, 60, 70, 28, 80]}
                       height={300}
                     />
                   </div>
