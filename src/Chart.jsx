@@ -26,13 +26,17 @@ const Chart = (props) => {
   const [TO, setTO] = useState([]);
   const getDifference = () => {
     let a, b;
-    if (from.length === 0) window.alert("Select a starting date...");
+    if (from.length === 0 && TO.length === 0)
+      window.alert("Please select range...");
     else {
-      a = moment(TO);
-    }
-    if (TO.length === 0) window.alert("Select a Ending date...");
-    else {
-      b = moment(from);
+      if (from.length === 0) window.alert("Select a starting date...");
+      else {
+        a = moment(TO);
+      }
+      if (TO.length === 0) window.alert("Select a Ending date...");
+      else {
+        b = moment(from);
+      }
     }
     if (a && b) {
       let getRange = a.diff(b, "days", false);
@@ -87,7 +91,7 @@ const Chart = (props) => {
                   </div>
                 </div>
                 <div
-                  className="row row-cols-4 justify-content-start  m-1"
+                  className="row row-cols-7 justify-content-start  m-1"
                   style={{ height: "30px" }}
                 >
                   <div className="col col-4 col-lg-2 p-1 ">
@@ -170,20 +174,20 @@ const Chart = (props) => {
                     />
                   </div>
                   <div
-                    className="col col-4 col-lg-2 "
+                    className="col col-3 col-lg-2 "
                     style={{
                       display: showRange ? "flex" : "none",
                     }}
                   >
                     <button
-                      className="btn btn-primary"
+                      className="btn btn-primary btn-md"
                       onClick={() => getDifference()}
                     >
                       Show
                     </button>
                   </div>
                 </div>
-                <div className="row row-cols-2 justify-content-center">
+                <div className="row row-cols-3 justify-content-center m-2">
                   <div className="col col-12">
                     <Graph
                       options={{
@@ -260,6 +264,9 @@ const Chart = (props) => {
 
                         yaxis: {
                           decimalsInFloat: 0,
+
+                          showForNullSeries: false,
+                          showForZeroSeries: false,
                         },
                         tooltip: {
                           enabled: true,
