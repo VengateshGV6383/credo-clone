@@ -95,7 +95,10 @@ const MainContent = (props) => {
           <SearchBox />
         </div>
 
-        <div className="ui segment records ag-theme-alpine">
+        <div
+          className="ui segment records ag-theme-alpine "
+          style={{ width: "100%" }}
+        >
           <AgGridReact
             pagination={true}
             paginationPageSize={10}
