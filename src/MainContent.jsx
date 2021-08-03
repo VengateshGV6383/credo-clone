@@ -97,7 +97,7 @@ const MainContent = (props) => {
 
         <div
           className="ui segment records ag-theme-alpine "
-          style={{ width: "100%" }}
+          style={{ width: "calc(100%-50px)" }}
         >
           <AgGridReact
             pagination={true}
@@ -121,7 +121,6 @@ const MainContent = (props) => {
             <AgGridColumn field="name"></AgGridColumn>
             <AgGridColumn field="MailID"></AgGridColumn>
             <AgGridColumn field="age"></AgGridColumn>
-            <AgGridColumn field="position"></AgGridColumn>
           </AgGridReact>
         </div>
       </div>
