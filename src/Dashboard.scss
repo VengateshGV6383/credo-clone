@@ -62,6 +62,27 @@
         font-weight: 500;
       }
     }
+    .chart-type {
+      .col {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2.5%;
+        flex-wrap: wrap;
+        h6 {
+          font-family: "Poppins", sans-serif;
+        }
+        .select {
+          border-radius: 5px;
+          cursor: pointer !important;
+
+          .option {
+            font-family: "Poppins", sans-serif;
+          }
+        }
+      }
+    }
+
     .apexcharts-menu-item.exportSVG,
     .apexcharts-menu-item.exportCSV {
       display: none;

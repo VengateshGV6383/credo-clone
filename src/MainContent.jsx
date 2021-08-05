@@ -121,6 +121,7 @@ const MainContent = (props) => {
             <AgGridColumn field="name"></AgGridColumn>
             <AgGridColumn field="MailID"></AgGridColumn>
             <AgGridColumn field="age"></AgGridColumn>
+            <AgGridColumn field="position"></AgGridColumn>
           </AgGridReact>
         </div>
       </div>

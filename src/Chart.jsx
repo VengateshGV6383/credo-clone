@@ -9,6 +9,11 @@ import moment from "moment";
 import { useState } from "react";
 const Chart = (props) => {
   const location = useLocation();
+  const [chartOneType, setChartoneType] = useState("line");
+  const [chartTwoType, setCharttwoType] = useState("line");
+  const [dataSeries, setDataSeries] = useState([]);
+  const [from, setFrom] = useState([]);
+  const [TO, setTO] = useState([]);
   const valueArr = location.state ? location.state.value : [];
 
   const validateTO = function (current) {
@@ -21,9 +26,7 @@ const Chart = (props) => {
       current.isBefore(new Date()) && current.isAfter(new Date(2020, 8, 30))
     );
   };
-  const [dataSeries, setDataSeries] = useState([]);
-  const [from, setFrom] = useState([]);
-  const [TO, setTO] = useState([]);
+
   const getDifference = () => {
     let a, b;
     if (from.length === 0 && TO.length === 0)
@@ -63,6 +66,7 @@ const Chart = (props) => {
     <React.Fragment>
       <div className="container-fluid m-1 cotainer-body">
         <UserDetails id={location.state ? location.state.id : "1"} />
+
         <div
           className="row justify-content-center align-items-center m-1"
           style={{ border: "2px solid rgba(0,0,0,.125)", borderRadius: "10px" }}
@@ -73,7 +77,7 @@ const Chart = (props) => {
                 className="card-body"
                 style={{ borderBottom: "2px solid gainsboro" }}
               >
-                <div className="row row-cols-2 justify-content-between">
+                <div className="row row-cols-3 justify-content-start">
                   <div className="col col-9" style={{ fontFamily: "Poppins" }}>
                     <h6>
                       {location.state.heading
@@ -89,6 +93,46 @@ const Chart = (props) => {
                       Back
                     </button>
                   </div>
+                </div>
+                <div className="row row-cols-12 justify-content-start  m-1 chart-type">
+                  <div className="col col-4 col-3 col-lg-4  p-1">
+                    <h6>D1 Chart type </h6>
+                    <select
+                      className="ui dropdown select p-2"
+                      style={{ fontFamily: "Poppins" }}
+                      onChange={(e) => setChartoneType(`${e.target.value}`)}
+                    >
+                      <option className="option" value="line">
+                        Line
+                      </option>
+                      <option className="option" value="area">
+                        Area
+                      </option>
+                      <option className="option" value="column">
+                        Column
+                      </option>
+                    </select>
+                  </div>
+                  {showRange ? (
+                    <div className="col col-4 col-lg-4 p-1">
+                      <h6>D2 Chart type</h6>
+                      <select
+                        className="ui dropdown select p-2"
+                        style={{ fontFamily: "Poppins" }}
+                        onChange={(e) => setCharttwoType(`${e.target.value}`)}
+                      >
+                        <option className="option" value="line">
+                          Line
+                        </option>
+                        <option className="option" value="area">
+                          Area
+                        </option>
+                        <option className="option" value="column">
+                          Column
+                        </option>
+                      </select>
+                    </div>
+                  ) : null}
                 </div>
                 <div
                   className="row row-cols-7 justify-content-start  m-1"
@@ -187,6 +231,7 @@ const Chart = (props) => {
                     </button>
                   </div>
                 </div>
+
                 <div className="row row-cols-3 justify-content-center m-2">
                   <div className="col col-12">
                     <Graph
@@ -210,7 +255,10 @@ const Chart = (props) => {
                             fontFamily: "Poppins",
                           },
                         },
-                        colors: ["#D4AC0D", "#5DADE2"],
+                        colors: [
+                          `${chartOneType !== "line" ? "#00E396" : "#D4AC0D"}`,
+                          `${chartTwoType !== "line" ? "#008FFB" : "#5DADE2"}`,
+                        ],
                         chart: {
                           toolbar: {
                             show: true,
@@ -274,12 +322,12 @@ const Chart = (props) => {
                       }}
                       series={[
                         {
-                          type: "line",
+                          type: chartOneType,
                           name: "Data Series-1",
                           data: valueArr,
                         },
                         {
-                          type: "line",
+                          type: chartTwoType,
                           name: "Data Series-2",
                           data: showRange ? dataSeries : [],
                         },
