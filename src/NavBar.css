@@ -48,5 +48,6 @@
 
 .nav-bar .nav-bar-right {
   cursor: pointer;
+  width: "max-content";
 }
 /*# sourceMappingURL=NavBar.css.map */

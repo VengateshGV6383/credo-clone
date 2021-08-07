@@ -8,7 +8,8 @@ import UserDetails from "./UserDetails";
 import moment from "moment";
 import { useState } from "react";
 const Chart = (props) => {
-  const { ThemeContext, theme, setDarkMode, dashboardtheme } = props;
+  const { ThemeContext, theme, dashboardtheme } = props;
+  console.log(dashboardtheme);
   const location = useLocation();
   const [chartOneType, setChartoneType] = useState("line");
   const [chartTwoType, setCharttwoType] = useState("line");
@@ -66,39 +67,6 @@ const Chart = (props) => {
   return (
     <React.Fragment>
       <div className="container-fluid m-1 cotainer-body">
-        <div className="row row-cols-12 justify-content-end">
-          <div
-            className="col col-3 p-2 m-2"
-            style={{
-              border: "2px solid transparent",
-              borderRadius: "10px",
-              width: "max-content",
-
-              backgroundColor: "#BB86FC",
-              cursor: "pointer",
-            }}
-          >
-            <div className="form-check form-switch m-1">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="switchDark"
-                onChange={() => setDarkMode()}
-              />
-              <label
-                className="form-check-label"
-                htmlFor="switchDark"
-                style={{
-                  fontFamily: "Poppins",
-                  cursor: "pointer",
-                  color: "#fffff",
-                }}
-              >
-                Dark Mode
-              </label>
-            </div>
-          </div>
-        </div>
         <ThemeContext.Provider
           value={theme ? dashboardtheme.dark : dashboardtheme.light}
         >
@@ -113,6 +81,7 @@ const Chart = (props) => {
             border: "2px solid",
             borderColor: theme ? "#ffff" : "rgba(0, 0, 0, 0.125)",
             borderRadius: "10px",
+            backgroundColor: theme ? "#1F1B24" : "#ffff",
           }}
         >
           <div className="row row-cols-4 flex m-1 justify-content-evenly macro-details">
@@ -133,8 +102,11 @@ const Chart = (props) => {
                     <button
                       className={`btn ${
                         theme ? "btn-primary" : "btn-secondary"
-                      } btn-sm align-self-end`}
-                      style={{ backgroundColor: theme ? "#00E396" : null }}
+                      } btn-md align-self-end`}
+                      style={{
+                        backgroundColor: theme ? "#00E396" : null,
+                        borderColor: theme ? "#00E396" : null,
+                      }}
                       onClick={goBack}
                     >
                       Back
@@ -144,7 +116,7 @@ const Chart = (props) => {
                 <div className="row row-cols-12 justify-content-start  m-1 chart-type">
                   <div className="col col-4 col-3 col-lg-4  p-1">
                     <h6 style={{ color: theme ? "#ffff" : "black" }}>
-                      D1 Chart type{" "}
+                      D1 Chart type&emsp;
                     </h6>
                     <select
                       className="ui dropdown select p-2"
@@ -162,28 +134,27 @@ const Chart = (props) => {
                       </option>
                     </select>
                   </div>
-                  {showRange ? (
-                    <div className="col col-4 col-lg-4 p-1">
-                      <h6 style={{ color: theme ? "#ffff" : "black" }}>
-                        D2 Chart type
-                      </h6>
-                      <select
-                        className="ui dropdown select p-2"
-                        style={{ fontFamily: "Poppins" }}
-                        onChange={(e) => setCharttwoType(`${e.target.value}`)}
-                      >
-                        <option className="option" value="line">
-                          Line
-                        </option>
-                        <option className="option" value="area">
-                          Area
-                        </option>
-                        <option className="option" value="column">
-                          Column
-                        </option>
-                      </select>
-                    </div>
-                  ) : null}
+
+                  <div className="col col-4 col-lg-4 p-1">
+                    <h6 style={{ color: theme ? "#ffff" : "black" }}>
+                      D2 Chart type&emsp;
+                    </h6>
+                    <select
+                      className="ui dropdown select p-2"
+                      style={{ fontFamily: "Poppins" }}
+                      onChange={(e) => setCharttwoType(`${e.target.value}`)}
+                    >
+                      <option className="option" value="line">
+                        Line
+                      </option>
+                      <option className="option" value="area">
+                        Area
+                      </option>
+                      <option className="option" value="column">
+                        Column
+                      </option>
+                    </select>
+                  </div>
                 </div>
                 <div
                   className="row row-cols-7 justify-content-start  m-1"
@@ -288,7 +259,10 @@ const Chart = (props) => {
                     <button
                       className="btn btn-primary btn-md"
                       onClick={() => getDifference()}
-                      style={{ color: theme ? "#ffff" : null }}
+                      style={{
+                        backgroundColor: theme ? "#00E396" : null,
+                        borderColor: theme ? "#00E396" : null,
+                      }}
                     >
                       Show
                     </button>

@@ -42,14 +42,14 @@ const App = () => {
         glucoseColor: "#BB86FC",
         sugarColor: "#BB86FC",
         waterColor: "#BB86FC",
-        bpColor: "#CF6679",
-        pulseColor: "#CF6679",
+        bpColor: "#FF7C7C",
+        pulseColor: "#FF7C7C",
         weightColor: "#03DAC6",
         sleepColor: "#03DAC6",
         stepsColor: "#03DAC6",
         activeTimeColor: "#03DAC6",
         foreColor: "#ffff",
-        backgroundColor: "#121212",
+        backgroundColor: "#1F1B24",
         borderColor: "#BB86FC",
       },
     },
@@ -73,7 +73,10 @@ const App = () => {
   return (
     <React.Fragment>
       <div>
-        <NavBar toggleMenuBar={handleMenuBar} />
+        <NavBar
+          toggleMenuBar={handleMenuBar}
+          setDarkMode={() => setTheme(!theme)}
+        />
       </div>
 
       <div

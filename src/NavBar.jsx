@@ -1,22 +1,51 @@
-import React from 'react';
-import User from './User';
-import './NavBar.css';
-import Medium_logoImg from './images/download.png' ;
+import React from "react";
+import User from "./User";
+import "./NavBar.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Medium_logoImg from "./images/download.png";
 const NavBar = (props) => {
-    return (  
-        <div className="nav-bar">
-            <div className="nav-bar-left">
-                <span>
-                    <img src={Medium_logoImg} alt="logo_Medium" />
-                </span>
-                <span onClick={props.toggleMenuBar}><i className="bars icon"></i></span>
-            </div>
-            <div className="nav-bar-right">
-                    <User/>
-            </div>
-            
+  return (
+    <div className="nav-bar">
+      <div className="nav-bar-left">
+        <span>
+          <img src={Medium_logoImg} alt="logo_Medium" />
+        </span>
+        <span onClick={props.toggleMenuBar}>
+          <i className="bars icon"></i>
+        </span>
+      </div>
+      <div className="nav-bar-right">
+        <div className="row row-cols-12 justify-content-between align-items-center">
+          <div className="col col-3">
+            <div className="form-check form-switch m-1">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="darkmodeswitch"
+                style={{ cursor: "pointer" }}
+                onChange={props.setDarkMode}
+              />
+              <label
+                className="form-check-label"
+                htmlFor="darkmodeswitch"
+                style={{
+                  fontFamily: "Poppins",
+                  cursor: "pointer",
 
+                  whiteSpace: "pre",
+                  userSelect: "none",
+                }}
+              >
+                {"Dark"}
+              </label>
+            </div>
+          </div>
+          <div className="col col-6">
+            <User />
+          </div>
         </div>
-    );
-}
- export default NavBar;
+      </div>
+    </div>
+  );
+};
+export default NavBar;
