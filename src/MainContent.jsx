@@ -5,8 +5,10 @@ import { NavLink } from "react-router-dom";
 import "./MainContent.css";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
 const MainContent = (props) => {
   let url;
+  const { theme } = props;
   const rowStyle = "rows";
   if (props.location.pathname.search("credo-clone")) {
     url = "/credo-clone";
@@ -89,15 +91,26 @@ const MainContent = (props) => {
   return (
     <React.Fragment>
       <div className="main-content">
-        <div className="heading">{`${props.name}'s Record`}</div>
+        <div
+          className="heading"
+          style={{ backgroundColor: "#ff6700" }}
+        >{`${props.name}'s Record`}</div>
 
-        <div className="ui segment search-area">
-          <SearchBox />
+        <div
+          className="ui segment search-area"
+          style={{ backgroundColor: theme ? "#222628" : "#ffff" }}
+        >
+          <SearchBox theme={theme} />
         </div>
 
         <div
-          className="ui segment records ag-theme-alpine "
-          style={{ width: "calc(100%-50px)" }}
+          className={`ui segment records  ${
+            theme ? "ag-theme-alpine-dark" : "ag-theme-alpine"
+          }`}
+          style={{
+            width: "calc(100%-50px)",
+            backgroundColor: theme ? "#222628" : "#ffff",
+          }}
         >
           <AgGridReact
             pagination={true}

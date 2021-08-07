@@ -89,24 +89,23 @@ const App = () => {
           </div>
           <Switch>
             {menuItems.map((item, index) => {
-              return item !== "Home" ? (
+              return (
                 <Route
                   key={index}
-                  render={(props) => <MainContent {...props} name={item} />}
-                  path={`/${item.toLowerCase().replace(" ", "-")}`}
-                  exact={true}
-                />
-              ) : (
-                <Route
-                  key={index}
-                  render={(props) => <MainContent {...props} name={item} />}
-                  path="/credo-clone/"
+                  render={(props) => (
+                    <MainContent {...props} name={item} theme={theme} />
+                  )}
+                  path={
+                    item === "Home"
+                      ? "/credo-clone/"
+                      : `/${item.toLowerCase().replace(" ", "-")}`
+                  }
                   exact={true}
                 />
               );
             })}
             {menuItems.map((item, index) => {
-              return item !== "Home" ? (
+              return (
                 <Route
                   key={index}
                   render={(props) => (
@@ -118,30 +117,19 @@ const App = () => {
                       setDarkMode={() => setTheme(!theme)}
                     />
                   )}
-                  path={`/${item
-                    .toLocaleLowerCase()
-                    .replace(" ", "-")}/dashboard`}
-                  exact={true}
-                />
-              ) : (
-                <Route
-                  key={index}
-                  render={(props) => (
-                    <Dashboard
-                      {...props}
-                      ThemeContext={ThemeContext}
-                      dashboardtheme={dashboardtheme}
-                      theme={theme}
-                      setDarkMode={() => setTheme(!theme)}
-                    />
-                  )}
-                  path={`/credo-clone/dashboard`}
+                  path={
+                    item === "Home"
+                      ? "/credo-clone/dashboard"
+                      : `/${item
+                          .toLocaleLowerCase()
+                          .replace(" ", "-")}/dashboard`
+                  }
                   exact={true}
                 />
               );
             })}
             {menuItems.map((item, index) => {
-              return item !== "Home" ? (
+              return (
                 <Route
                   key={index}
                   render={(props) => (
@@ -153,24 +141,13 @@ const App = () => {
                       setDarkMode={() => setTheme(!theme)}
                     />
                   )}
-                  path={`/${item
-                    .toLocaleLowerCase()
-                    .replace(" ", "-")}/dashboard/Chart`}
-                  exact={true}
-                />
-              ) : (
-                <Route
-                  key={index}
-                  render={(props) => (
-                    <Chart
-                      {...props}
-                      ThemeContext={ThemeContext}
-                      dashboardtheme={dashboardtheme}
-                      theme={theme}
-                      setDarkMode={() => setTheme(!theme)}
-                    />
-                  )}
-                  path={`/credo-clone/dashboard/Chart`}
+                  path={
+                    item === "Home"
+                      ? "/credo-clone/dashboard/Chart"
+                      : `/${item
+                          .toLocaleLowerCase()
+                          .replace(" ", "-")}/dashboard/Chart`
+                  }
                   exact={true}
                 />
               );

@@ -104,6 +104,8 @@ const Chart = (props) => {
                         theme ? "btn-primary" : "btn-secondary"
                       } btn-md align-self-end`}
                       style={{
+                        fontFamily: "Poppins",
+                        letterSpacing: "1px",
                         backgroundColor: theme ? "#00E396" : null,
                         borderColor: theme ? "#00E396" : null,
                       }}
@@ -262,6 +264,7 @@ const Chart = (props) => {
                       style={{
                         backgroundColor: theme ? "#00E396" : null,
                         borderColor: theme ? "#00E396" : null,
+                        fontFamily: "Poppins",
                       }}
                     >
                       Show

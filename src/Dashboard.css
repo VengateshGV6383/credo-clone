@@ -57,6 +57,10 @@
       -ms-flex-pack: center;
           justify-content: center;
   border-width: 2px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .cotainer-body .macro-details .param-card {
