@@ -55,11 +55,9 @@
   transition: -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-}
-
-.cotainer-body .macro-details .user-detail-card:hover {
-  -webkit-box-shadow: 2px 2px 2px 2px gainsboro, 2px 2px 2px 2px gainsboro, 2px 2px 2px 2px gainsboro, 2px 2px 2px 2px gainsboro;
-          box-shadow: 2px 2px 2px 2px gainsboro, 2px 2px 2px 2px gainsboro, 2px 2px 2px 2px gainsboro, 2px 2px 2px 2px gainsboro;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .cotainer-body .macro-details .param-card {

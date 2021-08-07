@@ -35,14 +35,11 @@
     flex-wrap: wrap;
     .user-detail-card {
       transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-
-      &:hover {
-        box-shadow: 2px 2px 2px 2px gainsboro, 2px 2px 2px 2px gainsboro,
-          2px 2px 2px 2px gainsboro, 2px 2px 2px 2px gainsboro;
-      }
+      justify-content: center;
     }
     .param-card {
       cursor: pointer;
+
       i {
         font-size: 250%;
       }

@@ -8,6 +8,7 @@ import UserDetails from "./UserDetails";
 import moment from "moment";
 import { useState } from "react";
 const Chart = (props) => {
+  const { ThemeContext, theme, setDarkMode, dashboardtheme } = props;
   const location = useLocation();
   const [chartOneType, setChartoneType] = useState("line");
   const [chartTwoType, setCharttwoType] = useState("line");
@@ -65,11 +66,54 @@ const Chart = (props) => {
   return (
     <React.Fragment>
       <div className="container-fluid m-1 cotainer-body">
-        <UserDetails id={location.state ? location.state.id : "1"} />
+        <div className="row row-cols-12 justify-content-end">
+          <div
+            className="col col-3 p-2 m-2"
+            style={{
+              border: "2px solid transparent",
+              borderRadius: "10px",
+              width: "max-content",
 
+              backgroundColor: "#BB86FC",
+              cursor: "pointer",
+            }}
+          >
+            <div className="form-check form-switch m-1">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="switchDark"
+                onChange={() => setDarkMode()}
+              />
+              <label
+                className="form-check-label"
+                htmlFor="switchDark"
+                style={{
+                  fontFamily: "Poppins",
+                  cursor: "pointer",
+                  color: "#fffff",
+                }}
+              >
+                Dark Mode
+              </label>
+            </div>
+          </div>
+        </div>
+        <ThemeContext.Provider
+          value={theme ? dashboardtheme.dark : dashboardtheme.light}
+        >
+          <UserDetails
+            id={location.state ? location.state.id : "1"}
+            ThemeContext={ThemeContext}
+          />
+        </ThemeContext.Provider>
         <div
           className="row justify-content-center align-items-center m-1"
-          style={{ border: "2px solid rgba(0,0,0,.125)", borderRadius: "10px" }}
+          style={{
+            border: "2px solid",
+            borderColor: theme ? "#ffff" : "rgba(0, 0, 0, 0.125)",
+            borderRadius: "10px",
+          }}
         >
           <div className="row row-cols-4 flex m-1 justify-content-evenly macro-details">
             <div className="col col-12">
@@ -87,7 +131,10 @@ const Chart = (props) => {
                   </div>
                   <div className="col col-3">
                     <button
-                      className="btn btn-secondary btn-sm align-self-end"
+                      className={`btn ${
+                        theme ? "btn-primary" : "btn-secondary"
+                      } btn-sm align-self-end`}
+                      style={{ backgroundColor: theme ? "#00E396" : null }}
                       onClick={goBack}
                     >
                       Back
@@ -96,7 +143,9 @@ const Chart = (props) => {
                 </div>
                 <div className="row row-cols-12 justify-content-start  m-1 chart-type">
                   <div className="col col-4 col-3 col-lg-4  p-1">
-                    <h6>D1 Chart type </h6>
+                    <h6 style={{ color: theme ? "#ffff" : "black" }}>
+                      D1 Chart type{" "}
+                    </h6>
                     <select
                       className="ui dropdown select p-2"
                       style={{ fontFamily: "Poppins" }}
@@ -115,7 +164,9 @@ const Chart = (props) => {
                   </div>
                   {showRange ? (
                     <div className="col col-4 col-lg-4 p-1">
-                      <h6>D2 Chart type</h6>
+                      <h6 style={{ color: theme ? "#ffff" : "black" }}>
+                        D2 Chart type
+                      </h6>
                       <select
                         className="ui dropdown select p-2"
                         style={{ fontFamily: "Poppins" }}
@@ -151,6 +202,7 @@ const Chart = (props) => {
                         style={{
                           fontFamily: "Poppins,sanserif",
                           fontWeight: "500",
+                          color: theme ? "#ffff" : "black",
                         }}
                       >
                         Range
@@ -166,7 +218,12 @@ const Chart = (props) => {
                       transitionDuration: "1s",
                     }}
                   >
-                    <h6 className="m-2">From</h6>
+                    <h6
+                      className="m-2"
+                      style={{ color: theme ? "#ffff" : "black" }}
+                    >
+                      From
+                    </h6>
 
                     <Datetime
                       closeOnSelect={true}
@@ -197,7 +254,12 @@ const Chart = (props) => {
                       transitionDuration: "1s",
                     }}
                   >
-                    <h6 className="m-2">To</h6>
+                    <h6
+                      className="m-2"
+                      style={{ color: theme ? "#ffff" : "black" }}
+                    >
+                      To
+                    </h6>
                     <Datetime
                       closeOnSelect={true}
                       inputProps={{
@@ -226,6 +288,7 @@ const Chart = (props) => {
                     <button
                       className="btn btn-primary btn-md"
                       onClick={() => getDifference()}
+                      style={{ color: theme ? "#ffff" : null }}
                     >
                       Show
                     </button>
@@ -240,6 +303,9 @@ const Chart = (props) => {
                           position: "top",
                           showForNullSeries: false,
                           showForZeroSeries: false,
+                          labels: {
+                            colors: theme ? "#ffff" : "black",
+                          },
 
                           onItemHover: {
                             highlightDataSeries: false,
@@ -257,7 +323,7 @@ const Chart = (props) => {
                         },
                         colors: [
                           `${chartOneType !== "line" ? "#00E396" : "#D4AC0D"}`,
-                          `${chartTwoType !== "line" ? "#008FFB" : "#5DADE2"}`,
+                          `${chartTwoType !== "line" ? "#008FEB" : "#00E396"}`,
                         ],
                         chart: {
                           toolbar: {
@@ -295,7 +361,9 @@ const Chart = (props) => {
                             show: true,
                             rotateAlways: true,
                             hideOverlappingLabels: true,
-
+                            style: {
+                              colors: theme ? "white" : "black",
+                            },
                             rotate: -45,
                           },
 
@@ -312,12 +380,21 @@ const Chart = (props) => {
 
                         yaxis: {
                           decimalsInFloat: 0,
-
+                          labels: {
+                            style: {
+                              colors: theme ? "white" : "black",
+                            },
+                          },
                           showForNullSeries: false,
                           showForZeroSeries: false,
                         },
                         tooltip: {
                           enabled: true,
+                        },
+                        plotOptions: {
+                          bar: {
+                            columnWidth: "40%",
+                          },
                         },
                       }}
                       series={[
@@ -376,6 +453,9 @@ const Chart = (props) => {
                         },
                         legend: {
                           position: "top",
+                          labels: {
+                            colors: theme ? "white" : "black",
+                          },
                           onItemHover: {
                             highlightDataSeries: false,
                           },
