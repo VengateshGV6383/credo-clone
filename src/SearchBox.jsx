@@ -63,8 +63,7 @@ const SearchBox = (props) => {
         className="ui primary button"
         style={{ backgroundColor: props.theme ? "#00E396" : null }}
       >
-        {" "}
-        Search{" "}
+        Search
       </button>
     </form>
   );

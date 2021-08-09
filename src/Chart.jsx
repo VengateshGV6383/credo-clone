@@ -79,7 +79,8 @@ const Chart = (props) => {
           className="row justify-content-center align-items-center m-1"
           style={{
             border: "2px solid",
-            borderColor: theme ? "#ffff" : "rgba(0, 0, 0, 0.125)",
+
+            borderColor: theme ? "#BB86FC" : "rgba(0, 0, 0, 0.125)",
             borderRadius: "10px",
             backgroundColor: theme ? "#1F1B24" : "#ffff",
           }}
@@ -332,6 +333,7 @@ const Chart = (props) => {
                           tooltip: {
                             enabled: false,
                           },
+
                           tickPlacement: "on",
                           tickAmount: 6,
                           labels: {
