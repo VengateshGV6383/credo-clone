@@ -36,6 +36,6 @@ $font-size-navbar: 20px;
   }
   .nav-bar-right {
     cursor: pointer;
-    width: "max-content";
+    width: calc(100% - 60%);
   }
 }

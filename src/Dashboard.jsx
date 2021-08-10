@@ -1,6 +1,6 @@
 import React from "react";
 import "./Dashboard.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation } from "react-router-dom";
 import VitalCards from "./VitalCards";
 import UserDetails from "./UserDetails";

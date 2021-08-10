@@ -1,13 +1,17 @@
 import React from "react";
 import "./App.css";
 import NavBar from "./NavBar";
-import { BrowserRouter } from "react-router-dom";
-
+import { BrowserRouter, Redirect } from "react-router-dom";
 import MenuBar from "./MenuBar";
 import Router from "./Router";
 import Footer from "./Footer";
 import { useRef, useState } from "react";
 const App = () => {
+  const [valid, setValid] = useState(localStorage.getItem("isValidUser"));
+  const onSuccessLogin = () => {
+    localStorage.setItem("isValidUser", "true");
+    setValid("true");
+  };
   const dashboardtheme = {
     light: {
       vitalcards: {
@@ -59,28 +63,35 @@ const App = () => {
   };
   return (
     <React.Fragment>
-      <div>
-        <NavBar
-          toggleMenuBar={handleMenuBar}
-          setDarkMode={() => setTheme(!theme)}
-        />
-      </div>
+      <BrowserRouter>
+        <div>
+          <NavBar
+            toggleMenuBar={handleMenuBar}
+            setDarkMode={() => setTheme(!theme)}
+          />
+        </div>
 
-      <div
-        className="main-block"
-        style={{ backgroundColor: theme ? "rgba(42, 42, 42, 1)" : "#ffff" }}
-      >
-        <BrowserRouter>
+        <div
+          className="main-block"
+          style={{ backgroundColor: theme ? "rgba(42, 42, 42, 1)" : "#ffff" }}
+        >
           <div style={{ display: "flex" }}>
             <MenuBar refer={menuIcon} />
           </div>
+
           <Router
             theme={theme}
             dashboardtheme={dashboardtheme}
             ThemeContext={ThemeContext}
+            onSuccessLogin={onSuccessLogin}
           />
-        </BrowserRouter>
-      </div>
+          {valid === "true" ? (
+            <Redirect to="/credo-clone/" />
+          ) : (
+            <Redirect to="/Signin" />
+          )}
+        </div>
+      </BrowserRouter>
       <Footer />
     </React.Fragment>
   );

@@ -1,7 +1,6 @@
 import React from "react";
 import User from "./User";
 import "./NavBar.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Medium_logoImg from "./images/download.png";
 const NavBar = (props) => {
   return (
@@ -15,8 +14,8 @@ const NavBar = (props) => {
         </span>
       </div>
       <div className="nav-bar-right">
-        <div className="row row-cols-12 justify-content-between align-items-center">
-          <div className="col col-3">
+        <div className="row row-cols-12 justify-content-center align-items-center">
+          <div className="col col-4 justify-content-end">
             <div className="form-check form-switch m-1">
               <input
                 className="form-check-input"
@@ -24,6 +23,7 @@ const NavBar = (props) => {
                 id="darkmodeswitch"
                 style={{ cursor: "pointer" }}
                 onChange={props.setDarkMode}
+                checked={props.theme}
               />
               <label
                 className="form-check-label"

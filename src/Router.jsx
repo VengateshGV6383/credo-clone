@@ -1,18 +1,12 @@
-import React from "react";
-import { Switch, Route, Redirect, useHistory } from "react-router-dom";
-
+import { Switch, Route } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import Chart from "./Chart";
 import MainContent from "./MainContent";
 
 import SigninForm from "./SigninForm";
+import UserCreation from "./UserCreation";
 
-const Router = ({ ThemeContext, dashboardtheme, theme }) => {
-  const history = useHistory();
-  const onSuccessLogin = () => {
-    localStorage.setItem("isValidUser", "true");
-    history.push("/credo-clone/");
-  };
+const Router = ({ ThemeContext, dashboardtheme, theme, onSuccessLogin }) => {
   const menuItems = [
     "Home",
     "Counsellor",
@@ -96,12 +90,11 @@ const Router = ({ ThemeContext, dashboardtheme, theme }) => {
         );
       })}
 
-      <Route path={"/"}>
-        {localStorage.getItem("isValidUser") ? (
-          <Redirect to="/credo-clone/" />
-        ) : (
-          <SigninForm onSuccessLogin={onSuccessLogin} />
-        )}
+      <Route path={"/Signin"}>
+        <SigninForm onSuccessLogin={onSuccessLogin} />
+      </Route>
+      <Route path={"/register"}>
+        <UserCreation />
       </Route>
     </Switch>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import Avatar from "./images/avatar.png";
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashboard.css";
 import { useContext } from "react";
 
