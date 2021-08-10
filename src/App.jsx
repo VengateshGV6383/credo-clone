@@ -1,28 +1,13 @@
 import React from "react";
-import MenuBar from "./MenuBar";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import Chart from "./Chart";
+import "./App.css";
 import NavBar from "./NavBar";
-import MainContent from "./MainContent";
+import { BrowserRouter } from "react-router-dom";
+
+import MenuBar from "./MenuBar";
+import Router from "./Router";
 import Footer from "./Footer";
 import { useRef, useState } from "react";
-import "./App.css";
-import SigninForm from "./SigninForm";
-
 const App = () => {
-  const [theme, setTheme] = useState(false);
-  const [login, setLogin] = useState(false);
-  const menuIcon = useRef();
-  const handleMenuBar = () => {
-    try {
-      if (menuIcon.current.style.display === "flex")
-        menuIcon.current.style.display = "none";
-      else menuIcon.current.style.display = "flex";
-    } catch (e) {
-      console.log(menuIcon.current);
-    }
-  };
   const dashboardtheme = {
     light: {
       vitalcards: {
@@ -60,23 +45,18 @@ const App = () => {
 
   const ThemeContext = React.createContext(dashboardtheme);
 
-  const onSuccessLogin = () => {
-    localStorage.setItem("isValidUser", "true");
-    setLogin(true);
-  };
-  const menuItems = [
-    "Home",
-    "Counsellor",
-    "Member Experience",
-    "Health Coach",
-    "Care Manager",
-    "Paharmacologist",
-    "Nutrionist",
-    "Testing Doctor",
-    "Daily TODOlog",
-    "Others",
-  ];
+  const [theme, setTheme] = useState(false);
 
+  const menuIcon = useRef();
+  const handleMenuBar = () => {
+    try {
+      if (menuIcon.current.style.display === "flex")
+        menuIcon.current.style.display = "none";
+      else menuIcon.current.style.display = "flex";
+    } catch (e) {
+      console.log(menuIcon.current);
+    }
+  };
   return (
     <React.Fragment>
       <div>
@@ -94,88 +74,11 @@ const App = () => {
           <div style={{ display: "flex" }}>
             <MenuBar refer={menuIcon} />
           </div>
-
-          <Switch>
-            {menuItems.map((item, index) => {
-              return (
-                localStorage.getItem("isValidUser") && (
-                  <Route
-                    key={index}
-                    render={(props) => (
-                      <MainContent {...props} name={item} theme={theme} />
-                    )}
-                    path={
-                      item === "Home"
-                        ? "/credo-clone/"
-                        : `/${item.toLowerCase().replace(" ", "-")}`
-                    }
-                    exact={true}
-                  />
-                )
-              );
-            })}
-
-            {menuItems.map((item, index) => {
-              return (
-                localStorage.getItem("isValidUser") && (
-                  <Route
-                    key={index}
-                    render={(props) => (
-                      <Dashboard
-                        {...props}
-                        ThemeContext={ThemeContext}
-                        dashboardtheme={dashboardtheme}
-                        theme={theme}
-                        setDarkMode={() => setTheme(!theme)}
-                      />
-                    )}
-                    path={
-                      item === "Home"
-                        ? "/credo-clone/dashboard"
-                        : `/${item
-                            .toLocaleLowerCase()
-                            .replace(" ", "-")}/dashboard`
-                    }
-                    exact={true}
-                  />
-                )
-              );
-            })}
-            {menuItems.map((item, index) => {
-              return (
-                localStorage.getItem("isValidUser") && (
-                  <Route
-                    key={index}
-                    render={(props) => (
-                      <Chart
-                        {...props}
-                        ThemeContext={ThemeContext}
-                        dashboardtheme={dashboardtheme}
-                        theme={theme}
-                        setDarkMode={() => setTheme(!theme)}
-                      />
-                    )}
-                    path={
-                      item === "Home"
-                        ? "/credo-clone/dashboard/Chart"
-                        : `/${item
-                            .toLocaleLowerCase()
-                            .replace(" ", "-")}/dashboard/Chart`
-                    }
-                    exact={true}
-                  />
-                )
-              );
-            })}
-
-            <Route path={"/Signin"}>
-              {login ? (
-                <Redirect to="/credo-clone/" />
-              ) : (
-                <SigninForm onSuccessLogin={onSuccessLogin} />
-              )}
-            </Route>
-          </Switch>
+          <Router
+            theme={theme}
+            dashboardtheme={dashboardtheme}
+            ThemeContext={ThemeContext}
+          />
         </BrowserRouter>
       </div>
       <Footer />
