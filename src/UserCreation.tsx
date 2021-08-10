@@ -1,5 +1,18 @@
 import React from "react";
+import { useFormik } from "formik";
 const UserCreation = () => {
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      emailid: "",
+      mobileNumber: "",
+      password: "",
+      cnfPassword: "",
+    },
+    onSubmit: (values) => {},
+  });
+
   return (
     <div
       className="container-fluid align-self-center "
@@ -32,6 +45,9 @@ const UserCreation = () => {
                 className="form-control"
                 name="firstName"
                 id="firstName"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.firstName}
               />
             </div>
             <div className="col col-6  col-md-4">
@@ -40,6 +56,9 @@ const UserCreation = () => {
                 className="form-control"
                 name="lastName"
                 id="lastName"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.lastName}
               />
             </div>
           </div>
@@ -52,9 +71,12 @@ const UserCreation = () => {
             <div className="col col-12 col-md-4">
               <input
                 type="email"
-                name="email"
+                name="emailid"
                 id="emailid"
                 className="form-control"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.emailid}
               />
             </div>
           </div>
@@ -73,6 +95,9 @@ const UserCreation = () => {
                 className="form-control"
                 name="password"
                 id="password"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
               />
             </div>
             <div className="col col-6 col-md-4">
@@ -81,6 +106,9 @@ const UserCreation = () => {
                 className="form-control"
                 name="cnfPassword"
                 id="cnfPassword"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.cnfPassword}
               />
             </div>
           </div>
@@ -95,7 +123,10 @@ const UserCreation = () => {
                 type="tel"
                 className="form-control"
                 name="mobileNumber"
-                id="mobilenumber"
+                id="mobileNumber"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.mobileNumber}
               />
             </div>
           </div>
