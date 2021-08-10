@@ -9,7 +9,7 @@ const User = () => {
         alignItems: "center",
       }}
     >
-      <span className="m-3">
+      <span className="m-2">
         <h4>
           <i className="user circle icon"></i>Admin
         </h4>
@@ -23,11 +23,12 @@ const User = () => {
           backgroundColor: "#ffff",
           border: "1px solid rgb(255, 103, 0)",
           borderRadius: "10px",
-          fontSize: "1rem",
         }}
         to="/register"
       >
-        <span className="m-1">Signin</span>
+        <span className="m-1" style={{ fontSize: "1rem" }}>
+          Signin
+        </span>
       </NavLink>
     </div>
   );

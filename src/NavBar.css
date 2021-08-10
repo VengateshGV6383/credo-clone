@@ -48,6 +48,20 @@
 
 .nav-bar .nav-bar-right {
   cursor: pointer;
-  width: calc(100% - 60%);
+  width: calc(100% - 50%);
+}
+
+@media (max-width: 500px) {
+  .nav-bar .form-check {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .nav-bar {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
 }
 /*# sourceMappingURL=NavBar.css.map */

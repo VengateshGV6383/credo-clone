@@ -3,31 +3,30 @@ const UserCreation = () => {
   return (
     <div
       className="container-fluid align-self-center "
-      style={{ height: "calc(100% - 20%)", overflow: "auto" }}
+      style={{
+        height: "calc(100% - 20%)",
+        overflow: "auto",
+        width: "calc(100% - 15%)",
+      }}
     >
       <div className="card">
         <div
-          className="card-body form-group  justify-content-center align-items-center m-2"
+          className="card-body form-group  justify-content-center align-items-center m-1"
           style={{
-            flexDirection: "column",
-            width: "50rem",
-            flexWrap: "wrap",
             fontFamily: "Poppins",
           }}
         >
-          <div className="card-title" style={{ fontFamily: "Poppins" }}>
-            Credo Member Registeration
-          </div>
+          <div className="card-title m-1">Credo Member Registeration</div>
           <div className="row row-cols-12 m-1 p-1">
-            <div className="col col-6 ">
+            <div className="col col-6 col-md-4">
               <label htmlFor="firstName">First Name</label>
             </div>
-            <div className="col col-6 ">
+            <div className="col col-6 col-md-4">
               <label htmlFor="lastName">Last Name</label>
             </div>
           </div>
           <div className="row row-cols-12 m-1 p-1">
-            <div className="col col-6 ">
+            <div className="col col-6 col-md-4">
               <input
                 type="text"
                 className="form-control"
@@ -35,7 +34,7 @@ const UserCreation = () => {
                 id="firstName"
               />
             </div>
-            <div className="col col-6 ">
+            <div className="col col-6  col-md-4">
               <input
                 type="text"
                 className="form-control"
@@ -45,12 +44,12 @@ const UserCreation = () => {
             </div>
           </div>
           <div className="row row-cols-12 m-1 p-1">
-            <div className="col col-6">
+            <div className="col col-6 col-md-4">
               <label htmlFor="eamilid">Email ID</label>
             </div>
           </div>
           <div className="row row-cols-12 m-1 p-1">
-            <div className="col col-6 ">
+            <div className="col col-12 col-md-4">
               <input
                 type="email"
                 name="email"
@@ -60,7 +59,7 @@ const UserCreation = () => {
             </div>
           </div>
           <div className="row row-cols-12 m-1 p-1">
-            <div className="col col-6 ">
+            <div className="col col-6 col-md-4">
               <label htmlFor="Password">Password</label>
             </div>
             <div className="col col-6 ">
@@ -68,7 +67,7 @@ const UserCreation = () => {
             </div>
           </div>
           <div className="row row-cols-12 m-1 p-1">
-            <div className="col col-6 ">
+            <div className="col col-6 col-md-4">
               <input
                 type="password"
                 className="form-control"
@@ -76,7 +75,7 @@ const UserCreation = () => {
                 id="password"
               />
             </div>
-            <div className="col col-6 ">
+            <div className="col col-6 col-md-4">
               <input
                 type="text"
                 className="form-control"
@@ -86,12 +85,12 @@ const UserCreation = () => {
             </div>
           </div>
           <div className="row row-cols-12 m-1 p-1">
-            <div className="col col-12 ">
+            <div className="col col-12 col-md-4">
               <label>Phno</label>
             </div>
           </div>
           <div className="row row-cols-12 m-1 p-1">
-            <div className="col col-6 ">
+            <div className="col col-12 col-md-4">
               <input
                 type="tel"
                 className="form-control"
@@ -101,7 +100,7 @@ const UserCreation = () => {
             </div>
           </div>
           <div className="row row-cols-12 m-1 p-1">
-            <div className="col cols-12 ">
+            <div className="col cols-12 col-md-4">
               <button type="submit" className="btn btn-primary">
                 Submit
               </button>
