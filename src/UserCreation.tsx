@@ -1,8 +1,13 @@
 import React from "react";
 import { useFormik } from "formik";
 import { useState } from "react";
+import useLocalStorage from "./hooks/useLocalStorage";
+import { useHistory } from "react-router-dom";
 const UserCreation = () => {
+  const [user, setUser] = useLocalStorage("member", null);
+  const [success, setSuccess] = useState(false);
   const [errmsg, showErrMsg] = useState(false);
+  const history = useHistory();
   const validate = (values: {
     firstName: string;
     lastName: string;
@@ -19,6 +24,9 @@ const UserCreation = () => {
     else if (values.lastName.length > 25)
       errors.firstName = "Only 25 characters are allowed";
     if (!values.emailid) errors.emailid = "Required";
+    if (!values.emailid.match("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$"))
+      errors.emailid = "Enter a valid emailid ";
+
     if (!values.password) errors.password = "Required";
     if (
       !values.password.match("([A-Z])") ||
@@ -53,8 +61,11 @@ const UserCreation = () => {
     },
     validate,
     onSubmit: (values) => {
-      console.log(values);
-      console.log("Hi " + values.firstName);
+      setUser(values);
+      setSuccess(true);
+      setTimeout(() => {
+        history.replace("/regsiter", "/Signin");
+      }, 2000);
     },
   });
 
@@ -75,7 +86,12 @@ const UserCreation = () => {
           }}
         >
           <div className="card-title m-1">Credo Member Registeration</div>
-
+          {success ? (
+            <div className="ui green label" style={{ fontWeight: 500 }}>
+              <i className=" check icon"></i>
+              {"Successfully created"}
+            </div>
+          ) : null}
           <form
             className="form-group needs-validation"
             onSubmit={formik.handleSubmit}
@@ -102,7 +118,7 @@ const UserCreation = () => {
                   id="firstName"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.firstName}
+                  value={!success ? formik.values.firstName : ""}
                   required
                 />
                 {formik.touched.firstName &&
@@ -121,7 +137,7 @@ const UserCreation = () => {
                   id="lastName"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.lastName}
+                  value={!success ? formik.values.lastName : ""}
                   required
                 />
                 {formik.touched.lastName && formik.errors.lastName && errmsg ? (
@@ -148,7 +164,7 @@ const UserCreation = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   required
-                  value={formik.values.emailid}
+                  value={!success ? formik.values.emailid : " "}
                 />
                 {formik.touched.emailid && formik.errors.emailid && errmsg ? (
                   <div className="ui pointing red basic label">
@@ -178,7 +194,7 @@ const UserCreation = () => {
                   id="password"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.password}
+                  value={!success ? formik.values.password : ""}
                   required
                 />
                 {formik.touched.password && formik.errors.password && errmsg ? (
@@ -189,13 +205,13 @@ const UserCreation = () => {
               </div>
               <div className="col col-6 col-md-4">
                 <input
-                  type="text"
+                  type="password"
                   className="form-control"
                   name="cnfPassword"
                   id="cnfPassword"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.cnfPassword}
+                  value={!success ? formik.values.cnfPassword : ""}
                   required
                 />
                 {formik.touched.cnfPassword &&
@@ -223,7 +239,7 @@ const UserCreation = () => {
                   id="mobileNumber"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.mobileNumber}
+                  value={!success ? formik.values.mobileNumber : ""}
                   required
                 />
 

@@ -15,7 +15,7 @@ const NavBar = (props) => {
       </div>
       <div className="nav-bar-right">
         <div className="row row-cols-12 justify-content-evenly align-items-center">
-          <div className="col col-6 col-md-4 justify-content-end">
+          <div className="col col-6 col-md-4">
             <div className="form-check form-switch m-1">
               <input
                 className="form-check-input"

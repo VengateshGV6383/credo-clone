@@ -1,10 +1,12 @@
 import React from "react";
 import { useFormik } from "formik";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   onSuccessLogin: () => void;
 }
 const SigninForm = (props: Props) => {
+  const history = useHistory();
   const validate = (values: {
     username: String;
     password: String;
@@ -38,10 +40,11 @@ const SigninForm = (props: Props) => {
 
   return (
     <div
-      className="ui segment"
+      className="ui segment m-2"
       style={{
         flexBasis: "25%",
-        height: "calc(100% - 10%)",
+        height: "calc(100% - 30%)",
+        overflow: "auto",
         alignSelf: "center",
         alignContent: "center",
       }}
@@ -95,10 +98,18 @@ const SigninForm = (props: Props) => {
             <div className="ui  pointing label">{formik.errors.role}</div>
           ) : null}
         </div>
-        <button type="submit" className="ui primary button">
+
+        <button type="submit" className="m-1 ui primary button">
           Submit
         </button>
       </form>
+      <button
+        className="m-1 ui labeled icon  button"
+        onClick={() => history.push("/register")}
+      >
+        <i className="ui sign in alternate icon"></i>
+        New user
+      </button>
     </div>
   );
 };
