@@ -6,6 +6,8 @@ interface Props {
   onSuccessLogin: () => void;
 }
 const SigninForm = (props: Props) => {
+  const user: any = localStorage.getItem("member");
+
   const history = useHistory();
   const validate = (values: {
     username: String;
@@ -14,12 +16,8 @@ const SigninForm = (props: Props) => {
   }) => {
     const errors: any = {};
     if (!values.username) errors.username = "Required";
-    else if (values.username.length > 3)
-      errors.username = "Inccorrect username";
 
     if (!values.password) errors.password = "Required";
-    else if (values.password.length > 3)
-      errors.password = "Inccorrect password";
 
     if (!values.role) errors.role = "Required";
 
@@ -33,8 +31,14 @@ const SigninForm = (props: Props) => {
     },
     validate,
     onSubmit: (values) => {
-      console.log("Form submitted");
-      if (values.password === "dev") props.onSuccessLogin();
+      const userArray = new Array(JSON.parse(user));
+      const OldUser = userArray.filter(
+        (item: any) => item.emailid === values.username
+      );
+      if (values.password === OldUser[0].password) props.onSuccessLogin();
+      else {
+        window.alert("Invalid Username or password");
+      }
     },
   });
 

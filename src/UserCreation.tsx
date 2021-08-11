@@ -52,6 +52,7 @@ const UserCreation = () => {
   };
   const formik = useFormik({
     initialValues: {
+      id: " ",
       firstName: "",
       lastName: "",
       emailid: "",
@@ -61,10 +62,14 @@ const UserCreation = () => {
     },
     validate,
     onSubmit: (values) => {
+      let id = localStorage.getItem("userid")
+        ? localStorage.getItem("userid")
+        : null;
+      values["id"] = id ? id.toString() : "0";
       setUser(values);
       setSuccess(true);
       setTimeout(() => {
-        history.replace("/regsiter", "/Signin");
+        history.push("/Signin");
       }, 2000);
     },
   });
