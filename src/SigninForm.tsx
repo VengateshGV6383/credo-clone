@@ -31,13 +31,17 @@ const SigninForm = (props: Props) => {
     },
     validate,
     onSubmit: (values) => {
-      const userArray = new Array(JSON.parse(user));
-      const OldUser = userArray.filter(
-        (item: any) => item.emailid === values.username
-      );
-      if (values.password === OldUser[0].password) props.onSuccessLogin();
-      else {
-        window.alert("Invalid Username or password");
+      if (user) {
+        const userArray = new Array(JSON.parse(user));
+        const OldUser = userArray.filter(
+          (item: any) => item.emailid === values.username
+        );
+        if (values.password === OldUser[0].password) props.onSuccessLogin();
+        else {
+          window.alert("Invalid Username or password");
+        }
+      } else {
+        window.alert("Please create your  user record ");
       }
     },
   });
