@@ -15,18 +15,17 @@ const User = () => {
         </h4>
       </span>
 
-      <NavLink
-        style={{
-          color: "rgb(255, 103, 0)",
-          padding: "2%",
-          textDecorationLine: "none",
-          backgroundColor: "#ffff",
-          border: "1px solid rgb(255, 103, 0)",
-          borderRadius: "10px",
-        }}
-        to="/register"
-      >
-        <span className="m-1" style={{ fontSize: "1rem" }}>
+      <NavLink to="/register" style={{ textDecorationLine: "none" }}>
+        <span
+          className="m-1  p-2"
+          style={{
+            color: "rgb(255, 103, 0)",
+            fontSize: "1rem",
+            backgroundColor: "#ffff",
+            border: "1px solid rgb(255, 103, 0)",
+            borderRadius: "10px",
+          }}
+        >
           Signin
         </span>
       </NavLink>
