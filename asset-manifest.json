@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/credo-clone/static/css/main.f6cd7027.chunk.css",
-    "main.js": "/credo-clone/static/js/main.97923f7f.chunk.js",
-    "main.js.map": "/credo-clone/static/js/main.97923f7f.chunk.js.map",
+    "main.js": "/credo-clone/static/js/main.c7e43a1b.chunk.js",
+    "main.js.map": "/credo-clone/static/js/main.c7e43a1b.chunk.js.map",
     "runtime-main.js": "/credo-clone/static/js/runtime-main.c58e74f6.js",
     "runtime-main.js.map": "/credo-clone/static/js/runtime-main.c58e74f6.js.map",
     "static/css/2.26bf8ec9.chunk.css": "/credo-clone/static/css/2.26bf8ec9.chunk.css",
-    "static/js/2.1a388c25.chunk.js": "/credo-clone/static/js/2.1a388c25.chunk.js",
-    "static/js/2.1a388c25.chunk.js.map": "/credo-clone/static/js/2.1a388c25.chunk.js.map",
+    "static/js/2.76e34fd8.chunk.js": "/credo-clone/static/js/2.76e34fd8.chunk.js",
+    "static/js/2.76e34fd8.chunk.js.map": "/credo-clone/static/js/2.76e34fd8.chunk.js.map",
     "index.html": "/credo-clone/index.html",
     "static/css/2.26bf8ec9.chunk.css.map": "/credo-clone/static/css/2.26bf8ec9.chunk.css.map",
     "static/css/main.f6cd7027.chunk.css.map": "/credo-clone/static/css/main.f6cd7027.chunk.css.map",
-    "static/js/2.1a388c25.chunk.js.LICENSE.txt": "/credo-clone/static/js/2.1a388c25.chunk.js.LICENSE.txt"
+    "static/js/2.76e34fd8.chunk.js.LICENSE.txt": "/credo-clone/static/js/2.76e34fd8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c58e74f6.js",
     "static/css/2.26bf8ec9.chunk.css",
-    "static/js/2.1a388c25.chunk.js",
+    "static/js/2.76e34fd8.chunk.js",
     "static/css/main.f6cd7027.chunk.css",
-    "static/js/main.97923f7f.chunk.js"
+    "static/js/main.c7e43a1b.chunk.js"
   ]
 }
