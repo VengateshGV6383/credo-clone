@@ -3,11 +3,46 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { useHistory } from "react-router-dom";
+
 const UserCreation = () => {
-  const [user, setUser] = useLocalStorage("member", null);
+  const [user, setUser] = useLocalStorage("member", []);
   const [success, setSuccess] = useState(false);
   const [errmsg, showErrMsg] = useState(false);
   const history = useHistory();
+  const createUser = (values: {
+    id: string;
+    firstName?: string;
+    lastName?: string;
+    mobileNumber?: string;
+    emailid?: string;
+    password?: string;
+    cnfPassword?: string;
+  }) => {
+    const notExistingUser = user.every((item: any) => {
+      return (
+        values.emailid !== item.eamilid &&
+        values.mobileNumber !== item.mobileNumber
+      );
+    });
+    if (notExistingUser) {
+      if (localStorage.getItem("userid") !== null) {
+        let id = localStorage.getItem("userid");
+        values["id"] = id ? id : "0";
+      } else {
+        localStorage.setItem("userid", "0");
+        values["id"] = "0";
+      }
+
+      localStorage.setItem("userid", `${parseInt(values.id) + 1}`);
+      setUser([values, ...user]);
+      setSuccess(true);
+      setTimeout(() => {
+        history.push("/Signin");
+      }, 1000);
+    } else {
+      window.alert("Already existing user!");
+    }
+  };
   const validate = (values: {
     firstName: string;
     lastName: string;
@@ -52,7 +87,7 @@ const UserCreation = () => {
   };
   const formik = useFormik({
     initialValues: {
-      id: " ",
+      id: "",
       firstName: "",
       lastName: "",
       emailid: "",
@@ -62,15 +97,7 @@ const UserCreation = () => {
     },
     validate,
     onSubmit: (values) => {
-      let id = localStorage.getItem("userid")
-        ? localStorage.getItem("userid")
-        : null;
-      values["id"] = id ? id.toString() : "0";
-      setUser(values);
-      setSuccess(true);
-      setTimeout(() => {
-        history.push("/Signin");
-      }, 2000);
+      createUser(values);
     },
   });
 
@@ -98,7 +125,7 @@ const UserCreation = () => {
             </div>
           ) : null}
           <form
-            className="form-group needs-validation"
+            className="form-group "
             onSubmit={formik.handleSubmit}
             noValidate
           >
@@ -169,7 +196,7 @@ const UserCreation = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   required
-                  value={!success ? formik.values.emailid : " "}
+                  value={!success ? formik.values.emailid : ""}
                 />
                 {formik.touched.emailid && formik.errors.emailid && errmsg ? (
                   <div className="ui pointing red basic label">

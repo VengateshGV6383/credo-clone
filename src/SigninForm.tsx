@@ -1,13 +1,16 @@
 import React from "react";
 import { useFormik } from "formik";
-import { useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
+import { useState } from "react";
 
 interface Props {
   onSuccessLogin: () => void;
 }
 const SigninForm = (props: Props) => {
   const user: any = localStorage.getItem("member");
-
+  const [err, ShowError] = useState(false);
+  const [userNameerrmsg, setUsrErrMsg] = useState(false);
+  const [pwderrmsg, setPwdErrMsg] = useState(false);
   const history = useHistory();
   const validate = (values: {
     username: String;
@@ -15,13 +18,34 @@ const SigninForm = (props: Props) => {
     role: String;
   }) => {
     const errors: any = {};
-    if (!values.username) errors.username = "Required";
+    if (!values.username) errors.username = "Enter you registered email id";
 
     if (!values.password) errors.password = "Required";
 
-    if (!values.role) errors.role = "Required";
+    if (!values.role) errors.role = "Select any role";
 
     return errors;
+  };
+  const onVlaidatingSubmission = (values: {
+    username?: string;
+    role?: string;
+    password?: string;
+  }): boolean => {
+    const userArray = JSON.parse(user);
+    const OldUser = userArray.filter(
+      (item: any) => item.emailid === values.username
+    );
+
+    if (OldUser.length === 1) {
+      if (values.password === OldUser[0].password) return true;
+      else {
+        setPwdErrMsg(true);
+        return false;
+      }
+    } else {
+      setUsrErrMsg(true);
+      return false;
+    }
   };
   const formik = useFormik({
     initialValues: {
@@ -32,53 +56,56 @@ const SigninForm = (props: Props) => {
     validate,
     onSubmit: (values) => {
       if (user) {
-        const userArray = new Array(JSON.parse(user));
-        const OldUser = userArray.filter(
-          (item: any) => item.emailid === values.username
-        );
-        if (values.password === OldUser[0].password) props.onSuccessLogin();
-        else {
-          window.alert("Invalid Username or password");
+        if (onVlaidatingSubmission(values)) {
+          setPwdErrMsg(false);
+          setUsrErrMsg(false);
+          props.onSuccessLogin();
         }
       } else {
-        window.alert("Please create your  user record ");
+        window.alert("Some error occured reload the page");
       }
     },
   });
 
   return (
     <div
-      className="ui segment m-2"
+      className="ui segment "
       style={{
-        flexBasis: "25%",
-        height: "calc(100% - 30%)",
         overflow: "auto",
-        alignSelf: "center",
-        alignContent: "center",
+        margin: "auto",
+        height: "calc(100% - 20%)",
       }}
     >
       <h3 style={{ fontFamily: "Poppins" }}>Signin</h3>
-      <form onSubmit={formik.handleSubmit} className="ui form">
+      <form
+        className="ui form"
+        onSubmit={formik.handleSubmit}
+        style={{ fontFamily: "Poppins" }}
+      >
         <div className="ui field">
-          <label htmlFor="Username" style={{ fontFamily: "Poppins" }}>
-            Username
-          </label>
+          <label htmlFor="Username">Username</label>
           <input
             type="text"
             name="username"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.username.trim()}
+            placeholder="Enter you registered mailid"
           />
-          {formik.touched.username && formik.errors.username ? (
-            <div className="ui  pointing label">{formik.errors.username}</div>
+          {formik.touched.username && formik.errors.username && err ? (
+            <div className="ui  pointing basic red label">
+              {formik.errors.username}
+            </div>
+          ) : null}
+          {userNameerrmsg ? (
+            <div className="ui  pointing basic red label">
+              {"Invalid username!"}
+            </div>
           ) : null}
         </div>
 
         <div className="ui field">
-          <label htmlFor="password" style={{ fontFamily: "Poppins" }}>
-            Password
-          </label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
@@ -86,12 +113,24 @@ const SigninForm = (props: Props) => {
             onChange={formik.handleChange}
             value={formik.values.password.trim()}
           />
-          {formik.touched.password && formik.errors.password ? (
-            <div className="ui  pointing label">{formik.errors.password}</div>
+          {formik.touched.password && formik.errors.password && err ? (
+            <div className="ui  pointing basic red label">
+              {formik.errors.password}
+            </div>
+          ) : null}
+          {pwderrmsg ? (
+            <div className="ui  pointing  basic red label">
+              {"Invalid Password"}
+            </div>
           ) : null}
         </div>
-
+        <div className="row row-cols-12 mb-2">
+          <div className="col col-12">
+            <NavLink to="/resetpwd">{"Forgot Password"}</NavLink>
+          </div>
+        </div>
         <div className="ui field">
+          <label> Role</label>
           <select
             name="role"
             onChange={formik.handleChange}
@@ -102,22 +141,34 @@ const SigninForm = (props: Props) => {
             <option value="Admin">Admin</option>
             <option value="Health Coach">Health Coach</option>
           </select>
-          {formik.touched.role && formik.errors.role ? (
+          {formik.touched.role && formik.errors.role && err ? (
             <div className="ui  pointing label">{formik.errors.role}</div>
           ) : null}
         </div>
 
-        <button type="submit" className="m-1 ui primary button">
-          Submit
-        </button>
+        <div className="row row-cols-12 m-2">
+          <div className="col col-6">
+            <button
+              type="submit"
+              onClick={() => ShowError(true)}
+              className="m-1 ui primary button"
+            >
+              Submit
+            </button>
+          </div>
+          <div className="col col-6">
+            <button
+              className="m-1 ui labeled icon  button"
+              type="button"
+              style={{ fontFamily: "Poppins" }}
+              onClick={() => history.push("/register")}
+            >
+              <i className="ui sign in alternate icon"></i>
+              Newuser?
+            </button>
+          </div>
+        </div>
       </form>
-      <button
-        className="m-1 ui labeled icon  button"
-        onClick={() => history.push("/register")}
-      >
-        <i className="ui sign in alternate icon"></i>
-        New user
-      </button>
     </div>
   );
 };

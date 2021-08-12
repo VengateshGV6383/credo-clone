@@ -5,6 +5,7 @@ import MainContent from "./MainContent";
 
 import SigninForm from "./SigninForm";
 import UserCreation from "./UserCreation";
+import ForgotPassword from "./ForgotPassword";
 
 const Router = ({ ThemeContext, dashboardtheme, theme, onSuccessLogin }) => {
   const menuItems = [
@@ -92,6 +93,9 @@ const Router = ({ ThemeContext, dashboardtheme, theme, onSuccessLogin }) => {
 
       <Route path={"/Signin"}>
         <SigninForm onSuccessLogin={onSuccessLogin} />
+      </Route>
+      <Route path={"/resetpwd"}>
+        <ForgotPassword />
       </Route>
       <Route path={"/register"}>
         <UserCreation />
