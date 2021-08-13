@@ -15,7 +15,10 @@ const User = () => {
         </h4>
       </span>
 
-      <NavLink to="/register" style={{ textDecorationLine: "none" }}>
+      <NavLink
+        to="/credo-clone/register"
+        style={{ textDecorationLine: "none" }}
+      >
         <span
           className="m-1  p-2"
           style={{
