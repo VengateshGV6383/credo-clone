@@ -95,7 +95,7 @@ const SigninForm = (props: Props) => {
         onSubmit={formik.handleSubmit}
         style={{ fontFamily: "Poppins" }}
       >
-        <div className="ui field">
+        <div className="ui field m-1">
           <label htmlFor="Username">Username</label>
           <input
             type="text"
@@ -112,7 +112,7 @@ const SigninForm = (props: Props) => {
           </div>
         ) : null}
 
-        <div className="ui field">
+        <div className="ui field m-1">
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -132,7 +132,7 @@ const SigninForm = (props: Props) => {
             <NavLink to="/resetpwd">{"Forgot Password"}</NavLink>
           </div>
         </div>
-        <div className="ui field">
+        <div className="ui field m-1">
           <label> Role</label>
           <select
             name="role"
@@ -160,12 +160,11 @@ const SigninForm = (props: Props) => {
           </div>
           <div className="col col-6">
             <button
-              className="m-1 ui labeled icon  button"
+              className="m-1 ui button"
               type="button"
               style={{ fontFamily: "Poppins" }}
               onClick={() => history.push("/register")}
             >
-              <i className="ui sign in alternate icon"></i>
               Newuser?
             </button>
           </div>
