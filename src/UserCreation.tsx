@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 const UserCreation = () => {
   const [user, setUser] = useLocalStorage("member", []);
   const [success, setSuccess] = useState(false);
+  const [text, setText] = useState(" ");
   const [errmsg, showErrMsg] = useState(false);
   const history = useHistory();
   const createUser = (values: {
@@ -36,11 +37,14 @@ const UserCreation = () => {
       localStorage.setItem("userid", `${parseInt(values.id) + 1}`);
       setUser([values, ...user]);
       setSuccess(true);
+      setText("success");
       setTimeout(() => {
         history.push("/Signin");
       }, 1000);
     } else {
-      window.alert("Already existing user!");
+      setSuccess(true);
+      setText("warning");
+      setTimeout(() => setSuccess(false), 2000);
     }
   };
   const validate = (values: {
@@ -119,9 +123,18 @@ const UserCreation = () => {
         >
           <div className="card-title m-1">Credo Member Registeration</div>
           {success ? (
-            <div className="ui green label" style={{ fontWeight: 500 }}>
-              <i className=" check icon"></i>
-              {"Successfully created"}
+            <div
+              className={
+                text === "success" ? "ui green label" : "ui basic red label"
+              }
+              style={{ fontWeight: 500 }}
+            >
+              <i
+                className={text === "success" ? "check icon" : "ui x icon"}
+              ></i>
+              {text === "success"
+                ? "Successfully created"
+                : "Already existing user"}
             </div>
           ) : null}
           <form
@@ -150,7 +163,7 @@ const UserCreation = () => {
                   id="firstName"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={!success ? formik.values.firstName : ""}
+                  value={text !== "success" ? formik.values.firstName : ""}
                   required
                 />
                 {formik.touched.firstName &&
@@ -169,7 +182,7 @@ const UserCreation = () => {
                   id="lastName"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={!success ? formik.values.lastName : ""}
+                  value={text !== "success" ? formik.values.lastName : ""}
                   required
                 />
                 {formik.touched.lastName && formik.errors.lastName && errmsg ? (
@@ -196,7 +209,7 @@ const UserCreation = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   required
-                  value={!success ? formik.values.emailid : ""}
+                  value={text !== "success" ? formik.values.emailid : ""}
                 />
                 {formik.touched.emailid && formik.errors.emailid && errmsg ? (
                   <div className="ui pointing red basic label">
@@ -226,7 +239,7 @@ const UserCreation = () => {
                   id="password"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={!success ? formik.values.password : ""}
+                  value={text !== "success" ? formik.values.password : ""}
                   required
                 />
                 {formik.touched.password && formik.errors.password && errmsg ? (
@@ -243,7 +256,7 @@ const UserCreation = () => {
                   id="cnfPassword"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={!success ? formik.values.cnfPassword : ""}
+                  value={text !== "success" ? formik.values.cnfPassword : ""}
                   required
                 />
                 {formik.touched.cnfPassword &&
@@ -271,7 +284,7 @@ const UserCreation = () => {
                   id="mobileNumber"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={!success ? formik.values.mobileNumber : ""}
+                  value={text !== "success" ? formik.values.mobileNumber : ""}
                   required
                 />
 
