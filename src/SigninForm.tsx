@@ -129,7 +129,7 @@ const SigninForm = (props: Props) => {
         ) : null}
         <div className="row row-cols-12 mb-2">
           <div className="col col-12">
-            <NavLink to="/resetpwd">{"Forgot Password"}</NavLink>
+            <NavLink to="/credo-clone/resetpwd">{"Forgot Password"}</NavLink>
           </div>
         </div>
         <div className="ui field m-1">
@@ -163,7 +163,7 @@ const SigninForm = (props: Props) => {
               className="m-1 ui button"
               type="button"
               style={{ fontFamily: "Poppins" }}
-              onClick={() => history.push("/register")}
+              onClick={() => history.push("/credo-clone/register")}
             >
               Newuser?
             </button>

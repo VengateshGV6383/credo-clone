@@ -89,7 +89,7 @@ const App = () => {
           {valid === "true" ? (
             <Redirect to="/credo-clone/" />
           ) : (
-            <Redirect to="/Signin" />
+            <Redirect to="/credo-clone/Signin" />
           )}
         </div>
       </BrowserRouter>

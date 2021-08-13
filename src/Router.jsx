@@ -48,12 +48,12 @@ const Router = ({
             path={
               item === "Home"
                 ? "/credo-clone/"
-                : `/${item.toLowerCase().replace(" ", "-")}`
+                : `/credo-clone/${item.toLowerCase().replace(" ", "-")}`
             }
             exact={true}
           />
         ) : (
-          <Redirect to="/Signin" />
+          <Redirect to="/credo-clone/Signin" />
         );
       })}
 
@@ -72,7 +72,9 @@ const Router = ({
             path={
               item === "Home"
                 ? "/credo-clone/dashboard"
-                : `/${item.toLocaleLowerCase().replace(" ", "-")}/dashboard`
+                : `/credo-clone/${item
+                    .toLocaleLowerCase()
+                    .replace(" ", "-")}/dashboard`
             }
             exact={true}
           />
@@ -95,7 +97,7 @@ const Router = ({
             path={
               item === "Home"
                 ? "/credo-clone/dashboard/Chart"
-                : `/${item
+                : `/credo-clone/${item
                     .toLocaleLowerCase()
                     .replace(" ", "-")}/dashboard/Chart`
             }
