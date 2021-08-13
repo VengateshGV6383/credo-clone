@@ -48,13 +48,7 @@
 
 .nav-bar .nav-bar-right {
   cursor: pointer;
-  width: calc(100% - 50%);
-}
-
-@media (max-width: 500px) {
-  .nav-bar .form-check {
-    display: none;
-  }
+  width: calc(100% - 60%);
 }
 
 @media (max-width: 500px) {

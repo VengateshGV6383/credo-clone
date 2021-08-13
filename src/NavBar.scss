@@ -38,11 +38,7 @@ $font-size-navbar: 20px;
     cursor: pointer;
     width: calc(100% - 60%);
   }
-  .form-check {
-    @media (max-width: 500px) {
-      display: none;
-    }
-  }
+
   @media (max-width: 500px) {
     justify-content: space-between;
   }
