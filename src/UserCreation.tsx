@@ -121,7 +121,7 @@ const UserCreation = () => {
             fontFamily: "Poppins",
           }}
         >
-          <div className="card-title m-1">Credo Member Registeration</div>
+          <div className="card-title m-1">Credo Member Registration</div>
           {success ? (
             <div
               className={
