@@ -9,7 +9,36 @@ const ForgotPassword = () => {
   const history = useHistory();
   const [errmsg, showErrMsg] = useState(false);
   const [phnoErr, setPhnoErr] = useState(false);
+  const [text, setText] = useState("");
   const [success, setSuccess] = useState(false);
+  const onSubmission = (values: {
+    mobileNumber: string;
+    password: string;
+    cnfPassword: string;
+  }) => {
+    if (user.length >= 1) {
+      const OldUser = user.filter(
+        (item: any) => item.mobileNumber === values.mobileNumber
+      );
+      if (OldUser[0]) {
+        const remainingUser = user.filter(
+          (item: any) => item.mobileNumber !== values.mobileNumber
+        );
+        OldUser[0].password = values.password;
+        OldUser[0].cnfPassword = values.cnfPassword;
+
+        setUser([OldUser[0], ...remainingUser]);
+        setSuccess(true);
+        setTimeout(() => {
+          history.goBack();
+        }, 1500);
+      } else {
+        setPhnoErr(true);
+        setText("Phone number doesn't exist");
+        setTimeout(() => setPhnoErr(false), 3000);
+      }
+    }
+  };
   const validate = (values: {
     mobileNumber: string;
     password: string;
@@ -27,8 +56,6 @@ const ForgotPassword = () => {
     )
       errors.password = "Enter a valid password";
     if (!values.cnfPassword) errors.cnfPassword = "Retype your password";
-    if (values.cnfPassword !== values.password)
-      errors.cnfPassword = "Password does not matched";
 
     return errors;
   };
@@ -40,32 +67,18 @@ const ForgotPassword = () => {
     },
     validate,
     onSubmit: (values) => {
-      if (user.length >= 1) {
-        const OldUser = user.filter(
-          (item: any) => item.mobileNumber === values.mobileNumber
-        );
-        if (OldUser[0]) {
-          const remainingUser = user.filter(
-            (item: any) => item.mobileNumber !== values.mobileNumber
-          );
-          OldUser[0].password = values.password;
-          OldUser[0].cnfPassword = values.cnfPassword;
-
-          setUser([OldUser, ...remainingUser]);
-          setSuccess(true);
-          setTimeout(() => {
-            history.goBack();
-          }, 1500);
-        } else {
-          setPhnoErr(true);
-        }
+      if (values.cnfPassword === values.password) onSubmission(values);
+      else {
+        setPhnoErr(true);
+        setText("Password doesn't matches");
+        setTimeout(() => setPhnoErr(false), 3000);
       }
     },
   });
 
   return (
     <div
-      className="card m-2 justify-slef-center align-self-center "
+      className="card  justify-slef-center align-self-center "
       style={{
         fontFamily: "Poppins",
         height: "calc(100% - 20%)",
@@ -82,8 +95,8 @@ const ForgotPassword = () => {
         ) : null}
         {phnoErr ? (
           <div className="ui basic red label" style={{ fontWeight: 500 }}>
-            <i className="ui close icon"></i>
-            {"Phone number doesn't exist"}
+            <i className="ui x icon"></i>
+            {text}
           </div>
         ) : null}
         <form className="form-group " onSubmit={formik.handleSubmit}>
@@ -105,16 +118,15 @@ const ForgotPassword = () => {
                 onChange={formik.handleChange}
                 value={formik.values.mobileNumber}
               />
-              {formik.touched.mobileNumber &&
-              formik.errors.mobileNumber &&
-              errmsg ? (
-                <div className="ui pointing red basic label">
-                  {formik.errors.mobileNumber}
-                </div>
-              ) : null}
             </div>
           </div>
-
+          {formik.touched.mobileNumber &&
+          formik.errors.mobileNumber &&
+          errmsg ? (
+            <div className="ui pointing red basic label">
+              {formik.errors.mobileNumber}
+            </div>
+          ) : null}
           <div className="row row-cols-12  m-1 p-1">
             <div className="col col-12">
               <label className="form-label" htmlFor="password1">
@@ -159,15 +171,16 @@ const ForgotPassword = () => {
                 onChange={formik.handleChange}
                 value={formik.values.cnfPassword}
               />
+              {formik.touched.cnfPassword &&
+              formik.errors.cnfPassword &&
+              errmsg ? (
+                <div className="ui pointing red basic label">
+                  {formik.errors.cnfPassword}
+                </div>
+              ) : null}
             </div>
-            {formik.touched.cnfPassword &&
-            formik.errors.cnfPassword &&
-            errmsg ? (
-              <div className="ui pointing red basic label">
-                {formik.errors.cnfPassword}
-              </div>
-            ) : null}
           </div>
+
           <div className="row row-cols-12 mt-2 m-1 p-1">
             <div className="col col-6 col-lg-4">
               <button

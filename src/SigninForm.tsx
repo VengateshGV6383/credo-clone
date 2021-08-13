@@ -9,8 +9,8 @@ interface Props {
 const SigninForm = (props: Props) => {
   const user: any = localStorage.getItem("member");
   const [err, ShowError] = useState(false);
-  const [userNameerrmsg, setUsrErrMsg] = useState(false);
-  const [pwderrmsg, setPwdErrMsg] = useState(false);
+  const [subErrmsg, setSuberrMsg] = useState(false);
+  const [text, setText] = useState(" ");
   const history = useHistory();
   const validate = (values: {
     username: String;
@@ -39,11 +39,15 @@ const SigninForm = (props: Props) => {
     if (OldUser.length === 1) {
       if (values.password === OldUser[0].password) return true;
       else {
-        setPwdErrMsg(true);
+        setSuberrMsg(true);
+        setText("Invalid password");
+        setTimeout(() => setSuberrMsg(false), 3000);
         return false;
       }
     } else {
-      setUsrErrMsg(true);
+      setSuberrMsg(true);
+      setText("Invalid Username");
+      setTimeout(() => setSuberrMsg(false), 3000);
       return false;
     }
   };
@@ -57,8 +61,7 @@ const SigninForm = (props: Props) => {
     onSubmit: (values) => {
       if (user) {
         if (onVlaidatingSubmission(values)) {
-          setPwdErrMsg(false);
-          setUsrErrMsg(false);
+          setSuberrMsg(false);
           props.onSuccessLogin();
         }
       } else {
@@ -77,6 +80,16 @@ const SigninForm = (props: Props) => {
       }}
     >
       <h3 style={{ fontFamily: "Poppins" }}>Signin</h3>
+      <div className="row row-cols-12">
+        <div className="col col-12">
+          {subErrmsg ? (
+            <div className="ui basic red label" style={{ fontWeight: 500 }}>
+              <i className="ui x icon"></i>
+              {text}
+            </div>
+          ) : null}
+        </div>
+      </div>
       <form
         className="ui form"
         onSubmit={formik.handleSubmit}
@@ -92,17 +105,12 @@ const SigninForm = (props: Props) => {
             value={formik.values.username.trim()}
             placeholder="Enter you registered mailid"
           />
-          {formik.touched.username && formik.errors.username && err ? (
-            <div className="ui  pointing basic red label">
-              {formik.errors.username}
-            </div>
-          ) : null}
-          {userNameerrmsg ? (
-            <div className="ui  pointing basic red label">
-              {"Invalid username!"}
-            </div>
-          ) : null}
         </div>
+        {formik.touched.username && formik.errors.username && err ? (
+          <div className="ui  pointing basic red label">
+            {formik.errors.username}
+          </div>
+        ) : null}
 
         <div className="ui field">
           <label htmlFor="password">Password</label>
@@ -113,17 +121,12 @@ const SigninForm = (props: Props) => {
             onChange={formik.handleChange}
             value={formik.values.password.trim()}
           />
-          {formik.touched.password && formik.errors.password && err ? (
-            <div className="ui  pointing basic red label">
-              {formik.errors.password}
-            </div>
-          ) : null}
-          {pwderrmsg ? (
-            <div className="ui  pointing  basic red label">
-              {"Invalid Password"}
-            </div>
-          ) : null}
         </div>
+        {formik.touched.password && formik.errors.password && err ? (
+          <div className="ui  pointing basic red label">
+            {formik.errors.password}
+          </div>
+        ) : null}
         <div className="row row-cols-12 mb-2">
           <div className="col col-12">
             <NavLink to="/resetpwd">{"Forgot Password"}</NavLink>
@@ -141,11 +144,10 @@ const SigninForm = (props: Props) => {
             <option value="Admin">Admin</option>
             <option value="Health Coach">Health Coach</option>
           </select>
-          {formik.touched.role && formik.errors.role && err ? (
-            <div className="ui  pointing label">{formik.errors.role}</div>
-          ) : null}
         </div>
-
+        {formik.touched.role && formik.errors.role && err ? (
+          <div className="ui  pointing label">{formik.errors.role}</div>
+        ) : null}
         <div className="row row-cols-12 m-2">
           <div className="col col-6">
             <button

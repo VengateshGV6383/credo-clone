@@ -84,6 +84,7 @@ const App = () => {
             dashboardtheme={dashboardtheme}
             ThemeContext={ThemeContext}
             onSuccessLogin={onSuccessLogin}
+            valid={valid}
           />
           {valid === "true" ? (
             <Redirect to="/credo-clone/" />
