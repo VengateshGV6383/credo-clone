@@ -29,13 +29,13 @@ const Router = ({
 
   return (
     <Switch>
-      <Route path={"/Signin"}>
+      <Route path={"/credo-clone/Signin"}>
         <SigninForm onSuccessLogin={onSuccessLogin} />
       </Route>
-      <Route path={"/resetpwd"}>
+      <Route path={"/credo-clone/resetpwd"}>
         <ForgotPassword />
       </Route>
-      <Route path={"/register"}>
+      <Route path={"/credo-clone/register"}>
         <UserCreation />
       </Route>
       {menuItems.map((item, index) => {
@@ -77,7 +77,7 @@ const Router = ({
             exact={true}
           />
         ) : (
-          <Redirect to="/Signin" />
+          <Redirect to="/credo-clone/Signin" />
         );
       })}
       {menuItems.map((item, index) => {
@@ -102,7 +102,7 @@ const Router = ({
             exact={true}
           />
         ) : (
-          <Redirect to="/Signin" />
+          <Redirect to="/credo-clone/Signin" />
         );
       })}
     </Switch>
