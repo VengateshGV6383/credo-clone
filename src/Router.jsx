@@ -6,6 +6,7 @@ import MainContent from "./MainContent";
 import SigninForm from "./SigninForm";
 import UserCreation from "./UserCreation";
 import ForgotPassword from "./ForgotPassword";
+import SurveyForm from "./SurveyForm";
 
 const Router = ({
   ThemeContext,
@@ -38,6 +39,13 @@ const Router = ({
       <Route path={"/credo-clone/register"}>
         <UserCreation />
       </Route>
+      <Route path={"/credo-clone/survey"}>
+        {valid === "true" ? (
+          <SurveyForm />
+        ) : (
+          <Redirect to="/credo-clone/Signin" />
+        )}
+      </Route>
       {menuItems.map((item, index) => {
         return valid === "true" ? (
           <Route
@@ -53,7 +61,7 @@ const Router = ({
             exact={true}
           />
         ) : (
-          <Redirect to="/credo-clone/Signin" />
+          <Redirect to="/credo-clone/Signin" key="main1" />
         );
       })}
 
@@ -79,7 +87,7 @@ const Router = ({
             exact={true}
           />
         ) : (
-          <Redirect to="/credo-clone/Signin" />
+          <Redirect to="/credo-clone/Signin" key={"main2"} />
         );
       })}
       {menuItems.map((item, index) => {
@@ -104,7 +112,7 @@ const Router = ({
             exact={true}
           />
         ) : (
-          <Redirect to="/credo-clone/Signin" />
+          <Redirect to="/credo-clone/Signin" key={"main3"} />
         );
       })}
     </Switch>

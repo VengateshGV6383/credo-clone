@@ -92,8 +92,8 @@ const App = () => {
             <Redirect to="/credo-clone/Signin" />
           )}
         </div>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </React.Fragment>
   );
 };
