@@ -9,6 +9,7 @@ const useFormhooks = ({ initialValues, validateForm, onSubmit }) => {
   };
   //to execute error!
   const [errors, dispatchError] = useReducer(reducer, validateForm(values));
+  const [showErrors, setShowErrors] = useState(false);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setValues((prevValues) => ({
@@ -30,6 +31,8 @@ const useFormhooks = ({ initialValues, validateForm, onSubmit }) => {
     let successFullSubmssion = Object.keys(errors).every((key) => !errors[key]);
     if (successFullSubmssion) {
       onSubmit(values);
+    } else {
+      setShowErrors(!showErrors);
     }
   };
 
@@ -37,6 +40,7 @@ const useFormhooks = ({ initialValues, validateForm, onSubmit }) => {
     values: values,
     errors: errors,
     touched: touched,
+    showErrors: showErrors,
     handleChange: handleChange,
     handleSubmit: handleSubmit,
     handleFocus: handleFocus,

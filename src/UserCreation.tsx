@@ -163,11 +163,10 @@ const UserCreation = () => {
                   name="firstName"
                   id="firstName"
                   onChange={formhooks.handleChange}
-                  onFocus={formhooks.handleFocus}
                   value={text !== "success" ? formhooks.values.firstName : ""}
                   required
                 />
-                {formhooks.touched.firstName &&
+                {formhooks.showErrors &&
                 formhooks.errors.firstName &&
                 errmsg ? (
                   <div className="ui pointing red basic label">
@@ -182,13 +181,10 @@ const UserCreation = () => {
                   name="lastName"
                   id="lastName"
                   onChange={formhooks.handleChange}
-                  onFocus={formhooks.handleFocus}
                   value={text !== "success" ? formhooks.values.lastName : ""}
                   required
                 />
-                {formhooks.touched.lastName &&
-                formhooks.errors.lastName &&
-                errmsg ? (
+                {formhooks.showErrors && formhooks.errors.lastName && errmsg ? (
                   <div className="ui pointing red basic label">
                     {formhooks.errors.lastName}
                   </div>
@@ -210,13 +206,10 @@ const UserCreation = () => {
                   id="emailid"
                   className="form-control"
                   onChange={formhooks.handleChange}
-                  onFocus={formhooks.handleFocus}
                   required
                   value={text !== "success" ? formhooks.values.emailid : ""}
                 />
-                {formhooks.touched.emailid &&
-                formhooks.errors.emailid &&
-                errmsg ? (
+                {formhooks.showErrors && formhooks.errors.emailid && errmsg ? (
                   <div className="ui pointing red basic label">
                     {formhooks.errors.emailid}
                   </div>
@@ -243,13 +236,10 @@ const UserCreation = () => {
                   name="password"
                   id="password"
                   onChange={formhooks.handleChange}
-                  onFocus={formhooks.handleFocus}
                   value={text !== "success" ? formhooks.values.password : ""}
                   required
                 />
-                {formhooks.touched.password &&
-                formhooks.errors.password &&
-                errmsg ? (
+                {formhooks.showErrors && formhooks.errors.password && errmsg ? (
                   <div className="ui pointing red basic label">
                     {formhooks.errors.password}
                   </div>
@@ -262,11 +252,10 @@ const UserCreation = () => {
                   name="cnfPassword"
                   id="cnfPassword"
                   onChange={formhooks.handleChange}
-                  onFocus={formhooks.handleFocus}
                   value={text !== "success" ? formhooks.values.cnfPassword : ""}
                   required
                 />
-                {formhooks.touched.cnfPassword &&
+                {formhooks.showErrors &&
                 formhooks.errors.cnfPassword &&
                 errmsg ? (
                   <div className="ui pointing red basic label">
@@ -290,14 +279,13 @@ const UserCreation = () => {
                   name="mobileNumber"
                   id="mobileNumber"
                   onChange={formhooks.handleChange}
-                  onFocus={formhooks.handleFocus}
                   value={
                     text !== "success" ? formhooks.values.mobileNumber : ""
                   }
                   required
                 />
 
-                {formhooks.touched.mobileNumber &&
+                {formhooks.showErrors &&
                 formhooks.errors.mobileNumber &&
                 errmsg ? (
                   <div className="ui pointing red basic label">

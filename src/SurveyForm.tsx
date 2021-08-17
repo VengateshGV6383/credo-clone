@@ -9,14 +9,14 @@ const SurveyForm = () => {
   const validateForm = (values: any) => {
     const error: any = {};
     if (!values.q1) error.q1 = "Required";
-    else if (values.q1.length > 26)
+    else if (values.q1.length > 25)
       error.q1 = "Should not exceed more than 25 characters";
     if (!values.q2) error.q2 = "Required";
-    else if (values.q2.length > 26)
+    else if (values.q2.length > 25)
       error.q2 = "Should not exceed more than 25 characters";
 
     if (!values.q3) error.q3 = "Required";
-    else if (values.q3.length > 26)
+    else if (values.q3.length > 25)
       error.q3 = "Should not exceed more than 25 characters";
 
     return error;
@@ -72,10 +72,9 @@ const SurveyForm = () => {
                           onChange={formhooks.handleChange}
                           value={formhooks.values[`q${index + 1}`]}
                           name={`q${index + 1}`}
-                          onFocus={formhooks.handleFocus}
                         />
                       )}
-                      {formhooks.touched[`q${index + 1}`] &&
+                      {formhooks.showErrors &&
                       formhooks.errors[`q${index + 1}`] ? (
                         <div className="ui pointing basic red label">
                           {formhooks.errors[`q${index + 1}`]}
