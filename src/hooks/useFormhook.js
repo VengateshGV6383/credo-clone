@@ -2,12 +2,13 @@ import { useReducer, useState } from "react";
 
 const useFormhooks = ({ initialValues, validateForm, onSubmit }) => {
   const [values, setValues] = useState(initialValues);
+  const [touched, setTouched] = useState(initialValues);
   const reducer = (state, action) => {
     const errorObject = validateForm(values);
     return { ...state, [action.type]: errorObject[action.type] };
   };
   //to execute error!
-  const [error, dispatchError] = useReducer(reducer, validateForm(values));
+  const [errors, dispatchError] = useReducer(reducer, validateForm(values));
   const handleChange = (event) => {
     const { name, value } = event.target;
     setValues((prevValues) => ({
@@ -17,21 +18,28 @@ const useFormhooks = ({ initialValues, validateForm, onSubmit }) => {
 
     dispatchError({ type: name });
   };
+  const handleFocus = (event) => {
+    const { name } = event.target;
+    setTouched((prevState) => ({
+      ...prevState,
+      [name]: true,
+    }));
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    let successFullSubmssion = Object.keys(error).every((key) => !error[key]);
+    let successFullSubmssion = Object.keys(errors).every((key) => !errors[key]);
     if (successFullSubmssion) {
       onSubmit(values);
-    } else {
-      onSubmit("clear errors");
     }
   };
 
   return {
     values: values,
+    errors: errors,
+    touched: touched,
     handleChange: handleChange,
     handleSubmit: handleSubmit,
-    error: error,
+    handleFocus: handleFocus,
   };
 };
 

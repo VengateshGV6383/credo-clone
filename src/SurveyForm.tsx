@@ -9,9 +9,16 @@ const SurveyForm = () => {
   const validateForm = (values: any) => {
     const error: any = {};
     if (!values.q1) error.q1 = "Required";
-    else if (values.q1.length < 5) error.q1 = "More than 5 is needed";
+    else if (values.q1.length > 26)
+      error.q1 = "Should not exceed more than 25 characters";
     if (!values.q2) error.q2 = "Required";
+    else if (values.q2.length > 26)
+      error.q2 = "Should not exceed more than 25 characters";
+
     if (!values.q3) error.q3 = "Required";
+    else if (values.q3.length > 26)
+      error.q3 = "Should not exceed more than 25 characters";
+
     return error;
   };
   const formhooks = useFormhooks({
@@ -22,7 +29,7 @@ const SurveyForm = () => {
     },
     validateForm,
     onSubmit: (values: any) => {
-      console.log(values);
+      window.alert(JSON.stringify(values));
     },
   });
   return (
@@ -40,21 +47,22 @@ const SurveyForm = () => {
               return (
                 <div key={index}>
                   <div className="row row-cols-12 m-1 p-1">
-                    <div className="col col-6">
+                    <div className="col col-12 col-md-6">
                       <label htmlFor={`QuestionNo${index}`}>
                         {`${index + 1}.  ${item}`}
                       </label>
                     </div>
                   </div>
                   <div className="row row-cols-12 m-1 p-1">
-                    <div className="col col-6">
+                    <div className="col col-12 col-md-6">
                       {index === 2 ? (
                         <textarea
                           className="form-control"
                           rows={5}
                           onChange={formhooks.handleChange}
-                          value={formhooks.values[`q${index + 1}`]}
-                          name={`q${index + 1}`}
+                          value={formhooks.values[`q3`]}
+                          name={`q3`}
+                          onFocus={formhooks.handleFocus}
                         ></textarea>
                       ) : (
                         <input
@@ -64,9 +72,15 @@ const SurveyForm = () => {
                           onChange={formhooks.handleChange}
                           value={formhooks.values[`q${index + 1}`]}
                           name={`q${index + 1}`}
+                          onFocus={formhooks.handleFocus}
                         />
                       )}
-                      {formhooks.error[`q${index + 1}`]}
+                      {formhooks.touched[`q${index + 1}`] &&
+                      formhooks.errors[`q${index + 1}`] ? (
+                        <div className="ui pointing basic red label">
+                          {formhooks.errors[`q${index + 1}`]}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 </div>

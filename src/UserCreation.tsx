@@ -1,5 +1,6 @@
 import React from "react";
-import { useFormik } from "formik";
+//import { useformhooks } from "formik";
+import useFormhooks from "./hooks/useFormhook";
 import { useState } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { useHistory } from "react-router-dom";
@@ -47,7 +48,7 @@ const UserCreation = () => {
       setTimeout(() => setSuccess(false), 2000);
     }
   };
-  const validate = (values: {
+  const validateForm = (values: {
     firstName: string;
     lastName: string;
     mobileNumber: string;
@@ -89,7 +90,7 @@ const UserCreation = () => {
 
     return errors;
   };
-  const formik = useFormik({
+  const formhooks = useFormhooks({
     initialValues: {
       id: "",
       firstName: "",
@@ -99,8 +100,8 @@ const UserCreation = () => {
       password: "",
       cnfPassword: "",
     },
-    validate,
-    onSubmit: (values) => {
+    validateForm,
+    onSubmit: (values: any) => {
       createUser(values);
     },
   });
@@ -139,7 +140,7 @@ const UserCreation = () => {
           ) : null}
           <form
             className="form-group "
-            onSubmit={formik.handleSubmit}
+            onSubmit={formhooks.handleSubmit}
             noValidate
           >
             <div className="row row-cols-12 m-1 p-1">
@@ -161,16 +162,16 @@ const UserCreation = () => {
                   className="form-control"
                   name="firstName"
                   id="firstName"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={text !== "success" ? formik.values.firstName : ""}
+                  onChange={formhooks.handleChange}
+                  onFocus={formhooks.handleFocus}
+                  value={text !== "success" ? formhooks.values.firstName : ""}
                   required
                 />
-                {formik.touched.firstName &&
-                formik.errors.firstName &&
+                {formhooks.touched.firstName &&
+                formhooks.errors.firstName &&
                 errmsg ? (
                   <div className="ui pointing red basic label">
-                    {formik.errors.firstName}
+                    {formhooks.errors.firstName}
                   </div>
                 ) : null}
               </div>
@@ -180,14 +181,16 @@ const UserCreation = () => {
                   className="form-control"
                   name="lastName"
                   id="lastName"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={text !== "success" ? formik.values.lastName : ""}
+                  onChange={formhooks.handleChange}
+                  onFocus={formhooks.handleFocus}
+                  value={text !== "success" ? formhooks.values.lastName : ""}
                   required
                 />
-                {formik.touched.lastName && formik.errors.lastName && errmsg ? (
+                {formhooks.touched.lastName &&
+                formhooks.errors.lastName &&
+                errmsg ? (
                   <div className="ui pointing red basic label">
-                    {formik.errors.lastName}
+                    {formhooks.errors.lastName}
                   </div>
                 ) : null}
               </div>
@@ -206,14 +209,16 @@ const UserCreation = () => {
                   name="emailid"
                   id="emailid"
                   className="form-control"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
+                  onChange={formhooks.handleChange}
+                  onFocus={formhooks.handleFocus}
                   required
-                  value={text !== "success" ? formik.values.emailid : ""}
+                  value={text !== "success" ? formhooks.values.emailid : ""}
                 />
-                {formik.touched.emailid && formik.errors.emailid && errmsg ? (
+                {formhooks.touched.emailid &&
+                formhooks.errors.emailid &&
+                errmsg ? (
                   <div className="ui pointing red basic label">
-                    {formik.errors.emailid}
+                    {formhooks.errors.emailid}
                   </div>
                 ) : null}
               </div>
@@ -237,14 +242,16 @@ const UserCreation = () => {
                   className="form-control"
                   name="password"
                   id="password"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={text !== "success" ? formik.values.password : ""}
+                  onChange={formhooks.handleChange}
+                  onFocus={formhooks.handleFocus}
+                  value={text !== "success" ? formhooks.values.password : ""}
                   required
                 />
-                {formik.touched.password && formik.errors.password && errmsg ? (
+                {formhooks.touched.password &&
+                formhooks.errors.password &&
+                errmsg ? (
                   <div className="ui pointing red basic label">
-                    {formik.errors.password}
+                    {formhooks.errors.password}
                   </div>
                 ) : null}
               </div>
@@ -254,16 +261,16 @@ const UserCreation = () => {
                   className="form-control"
                   name="cnfPassword"
                   id="cnfPassword"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={text !== "success" ? formik.values.cnfPassword : ""}
+                  onChange={formhooks.handleChange}
+                  onFocus={formhooks.handleFocus}
+                  value={text !== "success" ? formhooks.values.cnfPassword : ""}
                   required
                 />
-                {formik.touched.cnfPassword &&
-                formik.errors.cnfPassword &&
+                {formhooks.touched.cnfPassword &&
+                formhooks.errors.cnfPassword &&
                 errmsg ? (
                   <div className="ui pointing red basic label">
-                    {formik.errors.cnfPassword}
+                    {formhooks.errors.cnfPassword}
                   </div>
                 ) : null}
               </div>
@@ -282,17 +289,19 @@ const UserCreation = () => {
                   className="form-control"
                   name="mobileNumber"
                   id="mobileNumber"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={text !== "success" ? formik.values.mobileNumber : ""}
+                  onChange={formhooks.handleChange}
+                  onFocus={formhooks.handleFocus}
+                  value={
+                    text !== "success" ? formhooks.values.mobileNumber : ""
+                  }
                   required
                 />
 
-                {formik.touched.mobileNumber &&
-                formik.errors.mobileNumber &&
+                {formhooks.touched.mobileNumber &&
+                formhooks.errors.mobileNumber &&
                 errmsg ? (
                   <div className="ui pointing red basic label">
-                    {formik.errors.mobileNumber}
+                    {formhooks.errors.mobileNumber}
                   </div>
                 ) : null}
               </div>
