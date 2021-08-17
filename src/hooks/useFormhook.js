@@ -32,7 +32,7 @@ const useFormhooks = ({ initialValues, validateForm, onSubmit }) => {
     if (successFullSubmssion) {
       onSubmit(values);
     } else {
-      setShowErrors(!showErrors);
+      setShowErrors(true);
     }
   };
 
