@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /src/*.txt
+/src/hooks/*.ts
 # testing
 /coverage
 
