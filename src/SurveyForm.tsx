@@ -29,7 +29,7 @@ const SurveyForm = () => {
     },
     validateForm,
     onSubmit: (values: any) => {
-      window.alert(JSON.stringify(values));
+      window.alert("Thanks for your feedback ");
     },
   });
   return (
