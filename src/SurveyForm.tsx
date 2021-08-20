@@ -48,6 +48,13 @@ const SurveyForm = () => {
           <div className="card-title">
             <h3>Welcome to Credo-Clone survey,</h3>
           </div>
+          {formhooks.isEmpty ? (
+            <div className="ui icon basic red label">
+              <i className="ui x icon"></i>
+              {"No Empty Fields"}
+            </div>
+          ) : null}
+
           <form onSubmit={formhooks.handleSubmit}>
             {questions.map((item, index) => {
               return (
