@@ -118,9 +118,8 @@ const MainContent = (props) => {
             defaultColDef={{
               sortable: true,
               filter: true,
-
+              suppressMovable: true,
               pivotMode: false,
-              rowDrag: false,
             }}
             rowData={records}
             rowClass={rowStyle}
