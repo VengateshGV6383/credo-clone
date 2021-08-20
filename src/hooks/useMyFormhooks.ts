@@ -21,6 +21,7 @@ const useMyFormhooks=<Fields>({initialValues,validateForm,onSubmit}:Props<Fields
     const [touched, setTouched] = useState(initialValues);
     const reducerEvent=(reducerState:dispatchStateType,action:{type:dispatchEventType,payload:FieldsType|{name:FieldsType,value:string}|string}):dispatchStateType=>{
         const{state}=reducerState
+        setEmpty(false);
         switch(action.type){
           case "error":
             const {errors}= state
@@ -33,7 +34,7 @@ const useMyFormhooks=<Fields>({initialValues,validateForm,onSubmit}:Props<Fields
             const {values}=state;
             const {name,value}=action.payload as {name:FieldsType,value:string}
             state.values={...values,[name]:value}
-            setEmpty(false)
+            
             return {state};
             default:return reducerState;
 
@@ -60,7 +61,7 @@ const useMyFormhooks=<Fields>({initialValues,validateForm,onSubmit}:Props<Fields
         const {name,value}=event.target;
         dispatch({type:"changevalue",payload:{name:name as FieldsType,value }})
         dispatch({type:"error",payload:name as FieldsType})
-        console.log(reducerState.state.errors)
+        
     }
 const handleSubmit=(event:FormEvent)=>{
     event.preventDefault();
@@ -68,7 +69,7 @@ const handleSubmit=(event:FormEvent)=>{
     const {values,errors}=reducerState.state;
     let noError =Object.keys(values).every((key)=> !errors[key as FieldsType] )
     let Values =Object.keys(values).every((key)=> values[key as FieldsType]!==initialValues[key as FieldsType])
-    Values===false?setEmpty(true):setEmpty(false);
+
     if(Values){
       if(noError){
         onSubmit(values)
@@ -76,10 +77,11 @@ const handleSubmit=(event:FormEvent)=>{
       else{
         setShowErrors(true)
       }
+    }else{
+      setEmpty(true)
+      setShowErrors(true)
     }
     
-
-
 
 }
 return {

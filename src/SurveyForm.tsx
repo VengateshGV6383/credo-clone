@@ -51,7 +51,7 @@ const SurveyForm = () => {
           {formhooks.isEmpty ? (
             <div className="ui icon basic red label">
               <i className="ui x icon"></i>
-              {"No Empty Fields"}
+              {"No Empty Fields should occur"}
             </div>
           ) : null}
 
