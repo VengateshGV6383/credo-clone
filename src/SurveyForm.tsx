@@ -1,12 +1,18 @@
 import React from "react";
-import useFormhooks from "./hooks/useFormhook";
+import useMyFormhooks from "./hooks/useMyFormhooks";
+interface Form {
+  q1: string;
+  q2: string;
+  q3: string;
+  [key: string]: string;
+}
 const SurveyForm = () => {
   const questions = [
     "What do you think about credo-clone ?",
     "How can I improve my dashboard ?",
     "Any valuable feedback ?",
   ];
-  const validateForm = (values: any) => {
+  const validateForm = (values: Partial<Form>): Form => {
     const error: any = {};
     if (!values.q1) error.q1 = "Required";
     else if (values.q1.length > 25)
@@ -21,14 +27,14 @@ const SurveyForm = () => {
 
     return error;
   };
-  const formhooks = useFormhooks({
+  const formhooks = useMyFormhooks<Form>({
     initialValues: {
       q1: "",
       q2: "",
       q3: "",
     },
     validateForm,
-    onSubmit: (values: any) => {
+    onSubmit: (values) => {
       window.alert("Thanks for your feedback ");
     },
   });

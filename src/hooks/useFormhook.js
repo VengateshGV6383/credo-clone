@@ -46,4 +46,3 @@ const useFormhooks = ({ initialValues, validateForm, onSubmit }) => {
     handleFocus: handleFocus,
   };
 };
-export default useFormhooks;

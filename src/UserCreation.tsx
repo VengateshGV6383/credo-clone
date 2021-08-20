@@ -1,26 +1,27 @@
 import React from "react";
 //import { useformhooks } from "formik";
-import useFormhooks from "./hooks/useFormhook";
+import useFormhooks from "./hooks/useFormhooks";
 import { useState } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { useHistory } from "react-router-dom";
-
+interface Form {
+  [key: string]: string;
+  id: string;
+  firstName: string;
+  lastName: string;
+  mobileNumber: string;
+  emailid: string;
+  password: string;
+  cnfPassword: string;
+}
 const UserCreation = () => {
   const [user, setUser] = useLocalStorage("member", []);
   const [success, setSuccess] = useState(false);
   const [text, setText] = useState(" ");
   const [errmsg, showErrMsg] = useState(false);
   const history = useHistory();
-  const createUser = (values: {
-    id: string;
-    firstName?: string;
-    lastName?: string;
-    mobileNumber?: string;
-    emailid?: string;
-    password?: string;
-    cnfPassword?: string;
-  }) => {
-    const notExistingUser = user.every((item: any) => {
+  const createUser = (values: Partial<Form>) => {
+    const notExistingUser = user.every((item: Form) => {
       return (
         values.emailid !== item.eamilid &&
         values.mobileNumber !== item.mobileNumber
@@ -48,14 +49,7 @@ const UserCreation = () => {
       setTimeout(() => setSuccess(false), 2000);
     }
   };
-  const validateForm = (values: {
-    firstName: string;
-    lastName: string;
-    mobileNumber: string;
-    emailid: string;
-    password: string;
-    cnfPassword: string;
-  }) => {
+  const validateForm = (values: Partial<Form>): Form => {
     const errors: any = {};
     if (!values.firstName) errors.firstName = "Required";
     else if (values.firstName.length > 25)
@@ -64,15 +58,19 @@ const UserCreation = () => {
     else if (values.lastName.length > 25)
       errors.firstName = "Only 25 characters are allowed";
     if (!values.emailid) errors.emailid = "Required";
-    if (!values.emailid.match("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$"))
+    if (
+      values.emailid &&
+      values.emailid.match("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$")
+    )
       errors.emailid = "Enter a valid emailid ";
 
     if (!values.password) errors.password = "Required";
     if (
-      !values.password.match("([A-Z])") ||
-      !values.password.match("([0-9])") ||
-      !values.password.match("([a-z])") ||
-      !values.password.match("([!|@|#|$|%|^|&|*|_]){1,}")
+      values.password &&
+      (values.password.match("([A-Z])") ||
+        !values.password.match("([0-9])") ||
+        !values.password.match("([a-z])") ||
+        !values.password.match("([!|@|#|$|%|^|&|*|_]){1,}"))
     )
       errors.password = "Enter a valid password";
     if (!values.cnfPassword) errors.cnfPassword = "Retype your password";
@@ -80,17 +78,18 @@ const UserCreation = () => {
       errors.cnfPassword = "Password does not matched";
     if (!values.mobileNumber) errors.mobileNumber = "Required";
 
-    if (values.mobileNumber.length < 10)
+    if (values.mobileNumber && values.mobileNumber.length < 10)
       errors.mobileNumber = "Enter a valid mobile number";
     if (
-      !values.mobileNumber.match("[0-9]{10}") ||
-      values.mobileNumber.length > 10
+      values.mobileNumber &&
+      (!values.mobileNumber.match("[0-9]{10}") ||
+        values.mobileNumber.length > 10)
     )
       errors.mobileNumber = "Enter a valid mobile number";
 
     return errors;
   };
-  const formhooks = useFormhooks({
+  const formhooks = useFormhooks<Form>({
     initialValues: {
       id: "",
       firstName: "",
@@ -101,7 +100,7 @@ const UserCreation = () => {
       cnfPassword: "",
     },
     validateForm,
-    onSubmit: (values: any) => {
+    onSubmit: (values) => {
       createUser(values);
     },
   });
