@@ -1,8 +1,14 @@
 import React from "react";
-import { useFormik } from "formik";
+
+import useMyFormhooks from "./hooks/useMyFormhooks";
 import { NavLink, useHistory } from "react-router-dom";
 import { useState } from "react";
-
+interface Form {
+  [k: string]: string;
+  username: string;
+  password: string;
+  role: string;
+}
 interface Props {
   onSuccessLogin: () => void;
 }
@@ -12,11 +18,7 @@ const SigninForm = (props: Props) => {
   const [subErrmsg, setSuberrMsg] = useState(false);
   const [text, setText] = useState(" ");
   const history = useHistory();
-  const validate = (values: {
-    username: String;
-    password: String;
-    role: String;
-  }) => {
+  const validateForm = (values: Partial<Form>) => {
     const errors: any = {};
     if (!values.username) errors.username = "Enter you registered email id";
 
@@ -51,13 +53,13 @@ const SigninForm = (props: Props) => {
       return false;
     }
   };
-  const formik = useFormik({
+  const formhooks = useMyFormhooks<Form>({
     initialValues: {
       username: "",
       password: "",
       role: "",
     },
-    validate,
+    validateForm,
     onSubmit: (values) => {
       if (user) {
         if (onVlaidatingSubmission(values)) {
@@ -88,11 +90,17 @@ const SigninForm = (props: Props) => {
               {text}
             </div>
           ) : null}
+          {formhooks.isEmpty ? (
+            <div className="ui icon basic red label">
+              <i className="ui x icon"></i>
+              {"No Empty Fields should occur"}
+            </div>
+          ) : null}
         </div>
       </div>
       <form
         className="ui form"
-        onSubmit={formik.handleSubmit}
+        onSubmit={formhooks.handleSubmit}
         style={{ fontFamily: "Poppins" }}
       >
         <div className="ui field m-1">
@@ -100,15 +108,14 @@ const SigninForm = (props: Props) => {
           <input
             type="text"
             name="username"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.username.trim()}
+            onChange={formhooks.handleChange}
+            value={formhooks.values.username}
             placeholder="Enter you registered mailid"
           />
         </div>
-        {formik.touched.username && formik.errors.username && err ? (
+        {formhooks.errors.username && err ? (
           <div className="ui  pointing basic red label">
-            {formik.errors.username}
+            {formhooks.errors.username}
           </div>
         ) : null}
 
@@ -117,14 +124,14 @@ const SigninForm = (props: Props) => {
           <input
             type="password"
             id="password"
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            value={formik.values.password.trim()}
+            onChange={formhooks.handleChange}
+            value={formhooks.values.password}
+            name="password"
           />
         </div>
-        {formik.touched.password && formik.errors.password && err ? (
+        {formhooks.errors.password && err ? (
           <div className="ui  pointing basic red label">
-            {formik.errors.password}
+            {formhooks.errors["password"]}
           </div>
         ) : null}
         <div className="row row-cols-12 mb-2">
@@ -136,17 +143,16 @@ const SigninForm = (props: Props) => {
           <label> Role</label>
           <select
             name="role"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.role.trim()}
+            onChange={formhooks.handleChange}
+            value={formhooks.values.role}
           >
             <option value=" ">Select</option>
             <option value="Admin">Admin</option>
             <option value="Health Coach">Health Coach</option>
           </select>
         </div>
-        {formik.touched.role && formik.errors.role && err ? (
-          <div className="ui  pointing label">{formik.errors.role}</div>
+        {formhooks.errors.role && err ? (
+          <div className="ui  pointing label">{formhooks.errors.role}</div>
         ) : null}
         <div className="row row-cols-12 m-2">
           <div className="col col-6">

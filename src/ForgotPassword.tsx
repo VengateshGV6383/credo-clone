@@ -1,21 +1,24 @@
-import { useFormik } from "formik";
+import useMyFormhooks from "./hooks/useMyFormhooks";
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import useLocalStorage from "./hooks/useLocalStorage";
-
+interface form {
+  mobileNumber: string;
+  password: string;
+  cnfPassword: string;
+}
 const ForgotPassword = () => {
   const [user, setUser] = useLocalStorage("member");
   const history = useHistory();
-  const [errmsg, showErrMsg] = useState(false);
+
   const [phnoErr, setPhnoErr] = useState(false);
   const [text, setText] = useState("");
   const [success, setSuccess] = useState(false);
-  const onSubmission = (values: {
-    mobileNumber: string;
-    password: string;
-    cnfPassword: string;
-  }) => {
+
+  //checks for the valid user with the phno
+  // and sets PhnErr the phno if phno not found
+  const onSubmission = (values: Partial<form>) => {
     if (user.length >= 1) {
       const OldUser = user.filter(
         (item: any) => item.mobileNumber === values.mobileNumber
@@ -39,33 +42,31 @@ const ForgotPassword = () => {
       }
     }
   };
-  const validate = (values: {
-    mobileNumber: string;
-    password: string;
-    cnfPassword: string;
-  }) => {
+  const validateForm = (values: Partial<form>) => {
     const errors: any = {};
-    if (!values.mobileNumber || !values.mobileNumber.match("[0-9]{10,}"))
-      errors.mobileNumber = "Enter a valid number";
+    if (!values.mobileNumber)
+      errors.mobileNumber = "Enter a valid phone number";
+    if (!values.mobileNumber?.match("[0-9]{10}"))
+      errors.mobileNumber = "Enter a valid phone number";
     if (!values.password) errors.password = "Required";
     if (
-      !values.password.match("([A-Z])") ||
-      !values.password.match("([0-9])") ||
-      !values.password.match("([a-z])") ||
-      !values.password.match("([!|@|#|$|%|^|&|*|_]){1,}")
+      !values.password?.match("([A-Z])") ||
+      !values.password?.match("([0-9])") ||
+      !values.password?.match("([a-z])") ||
+      !values.password?.match("([!|@|#|$|%|^|&|*|_]){1,}")
     )
       errors.password = "Enter a valid password";
     if (!values.cnfPassword) errors.cnfPassword = "Retype your password";
 
     return errors;
   };
-  const formik = useFormik({
+  const formhooks = useMyFormhooks<form>({
     initialValues: {
       mobileNumber: "",
       password: "",
       cnfPassword: "",
     },
-    validate,
+    validateForm,
     onSubmit: (values) => {
       if (values.cnfPassword === values.password) onSubmission(values);
       else {
@@ -93,13 +94,20 @@ const ForgotPassword = () => {
             {"Successfully created"}
           </div>
         ) : null}
+
         {phnoErr ? (
           <div className="ui basic red label" style={{ fontWeight: 500 }}>
             <i className="ui x icon"></i>
             {text}
           </div>
         ) : null}
-        <form className="form-group " onSubmit={formik.handleSubmit}>
+        {formhooks.isEmpty ? (
+          <div className="ui icon basic red label">
+            <i className="ui x icon"></i>
+            {"No Empty Fields should occur"}
+          </div>
+        ) : null}
+        <form className="form-group " onSubmit={formhooks.handleSubmit}>
           <div className="row row-cols-12 m-1 p-1">
             <div className="col col-12">
               <label className="form-label" htmlFor="mobileNumber">
@@ -114,17 +122,14 @@ const ForgotPassword = () => {
                 name="mobileNumber"
                 id="mobileNumber"
                 className="form-control"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.mobileNumber}
+                onChange={formhooks.handleChange}
+                value={formhooks.values.mobileNumber}
               />
             </div>
           </div>
-          {formik.touched.mobileNumber &&
-          formik.errors.mobileNumber &&
-          errmsg ? (
+          {formhooks.errors.mobileNumber ? (
             <div className="ui pointing red basic label">
-              {formik.errors.mobileNumber}
+              {formhooks.errors.mobileNumber}
             </div>
           ) : null}
           <div className="row row-cols-12  m-1 p-1">
@@ -141,13 +146,12 @@ const ForgotPassword = () => {
                 name="password"
                 id="password1"
                 className="form-control"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.password}
+                onChange={formhooks.handleChange}
+                value={formhooks.values.password}
               />
-              {formik.touched.password && formik.errors.password && errmsg ? (
+              {formhooks.errors.password ? (
                 <div className="ui pointing red basic label">
-                  {formik.errors.password}
+                  {formhooks.errors.password}
                 </div>
               ) : null}
             </div>
@@ -167,15 +171,12 @@ const ForgotPassword = () => {
                 name="cnfPassword"
                 id="password2"
                 className="form-control"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.cnfPassword}
+                onChange={formhooks.handleChange}
+                value={formhooks.values.cnfPassword}
               />
-              {formik.touched.cnfPassword &&
-              formik.errors.cnfPassword &&
-              errmsg ? (
+              {formhooks.errors.cnfPassword ? (
                 <div className="ui pointing red basic label">
-                  {formik.errors.cnfPassword}
+                  {formhooks.errors.cnfPassword}
                 </div>
               ) : null}
             </div>
@@ -183,11 +184,7 @@ const ForgotPassword = () => {
 
           <div className="row row-cols-12 mt-2 m-1 p-1">
             <div className="col col-6 col-lg-4">
-              <button
-                type="submit"
-                onClick={() => showErrMsg(true)}
-                className="ui primary button"
-              >
+              <button type="submit" className="ui primary button">
                 Submit
               </button>
             </div>

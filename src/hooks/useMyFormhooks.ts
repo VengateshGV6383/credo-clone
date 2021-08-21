@@ -57,7 +57,7 @@ const useMyFormhooks=<Fields>({initialValues,validateForm,onSubmit}:Props<Fields
     }));
   };
     const [reducerState,dispatch]=useReducer(reducerEvent,initialState )
-    const handleChange=(event:ChangeEvent<HTMLInputElement>|ChangeEvent<HTMLTextAreaElement>)=>{
+    const handleChange=(event:ChangeEvent<HTMLInputElement>|ChangeEvent<HTMLTextAreaElement>|ChangeEvent<HTMLSelectElement>)=>{
         const {name,value}=event.target;
         dispatch({type:"changevalue",payload:{name:name as FieldsType,value }})
         dispatch({type:"error",payload:name as FieldsType})
@@ -67,6 +67,7 @@ const handleSubmit=(event:FormEvent)=>{
     event.preventDefault();
 
     const {values,errors}=reducerState.state;
+  
     let noError =Object.keys(values).every((key)=> !errors[key as FieldsType] )
     let Values =Object.keys(values).every((key)=> values[key as FieldsType]!==initialValues[key as FieldsType])
 

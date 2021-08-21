@@ -58,40 +58,28 @@ const UserCreation = () => {
     else if (values.lastName.length > 25)
       errors.firstName = "Only 25 characters are allowed";
     if (!values.emailid) errors.emailid = "Required";
-    if (
-      values.emailid &&
-      values.emailid.match("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$")
-    )
+    else if (!values.emailid.match("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+$"))
       errors.emailid = "Enter a valid emailid ";
 
     if (!values.password) errors.password = "Required";
-    if (
-      values.password &&
-      (values.password.match("([A-Z])") ||
-        !values.password.match("([0-9])") ||
-        !values.password.match("([a-z])") ||
-        !values.password.match("([!|@|#|$|%|^|&|*|_]){1,}"))
+    else if (
+      !values.password.match("([A-Z])") ||
+      !values.password.match("([0-9])") ||
+      !values.password.match("([a-z])") ||
+      !values.password.match("([!|@|#|$|%|^|&|*|_]){1,}")
     )
       errors.password = "Enter a valid password";
     if (!values.cnfPassword) errors.cnfPassword = "Retype your password";
     if (values.cnfPassword !== values.password)
       errors.cnfPassword = "Password does not matched";
     if (!values.mobileNumber) errors.mobileNumber = "Required";
-
-    if (values.mobileNumber && values.mobileNumber.length < 10)
-      errors.mobileNumber = "Enter a valid mobile number";
-    if (
-      values.mobileNumber &&
-      (!values.mobileNumber.match("[0-9]{10}") ||
-        values.mobileNumber.length > 10)
-    )
+    else if (!values.mobileNumber.match("[0-9]{10}"))
       errors.mobileNumber = "Enter a valid mobile number";
 
     return errors;
   };
   const formhooks = useMyFormhooks<Form>({
     initialValues: {
-      id: "",
       firstName: "",
       lastName: "",
       emailid: "",
