@@ -7,6 +7,7 @@ import SigninForm from "./SigninForm";
 import UserCreation from "./UserCreation";
 import ForgotPassword from "./ForgotPassword";
 import SurveyForm from "./SurveyForm";
+import AddNewuserForm from "./AddNewuserForm";
 
 const Router = ({
   ThemeContext,
@@ -42,6 +43,13 @@ const Router = ({
       <Route path={"/credo-clone/survey"}>
         {valid === "true" ? (
           <SurveyForm />
+        ) : (
+          <Redirect to="/credo-clone/Signin" />
+        )}
+      </Route>
+      <Route path={"/credo-clone/newmember"}>
+        {valid === "true" ? (
+          <AddNewuserForm />
         ) : (
           <Redirect to="/credo-clone/Signin" />
         )}

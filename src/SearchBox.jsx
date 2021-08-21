@@ -1,5 +1,7 @@
 import React from "react";
+import { useHistory } from "react-router";
 const SearchBox = (props) => {
+  const history = useHistory();
   return (
     <form
       className="ui form"
@@ -60,10 +62,18 @@ const SearchBox = (props) => {
 
       <button
         type="submit"
-        className="ui primary button"
+        className="ui primary button m-1"
         style={{ backgroundColor: props.theme ? "#00E396" : null }}
       >
         Search
+      </button>
+      <button
+        type="button"
+        className="ui secondary button m-1"
+        style={{ backgroundColor: props.theme ? "#BB86FC" : null }}
+        onClick={() => history.push("/credo-clone/newmember")}
+      >
+        Add
       </button>
     </form>
   );
