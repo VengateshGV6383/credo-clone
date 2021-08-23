@@ -17,6 +17,7 @@ const useMyFormhooks=<Fields>({initialValues,validateForm,onSubmit}:Props<Fields
     type FieldsType= keyof Fields;
     type dispatchStateType= intialState<Fields>
     const [showErrors, setShowErrors] = useState(false);
+   
     const [isEmpty,setEmpty]=useState(false);
     const [touched, setTouched] = useState(initialValues);
     const reducerEvent=(reducerState:dispatchStateType,action:{type:dispatchEventType,payload:FieldsType|{name:FieldsType,value:string}|string}):dispatchStateType=>{
@@ -74,13 +75,14 @@ const handleSubmit=(event:FormEvent)=>{
     if(Values){
       if(noError){
         onSubmit(values)
+  
       }
       else{
         setShowErrors(true)
       }
     }else{
-      setEmpty(true)
       setShowErrors(true)
+      setEmpty(true)
     }
     
 
@@ -93,7 +95,8 @@ return {
     showErrors:showErrors,
     handleChange:handleChange,
     handleFocus:handleFocus,
-    handleSubmit:handleSubmit
+    handleSubmit:handleSubmit,
+    
 
 }
 }

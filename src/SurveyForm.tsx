@@ -1,5 +1,7 @@
 import React from "react";
+
 import useMyFormhooks from "./hooks/useMyFormhooks";
+
 interface Form {
   q1: string;
   q2: string;
@@ -76,6 +78,9 @@ const SurveyForm = () => {
                           value={formhooks.values[`q3`]}
                           name={`q3`}
                           onFocus={formhooks.handleFocus}
+                          style={{
+                            borderColor: formhooks.isEmpty ? "red" : " ",
+                          }}
                         ></textarea>
                       ) : (
                         <input
@@ -85,6 +90,9 @@ const SurveyForm = () => {
                           onChange={formhooks.handleChange}
                           value={formhooks.values[`q${index + 1}`]}
                           name={`q${index + 1}`}
+                          style={{
+                            borderColor: formhooks.isEmpty ? "red" : " ",
+                          }}
                         />
                       )}
                       {formhooks.showErrors &&

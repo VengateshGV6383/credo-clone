@@ -21,19 +21,25 @@ const AddNewuserForm = () => {
       },
     },
   ];
+  const newGroupFields: FormDefinition["groupedfields"] = [
+    {
+      field: {
+        totalFields: 2,
+        names: ["fname", "lname"],
+        labels: ["First Name", "Last Name"],
+        types: ["text", "text"],
+        ChangeEvents: [
+          (e) => {
+            console.log(e.target.value);
+          },
+          (e) => {
+            console.log(e.target.value);
+          },
+        ],
+      },
+    },
+  ];
   const newUser: FormDefinition["fields"] = [
-    {
-      label: "Firstname",
-      name: "mFname",
-      onChange: (e) => console.log(e.target.value),
-      type: "text",
-    },
-    {
-      label: "Lastname",
-      name: "lFname",
-      onChange: (e) => console.log(e.target.value),
-      type: "text",
-    },
     {
       label: "Emailid",
       name: "emailid",
@@ -93,6 +99,7 @@ const AddNewuserForm = () => {
     {
       label: "Disease",
       type: "select",
+      name: "disease",
       options: [
         {
           id: 0,
@@ -122,6 +129,7 @@ const AddNewuserForm = () => {
       fields={newUser}
       heading={"Member Adding"}
       buttons={buttons}
+      groupedfields={newGroupFields}
     />
   );
 };
