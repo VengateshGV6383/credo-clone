@@ -2,15 +2,36 @@ import React from "react";
 import CreateMyForm, { FormDefinition } from "./CreateMyForm";
 
 const AddNewuserForm = () => {
+  const buttons: FormDefinition["buttons"] = [
+    {
+      name: "Submit",
+      type: "submit",
+      rank: "primary",
+      onClick: (e) => {
+        e.preventDefault();
+        console.log("Submit button Clicked");
+      },
+    },
+    {
+      name: "Reset All",
+      type: "reset",
+      rank: "secondary",
+      onClick: (e) => {
+        console.log("Reset button Clicked");
+      },
+    },
+  ];
   const newUser: FormDefinition["fields"] = [
     {
       label: "Firstname",
       name: "mFname",
+      onChange: (e) => console.log(e.target.value),
       type: "text",
     },
     {
       label: "Lastname",
       name: "lFname",
+      onChange: (e) => console.log(e.target.value),
       type: "text",
     },
     {
@@ -96,6 +117,12 @@ const AddNewuserForm = () => {
       ],
     },
   ];
-  return <CreateMyForm fields={newUser} heading={"Member Adding"} />;
+  return (
+    <CreateMyForm
+      fields={newUser}
+      heading={"Member Adding"}
+      buttons={buttons}
+    />
+  );
 };
 export default AddNewuserForm;
